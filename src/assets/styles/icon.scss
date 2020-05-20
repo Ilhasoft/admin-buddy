@@ -1,12 +1,30 @@
-.ilha-icon {
-  &.icon {
-    vertical-align: middle;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    svg {
-      height: 100% !important;
-      width: 100% !important;
-    }
+i.ilha-icon {
+  display: inline-block;
+  background-size: 100% 100%;
+  width: 1em;
+  height: 1em;
+  &.chart {
+    background-image: url('#{$admin-budy-assets-path}/icons/chart.svg');
+  }
+  &.dashboard {
+    background-image: url('#{$admin-budy-assets-path}/icons/dashboard.svg');
+  }
+  &.edit {
+    background-image: url('#{$admin-budy-assets-path}/icons/edit.svg');
+  }
+  &.form {
+    background-image: url('#{$admin-budy-assets-path}/icons/form.svg');
+  }
+  &.tables {
+    background-image: url('#{$admin-budy-assets-path}/icons/tables.svg');
+  }
+  &.trash {
+    background-image: url('#{$admin-budy-assets-path}/icons/trash.svg');
+  }
+  &.ui-element {
+    background-image: url('#{$admin-budy-assets-path}/icons/ui-element.svg');
+  }
+  &.users {
+    background-image: url('#{$admin-budy-assets-path}/icons/users.svg');
   }
 }

@@ -5,17 +5,21 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js",
+    "build-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack",
+    "build-and-install-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../health-buddy-admin && cd .. && cd health-buddy-admin && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
     "lint": "vue-cli-service lint"
   },
   "bundleDependencies": false,
   "main": "dist/admin-buddy.common.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "buefy": "^0.8.19",
     "core-js": "^3.6.4",
     "vee-validate": "^3.3.0",
     "vue": "^2.6.11",
-    "vue-inline-svg": "^1.3.1"
+    "vue-axios": "^2.1.5",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",

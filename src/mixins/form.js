@@ -1,5 +1,3 @@
-import toastsService from '@/services/toasts';
-
 export default {
   data() {
     return {
@@ -63,18 +61,18 @@ export default {
       this.data = {};
       console.error(error);
       this.loading = false;
-      toastsService.alertFetchError();
+      this.alertFetchError();
     },
     saveSuccess({ data }) {
       this.data = data;
       this.loading = false;
-      toastsService.alertSaveSuccess();
+      this.alertSaveSuccess();
       this.$router.replace({ params: { id: data.id } });
     },
     saveError(error) {
       console.error(error);
       this.loading = false;
-      toastsService.alertSaveError();
+      this.alertSaveError();
     },
     updateId() {
       const id = +this.$route.params.id;

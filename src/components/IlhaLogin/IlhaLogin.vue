@@ -43,10 +43,11 @@
 </template>
 
 <script>
-//import toastsService from '../../services/toasts';
+import toastsMixin from '../../mixins/toasts';
 
 export default {
   name: 'ilha-login',
+  mixins: [toastsMixin],
   props: {
     appLogo: {
       type: String,
@@ -74,11 +75,11 @@ export default {
     tryLogin() {
       this.loading = true;
       this.userService.login({ username: this.username, password: this.password }).then(() => {
-//        toastsService.successLoginAlert();
+        this.successLoginAlert();
         this.$router.push('admin');
       }).catch((error) => {
         this.loading = false;
-//        toastsService.errorLoginAlert();
+        this.errorLoginAlert();
         console.error(error);
       });
     },

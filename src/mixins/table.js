@@ -1,5 +1,3 @@
-import toastsService from '../services/toasts';
-
 export default {
   data() {
     return {
@@ -73,10 +71,10 @@ export default {
     },
     deleteData(data) {
       this.$http.delete(`${this.resourceUrl}/${data.id}`).then(() => {
-        toastsService.alertDeleteSuccess();
+        this.alertDeleteSuccess();
       }).catch((error) => {
         console.error(error);
-        toastsService.alertDeleteError();
+        this.alertDeleteError();
       });
     },
   },
