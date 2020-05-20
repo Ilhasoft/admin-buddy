@@ -51,13 +51,16 @@ export default {
       type: String,
       default: '',
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    }
   },
   data() {
     return {
       username: undefined,
       password: undefined,
       htmlHeightLast: undefined,
-      loading: false,
     };
   },
   computed: {
