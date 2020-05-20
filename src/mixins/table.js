@@ -1,4 +1,4 @@
-export default {
+  export default {
   data() {
     return {
       resourceUrl: undefined,
@@ -34,6 +34,9 @@ export default {
       this.loadAsyncData();
     },
     loadAsyncData() {
+      if (!this.resourceUrl) {
+        return;
+      }
       const params = [
         `page=${this.currentPage}`,
         `ordering=${this.order}${this.sortField}`,

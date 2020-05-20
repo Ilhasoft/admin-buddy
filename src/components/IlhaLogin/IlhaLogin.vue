@@ -43,19 +43,13 @@
 </template>
 
 <script>
-import toastsMixin from '../../mixins/toasts';
 
 export default {
   name: 'ilha-login',
-  mixins: [toastsMixin],
   props: {
     appLogo: {
       type: String,
       default: '',
-    },
-    userService: {
-      type: Object,
-      required: true,
     },
   },
   data() {
@@ -73,15 +67,7 @@ export default {
   },
   methods: {
     tryLogin() {
-      this.loading = true;
-      this.userService.login({ username: this.username, password: this.password }).then(() => {
-        this.successLoginAlert();
-        this.$router.push('admin');
-      }).catch((error) => {
-        this.loading = false;
-        this.errorLoginAlert();
-        console.error(error);
-      });
+      this.$emit('onLogin', { username: this.username, password: this.password });
     },
     updateViewStyle(mounted) {
       const { body } = document;
