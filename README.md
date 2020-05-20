@@ -1,4 +1,4 @@
-# ilha-admin-components
+# admin-buddy
 
 ## Project setup
 ```
