@@ -11,6 +11,10 @@
         align-items: center;
         justify-content: center;
         border-left: 1px solid white;
+        @media screen and (max-width: 768px) {
+          border-left: 0;
+          border-top: 1px solid white;
+        }
       }
     }
 

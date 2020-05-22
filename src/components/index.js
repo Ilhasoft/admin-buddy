@@ -8,4 +8,4 @@ export { default as IlhaSideBar } from './IlhaSidebar';
 export { default as IlhaTable } from './IlhaTable';
 export { default as IlhaTitle } from './IlhaTitle';
 export { default as IlhaSummaryBoxy } from './IlhaSummaryBox';
-
+export { default as IlhaDonutChart } from './IlhaDonutChart';

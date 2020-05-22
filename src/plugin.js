@@ -3,11 +3,10 @@ import * as components from './components';
 const AdminBuddy = {
   install(Vue) {
     // components
-    for (const componentName in components) {
-      const component = components[componentName];
+    Object.values(components).forEach((component) => {
       Vue.component(component.name, component);
-    }
-  }
+    });
+  },
 };
 
 

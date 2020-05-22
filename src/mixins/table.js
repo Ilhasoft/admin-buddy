@@ -1,4 +1,5 @@
-  export default {
+
+export default {
   data() {
     return {
       resourceUrl: undefined,

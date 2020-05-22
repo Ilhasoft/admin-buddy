@@ -5,23 +5,103 @@
         Título
       </template>
     </ilha-header>
-    <ilha-summary-box>
-      <template v-slot:icon>
-        oi
-      </template>
-      <template v-slot:details>
-        View details
-      </template>
-      <template v-slot:period>
-        today
-      </template>
-      <template v-slot:title>
-        Interact with Bot
-      </template>
-      <template v-slot:amount>
-        1231
-      </template>
-    </ilha-summary-box>
+    <div class="columns m-2">
+      <ilha-summary-box class="column has-background-primary has-text-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:period>
+          today
+        </template>
+        <template v-slot:title>
+          Interact with Bot
+        </template>
+        <template v-slot:amount>
+          1231
+        </template>
+      </ilha-summary-box>
+      <ilha-summary-box class="column has-background-warning has-text-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:period>
+          today
+        </template>
+        <template v-slot:title>
+          Interact with Bot
+        </template>
+        <template v-slot:amount>
+          1231
+        </template>
+      </ilha-summary-box>
+      <ilha-summary-box class="column has-background-success has-text-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:period>
+          today
+        </template>
+        <template v-slot:title>
+          Interact with Bot
+        </template>
+        <template v-slot:amount>
+          1231
+        </template>
+      </ilha-summary-box>
+    </div>
+    <div class="columns m-2">
+      <ilha-summary-box class="column has-background-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:chart>
+          <ilha-donut-chart
+            :data="chartData"
+            style="width: 90%; min-width: 150px;">
+          </ilha-donut-chart>
+        </template>
+      </ilha-summary-box>
+      <ilha-summary-box class="column has-background-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:chart>
+          <ilha-donut-chart
+            :data="chartData"
+            style="width: 90%; min-width: 150px;">
+          </ilha-donut-chart>
+        </template>
+      </ilha-summary-box>
+      <ilha-summary-box class="column has-background-white">
+        <template v-slot:icon>
+          oi
+        </template>
+        <template v-slot:details>
+          View details
+        </template>
+        <template v-slot:chart>
+          <ilha-donut-chart
+            :data="chartData"
+            style="width: 90%; min-width: 150px;">
+          </ilha-donut-chart>
+        </template>
+      </ilha-summary-box>
+    </div>
     <ilha-table></ilha-table>
     aqui
   </div>
@@ -30,8 +110,25 @@
 <script>
 
 export default {
-  name: 'App'
-}
+  name: 'App',
+  data() {
+    return {
+      chartData: [
+        {
+          label: 'Visitors',
+          value: 90,
+          backgroundColor: '#2FA2F4',
+        },
+        {
+          label: 'Users',
+          value: 10,
+          backgroundColor: '#F8C239',
+        },
+      ],
+    };
+  },
+};
+
 </script>
 
 <style lang="scss">

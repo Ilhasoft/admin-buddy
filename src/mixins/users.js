@@ -1,7 +1,7 @@
 
 export default {
   data() {
-    return  {
+    return {
       loginLoading: false,
     };
   },
@@ -27,16 +27,16 @@ export default {
         return data;
       });
     },
-    tryLogin({ username, password}) {
+    tryLogin({ username, password }) {
       this.loginLoading = true;
-      this.login({ username, password}).then(() => {
+      this.login({ username, password }).then(() => {
         this.successLoginAlert();
         this.$router.push({ name: this.loginAfterRouteName });
       }).catch((error) => {
-        this.loginLoading= false;
+        this.loginLoading = false;
         this.errorLoginAlert();
         console.error(error);
       });
-    }
+    },
   },
 };
