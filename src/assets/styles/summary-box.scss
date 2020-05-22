@@ -1,0 +1,18 @@
+.ilha-summary-box {
+  border: solid 1px white;
+  border-radius: 5px;
+  &__header {
+    margin: 0;
+    border-bottom: 1px solid white;
+    .column {
+      padding: 0.3em;
+      &:last-child {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-left: 1px solid white;
+      }
+    }
+
+  }
+}

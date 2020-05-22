@@ -5,6 +5,23 @@
         Título
       </template>
     </ilha-header>
+    <ilha-summary-box>
+      <template v-slot:icon>
+        oi
+      </template>
+      <template v-slot:details>
+        View details
+      </template>
+      <template v-slot:period>
+        today
+      </template>
+      <template v-slot:title>
+        Interact with Bot
+      </template>
+      <template v-slot:amount>
+        1231
+      </template>
+    </ilha-summary-box>
     <ilha-table></ilha-table>
     aqui
   </div>
@@ -53,6 +70,7 @@ $link-focus-border: $primary;
 @import "assets/styles/form";
 @import "assets/styles/sidebar";
 @import "assets/styles/common";
+@import "assets/styles/summary-box";
 
 html {
   background-color: $light;
