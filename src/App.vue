@@ -1,7 +1,12 @@
 <template>
   <div id="app">
+    <ilha-header  :creation-route="{}">
+      <template v-slot:title>
+        Título
+      </template>
+    </ilha-header>
+    <ilha-table></ilha-table>
     aqui
-    <ilha-icon type="dashboard"></ilha-icon>
   </div>
 </template>
 
@@ -47,4 +52,10 @@ $link-focus-border: $primary;
 @import "assets/styles/login";
 @import "assets/styles/form";
 @import "assets/styles/sidebar";
+@import "assets/styles/common";
+
+html {
+  background-color: $light;
+}
+
 </style>

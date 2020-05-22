@@ -1,8 +1,8 @@
 .manager-panel {
-  .subtitle {
-    font-weight: bold;
+  &__header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     .btn-add {
       font-size: 0.7em;
       text-transform: uppercase;

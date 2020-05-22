@@ -23,20 +23,23 @@
         </b-button>
       </div>
     </div>
-    <h1 class="m-3 m-b-1 subtitle">
-      <span>
+    <div class="m-2 m-t-1 m-b-1 manager-panel__header" v-if="$slots.title || creationRoute">
+      <ilha-title v-if="$slots.title">
         <slot name="title"/>
-      </span>
+      </ilha-title>
       <b-button
-        v-if="newEntityRoute"
-        :to="newEntityRoute"
+        v-if="creationRoute"
+        :to="creationRoute"
         tag="router-link"
         type="is-info"
         class="btn-add p-1"
       >
-        {{ addBtnLabel }}
+        <slot name="creationBtnLabel"/>
+        <span v-if="!$slots.creationBtnLabel">
+          New
+        </span>
       </b-button>
-    </h1>
+    </div>
   </section>
 </template>
 
@@ -45,12 +48,8 @@
 export default {
   name: 'ilha-header',
   props: {
-    newEntityRoute: {
+    creationRoute: {
       type: Object,
-    },
-    addBtnLabel: {
-      type: String,
-      default: 'New',
     },
     query: {
       type: String,

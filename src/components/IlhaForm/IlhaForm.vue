@@ -1,7 +1,7 @@
 <template>
   <ValidationObserver
     v-slot="{ passes }"
-    :class="hasSpacing ? ['m-3', 'm-t-1', 'p-2'] : []"
+    :class="hasSpacing ? ['m-2', 'm-t-1', 'm-b-1', 'p-2'] : []"
     ref="observer"
     tag="section"
     class="ilha-form">

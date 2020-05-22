@@ -1,5 +1,5 @@
 <template>
-  <section class="ilha-content-list m-3 m-t-1 p-2">
+  <section class="ilha-content-list m-2 m-t-1 m-b-1 p-2">
     <b-table
       :data="innerData"
       :loading="loading"

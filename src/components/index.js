@@ -6,3 +6,4 @@ export { default as IlhaLogin } from './IlhaLogin';
 export { IlhaPasswordUpdaterBtn, IlhaPasswordUpdaterModal } from './IlhaPasswordUpdater';
 export { default as IlhaSideBar } from './IlhaSidebar';
 export { default as IlhaTable } from './IlhaTable';
+export { default as IlhaTitle } from './IlhaTitle';
