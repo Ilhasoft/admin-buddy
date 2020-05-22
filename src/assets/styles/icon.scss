@@ -1,6 +1,7 @@
 i.ilha-icon {
   display: inline-block;
   background-size: 100% 100%;
+  background-color: transparent;
   width: 1em;
   height: 1em;
   &.chart {
@@ -26,5 +27,17 @@ i.ilha-icon {
   }
   &.users {
     background-image: url('#{$admin-budy-assets-path}/icons/users.svg');
+  }
+  &.users-white {
+    background-image: url('#{$admin-budy-assets-path}/icons/users-white.svg');
+  }
+  &.misc {
+    background-image: url('#{$admin-budy-assets-path}/icons/misc.svg');
+  }
+  &.tag-white {
+    background-image: url('#{$admin-budy-assets-path}/icons/tag-white.svg');
+  }
+  &.trend-white {
+    background-image: url('#{$admin-budy-assets-path}/icons/trend-white.svg');
   }
 }

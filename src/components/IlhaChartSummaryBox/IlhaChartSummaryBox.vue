@@ -3,6 +3,9 @@
     <template v-slot:title>
       <slot name="title" />
     </template>
+    <template v-slot:rightBtn>
+      <ilha-icon type="misc" class="icon is-medium"/>
+    </template>
     <template v-slot:details>
       <slot name="details" />
     </template>

@@ -3,6 +3,7 @@
   border-radius: 5px;
   &__header {
     margin: 0;
+    display: flex;
     border-bottom: 1px solid white;
     .column {
       padding: 0.5em;
@@ -10,16 +11,15 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         overflow: hidden;
+        line-height: 2em;
       }
       &:last-child:not(:first-child) {
         display: flex;
         align-items: center;
         justify-content: center;
         border-left: 1px solid white;
-        @media screen and (max-width: 768px) {
-          border-left: 0;
-          border-top: 1px solid white;
-          justify-content: flex-start;
+        &.right-btn {
+          justify-content: flex-end;
         }
       }
     }
@@ -28,5 +28,8 @@
     .ilha-summary-box__header {
       border-bottom: 2px solid $light;
     }
+  }
+  i {
+    vertical-align: bottom;
   }
 }

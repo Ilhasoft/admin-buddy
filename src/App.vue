@@ -7,28 +7,28 @@
     </ilha-header>
     <div class="columns m-2">
       <div class="column">
-      <ilha-summary-box class="has-background-primary has-text-white">
-        <template v-slot:title>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:period>
-          today
-        </template>
-        <template v-slot:metric>
-          Interact with Bot
-        </template>
-        <template v-slot:amount>
-          1231
-        </template>
-      </ilha-summary-box>
+        <ilha-summary-box class="has-background-primary has-text-white">
+          <template v-slot:title>
+            <ilha-icon type="tag-white" class="icon is-medium"/>
+          </template>
+          <template v-slot:details>
+            View details
+          </template>
+          <template v-slot:period>
+            today
+          </template>
+          <template v-slot:metric>
+            Interact with Bot
+          </template>
+          <template v-slot:amount>
+            1231
+          </template>
+        </ilha-summary-box>
       </div>
       <div class="column">
         <ilha-summary-box class="has-background-warning has-text-white">
           <template v-slot:title>
-            oi
+            <ilha-icon type="users-white" class="icon is-medium"/>
           </template>
           <template v-slot:details>
             View details
@@ -47,7 +47,7 @@
       <div class="column">
         <ilha-summary-box class="has-background-success has-text-white">
           <template v-slot:title>
-            oi
+            <ilha-icon type="trend-white" class="icon is-medium"/>
           </template>
           <template v-slot:details>
             View details

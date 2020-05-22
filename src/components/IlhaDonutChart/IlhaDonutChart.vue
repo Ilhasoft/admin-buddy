@@ -60,12 +60,18 @@ export default {
     backgroundColors() {
       return this.data.map((d) => d.backgroundColor);
     },
+    sum() {
+      return this.values.reduce((previous, current) => previous + current, 0);
+    },
     maxValue() {
       return Math.max(...this.values);
     },
+    maxValueRatio() {
+      return ((this.maxValue / this.sum) * 100).toFixed();
+    },
     options() {
       const options = makeDefaultOptions();
-      options.elements.center.text = `${this.maxValue}%`;
+      options.elements.center.text = `${this.maxValueRatio}%`;
       options.legend.position = this.getLegendPosition();
       return options;
     },
