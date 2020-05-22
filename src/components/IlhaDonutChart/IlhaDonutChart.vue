@@ -66,17 +66,31 @@ export default {
     options() {
       const options = makeDefaultOptions();
       options.elements.center.text = `${this.maxValue}%`;
+      options.legend.position = this.getLegendPosition();
       return options;
     },
   },
   methods: {
     initChart() {
+      console.log(this.options);
       this.renderChart(this.chartData, this.options);
+    },
+    getLegendPosition() {
+      return this.$el.offsetWidth < 220 ? 'bottom' : 'right';
     },
   },
   mounted() {
-    console.log(this.options, makeDefaultOptions());
-    this.renderChart(this.chartData, this.options);
+    this.$nextTick(() => {
+      this.initChart();
+      window.addEventListener('resize', () => {
+        const legendCurrentPosition = this.options.legend.position;
+        const legendCorrectPosition = this.getLegendPosition();
+        if (legendCurrentPosition !== legendCorrectPosition) {
+          this.options.legend.position = legendCorrectPosition;
+          setTimeout(() => this.initChart(), 0);
+        }
+      });
+    });
   },
 };
 

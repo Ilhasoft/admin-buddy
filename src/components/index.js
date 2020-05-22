@@ -7,5 +7,6 @@ export { IlhaPasswordUpdaterBtn, IlhaPasswordUpdaterModal } from './IlhaPassword
 export { default as IlhaSideBar } from './IlhaSidebar';
 export { default as IlhaTable } from './IlhaTable';
 export { default as IlhaTitle } from './IlhaTitle';
-export { default as IlhaSummaryBoxy } from './IlhaSummaryBox';
 export { default as IlhaDonutChart } from './IlhaDonutChart';
+export { default as IlhaSummaryBox } from './IlhaSummaryBox';
+export { default as IlhaChartSummaryBox } from './IlhaChartSummaryBox';

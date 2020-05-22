@@ -1,3 +1,3 @@
-import IlhaSummaryBoxy from './IlhaSummaryBoxy';
+import IlhaSummaryBox from './IlhaSummaryBox.vue';
 
-export default IlhaSummaryBoxy;
+export default IlhaSummaryBox;

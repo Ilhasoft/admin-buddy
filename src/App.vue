@@ -6,8 +6,9 @@
       </template>
     </ilha-header>
     <div class="columns m-2">
-      <ilha-summary-box class="column has-background-primary has-text-white">
-        <template v-slot:icon>
+      <div class="column">
+      <ilha-summary-box class="has-background-primary has-text-white">
+        <template v-slot:title>
           oi
         </template>
         <template v-slot:details>
@@ -16,91 +17,81 @@
         <template v-slot:period>
           today
         </template>
-        <template v-slot:title>
+        <template v-slot:metric>
           Interact with Bot
         </template>
         <template v-slot:amount>
           1231
         </template>
       </ilha-summary-box>
-      <ilha-summary-box class="column has-background-warning has-text-white">
-        <template v-slot:icon>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:period>
-          today
-        </template>
-        <template v-slot:title>
-          Interact with Bot
-        </template>
-        <template v-slot:amount>
-          1231
-        </template>
-      </ilha-summary-box>
-      <ilha-summary-box class="column has-background-success has-text-white">
-        <template v-slot:icon>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:period>
-          today
-        </template>
-        <template v-slot:title>
-          Interact with Bot
-        </template>
-        <template v-slot:amount>
-          1231
-        </template>
-      </ilha-summary-box>
+      </div>
+      <div class="column">
+        <ilha-summary-box class="has-background-warning has-text-white">
+          <template v-slot:title>
+            oi
+          </template>
+          <template v-slot:details>
+            View details
+          </template>
+          <template v-slot:period>
+            today
+          </template>
+          <template v-slot:metric>
+            Interact with Bot
+          </template>
+          <template v-slot:amount>
+            1231
+          </template>
+        </ilha-summary-box>
+      </div>
+      <div class="column">
+        <ilha-summary-box class="has-background-success has-text-white">
+          <template v-slot:title>
+            oi
+          </template>
+          <template v-slot:details>
+            View details
+          </template>
+          <template v-slot:period>
+            today
+          </template>
+          <template v-slot:metric>
+            Interact with Bot
+          </template>
+          <template v-slot:amount>
+            1231
+          </template>
+        </ilha-summary-box>
+      </div>
     </div>
     <div class="columns m-2">
-      <ilha-summary-box class="column has-background-white">
-        <template v-slot:icon>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:chart>
-          <ilha-donut-chart
-            :data="chartData"
-            style="width: 90%; min-width: 150px;">
-          </ilha-donut-chart>
-        </template>
-      </ilha-summary-box>
-      <ilha-summary-box class="column has-background-white">
-        <template v-slot:icon>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:chart>
-          <ilha-donut-chart
-            :data="chartData"
-            style="width: 90%; min-width: 150px;">
-          </ilha-donut-chart>
-        </template>
-      </ilha-summary-box>
-      <ilha-summary-box class="column has-background-white">
-        <template v-slot:icon>
-          oi
-        </template>
-        <template v-slot:details>
-          View details
-        </template>
-        <template v-slot:chart>
-          <ilha-donut-chart
-            :data="chartData"
-            style="width: 90%; min-width: 150px;">
-          </ilha-donut-chart>
-        </template>
-      </ilha-summary-box>
+      <div class="column is-one-third ">
+        <ilha-chart-summary-box
+          :chart-data="chartData"
+          class="has-background-white">
+          <template v-slot:title>
+            Daily Traffic
+          </template>
+        </ilha-chart-summary-box>
+      </div>
+      <div class="column is-one-third ">
+        <ilha-chart-summary-box
+          :chart-data="chartData"
+          class="has-background-white">
+          <template v-slot:title>
+            Message Metrics
+          </template>
+        </ilha-chart-summary-box>
+      </div>
+      <div class="column is-one-third ">
+        <ilha-chart-summary-box
+          :chart-data="chartData"
+          class="has-background-white">
+          <template v-slot:title>
+            New Reports Registered
+          </template>
+        </ilha-chart-summary-box>
+      </div>
     </div>
     <ilha-table></ilha-table>
     aqui

@@ -5,8 +5,13 @@
     margin: 0;
     border-bottom: 1px solid white;
     .column {
-      padding: 0.3em;
-      &:last-child {
+      padding: 0.5em;
+      &:first-child {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+      }
+      &:last-child:not(:first-child) {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,9 +19,14 @@
         @media screen and (max-width: 768px) {
           border-left: 0;
           border-top: 1px solid white;
+          justify-content: flex-start;
         }
       }
     }
-
+  }
+  &.ilha-chart-summary-box {
+    .ilha-summary-box__header {
+      border-bottom: 2px solid $light;
+    }
   }
 }
