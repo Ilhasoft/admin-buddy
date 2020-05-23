@@ -67,7 +67,7 @@ export default {
       return Math.max(...this.values);
     },
     maxValueRatio() {
-      return ((this.maxValue / this.sum) * 100).toFixed();
+      return this.sum !== 0 ? ((this.maxValue / this.sum) * 100).toFixed() : 0;
     },
     options() {
       const options = makeDefaultOptions();
@@ -78,7 +78,6 @@ export default {
   },
   methods: {
     initChart() {
-      console.log(this.options);
       this.renderChart(this.chartData, this.options);
     },
     getLegendPosition() {
