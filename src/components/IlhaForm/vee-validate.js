@@ -7,7 +7,9 @@ import {
   max,
 } from 'vee-validate/dist/rules';
 import { extend } from 'vee-validate';
-import validCPF from './cpf/cpf';
+import validCPF from './validators/cpf';
+import validPhoneBr from './validators/phone-br';
+
 
 export default function initVeeValidate() {
   extend('required', {
@@ -42,6 +44,18 @@ export default function initVeeValidate() {
     },
     validate(value) {
       return validCPF(value);
+    },
+  });
+
+  extend('phone', {
+    getMessage() {
+      return 'Invalid phone number';
+    },
+    validate(value, args) {
+      if (args[0] === 'br') {
+        return validPhoneBr(value);
+      }
+      throw new Error('Invalid code language');
     },
   });
 }
