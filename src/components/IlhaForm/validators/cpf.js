@@ -1,3 +1,4 @@
+// https://gist.github.com/michelmany/523412a313351e02e20a1d5afe507795
 function calcChecker1(firstNineDigits) {
   let sum = null;
 
