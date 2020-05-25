@@ -161,7 +161,7 @@ export default {
     },
     updateMaskedField(field, $event) {
       // eslint-disable-next-line
-      this.innerData[field.property + '__formated'] = $event.target._vCleave.getFormattedValue();
+      this.innerData[field.property + '_formated'] = $event.target._vCleave.getFormattedValue();
       // eslint-disable-next-line
       this.innerData[field.property] = $event.target._vCleave.getRawValue();
     },
