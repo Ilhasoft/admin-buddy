@@ -7,6 +7,7 @@ import {
   max,
 } from 'vee-validate/dist/rules';
 import { extend } from 'vee-validate';
+import validCPF from './cpf/cpf';
 
 export default function initVeeValidate() {
   extend('required', {
@@ -34,4 +35,13 @@ export default function initVeeValidate() {
   });
 
   extend('max', max);
+
+  extend('cpf', {
+    getMessage() {
+      return 'Invalid CPF';
+    },
+    validate(value) {
+      return validCPF(value);
+    },
+  });
 }

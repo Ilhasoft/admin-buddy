@@ -7,6 +7,7 @@
     "build": "vue-cli-service build",
     "build-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack",
     "build-and-install-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../health-buddy-admin && cd .. && cd health-buddy-admin && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
+    "build-and-install-lib-2": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../ceara-digital-admin && cd .. && cd ceara-digital-admin && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
     "lint": "vue-cli-service lint"
   },
   "bundleDependencies": false,
@@ -16,6 +17,7 @@
     "buefy": "^0.8.19",
     "chart.js": "^2.9.3",
     "chartjs-plugin-labels": "^1.1.0",
+    "cleave.js": "^1.6.0",
     "core-js": "^3.6.4",
     "node-sass": "^4.14.1",
     "sass-loader": "^8.0.2",
@@ -23,7 +25,8 @@
     "vue": "^2.6.11",
     "vue-axios": "^2.1.5",
     "vue-chartjs": "^3.5.0",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
@@ -38,7 +41,9 @@
   "peerDependencies": {
     "chart.js": ">= 2.9.3",
     "chartjs-plugin-labels": ">= 1.1.0",
-    "vue-chartjs": ">= 3.5.0"
+    "cleave.js": ">= 1.6.0",
+    "vue-chartjs": ">= 3.5.0",
+    "vuex": ">= 3.4.0"
   },
   "eslintConfig": {
     "root": true,

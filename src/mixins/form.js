@@ -92,6 +92,9 @@ export default {
     '$route.params.id'() {
       this.updateId();
     },
+    resourceUrl() {
+      this.initData();
+    },
   },
   mounted() {
     this.updateId();

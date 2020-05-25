@@ -1,3 +1,5 @@
+import { mapState, mapGetters } from 'vuex';
+
 
 export default {
   data() {
@@ -6,12 +8,8 @@ export default {
     };
   },
   computed: {
-    loginAfterRouteName() {
-      return `${this.$store.state.loginAfterRouteName}`;
-    },
-    usersUrl() {
-      return `${this.$store.state.api}users`;
-    },
+    ...mapGetters(['usersUrl']),
+    ...mapState(['loginAfterRouteName']),
   },
   methods: {
     getCurrentUser() {

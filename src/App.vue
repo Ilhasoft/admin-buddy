@@ -93,7 +93,7 @@
         </ilha-chart-summary-box>
       </div>
     </div>
-    <ilha-table></ilha-table>
+    <ilha-form :fields="fields"></ilha-form>
     aqui
   </div>
 </template>
@@ -114,6 +114,21 @@ export default {
           label: 'Users',
           value: 10,
           backgroundColor: '#F8C239',
+        },
+      ],
+      fields: [
+        {
+          property: 'cpf',
+          type: 'masked',
+          label: 'CPF',
+          placeholder: 'CPF',
+          autocomplete: 'off',
+          mask: {
+            delimiters: ['.', '.', '-'],
+            blocks: [3, 3, 3, 2],
+            numericOnly: true,
+          },
+          rules: 'required',
         },
       ],
     };

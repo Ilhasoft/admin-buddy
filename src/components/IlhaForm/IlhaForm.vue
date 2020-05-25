@@ -19,13 +19,58 @@
           :type="{ 'is-danger': errors[0], 'is-success': valid }"
           :message="errors">
           <b-input
+            v-if="field.type !== 'select'
+                  && field.type !== 'autocomplete'
+                  && field.type !== 'masked'"
             v-model="innerData[field.property]"
             :type="field.type ? field.type : 'text'"
             :placeholder="field.placeholder"
             :maxlength="field.maxlength"
+            :autocomplete="field.autocomplete"
             @change.native="changed()"
+            expanded
           >
           </b-input>
+          <b-input
+            v-if="field.type === 'masked'"
+            v-cleave="field.mask"
+            v-model="innerData[field.property + '_formated']"
+            :placeholder="field.placeholder"
+            :autocomplete="field.autocomplete"
+            @change.native="changed()"
+            @input.native="updateMaskedField(field, $event)"
+            expanded
+          >
+          </b-input>
+          <b-select
+            v-if="field.type === 'select'"
+            v-model="innerData[field.property]"
+            :placeholder="field.placeholder"
+            expanded
+          >
+            <option
+              v-for="(option, i) in field.options"
+              :key="i"
+              :value="option.value"
+            >
+              {{ option.label }}
+            </option>
+          </b-select>
+          <b-autocomplete
+            v-if="field.type === 'autocomplete'"
+            v-model="innerData[field.property]"
+            :data="field.data"
+            :placeholder="field.placeholder"
+            :field="field.field"
+            :loading="field.loading"
+            @typing="field.searchData"
+            icon="magnify"
+            open-on-focus>
+
+            <template slot-scope="props">
+              {{ field.field ? props.option[field.field] : props.option }}
+            </template>
+          </b-autocomplete>
         </b-field>
       </ValidationProvider>
     </div>
@@ -53,6 +98,7 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from 'vee-validate';
+import cleave from './cleave';
 
 
 export default {
@@ -60,6 +106,9 @@ export default {
   components: {
     ValidationObserver,
     ValidationProvider,
+  },
+  directives: {
+    cleave,
   },
   props: {
     data: {
@@ -85,9 +134,14 @@ export default {
   data() {
     return {
       loading: false,
-      canSave: false,
+      canSave: true,
       innerData: {},
     };
+  },
+  computed: {
+    autocompleteFields() {
+      return this.fields.filter((field) => field.type === 'autocomplete');
+    },
   },
   methods: {
     initData() {
@@ -95,16 +149,21 @@ export default {
       if (this.data) {
         this.innerData = { ...this.data };
       }
-      this.$refs.observer.validate();
     },
     requestSave() {
       this.$emit('onSaveRequest', this.innerData);
     },
     changed() {
-      this.canSave = false;
-      this.$refs.observer.validate().then((valid) => {
-        this.canSave = valid;
-      });
+      // this.canSave = false;
+      // this.$refs.observer.validate().then((valid) => {
+      // this.canSave = true;
+      // });
+    },
+    updateMaskedField(field, $event) {
+      // eslint-disable-next-line
+      this.innerData[field.property + '__formated'] = $event.target._vCleave.getFormattedValue();
+      // eslint-disable-next-line
+      this.innerData[field.property] = $event.target._vCleave.getRawValue();
     },
   },
   watch: {
@@ -113,6 +172,9 @@ export default {
     },
     fields() {
       this.initData();
+      this.autocompleteFields.forEach((field) => {
+        field.searchData('');
+      });
     },
   },
   mounted() {
