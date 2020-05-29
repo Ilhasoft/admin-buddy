@@ -117,6 +117,22 @@
   margin-left: $sidebar-width;
 }
 
+.has-background-blue {
+  background-color: $blue-color !important;
+}
+
+.has-background-yellow {
+  background-color: $yellow-color !important;
+}
+
+.has-background-green {
+  background-color: $green-color !important;
+}
+
+.has-background-red {
+  background-color: $red-color !important;
+}
+
 @media screen and (max-width: 1023px) {
   .form-admin {
     margin-left: $sidebar-mobile-width;

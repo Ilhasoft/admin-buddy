@@ -1,5 +1,6 @@
 .ilha-summary-box {
-  border: solid 1px white;
+  position: relative;
+  box-shadow: 5px 0px 13px 3px rgba(45, 41, 38, 0.1);
   border-radius: 5px;
   &__header {
     margin: 0;
@@ -24,12 +25,27 @@
       }
     }
   }
-  &.ilha-chart-summary-box {
-    .ilha-summary-box__header {
-      border-bottom: 2px solid $light;
-    }
-  }
   i {
     vertical-align: bottom;
+  }
+
+  &__body {
+    &__period {
+      position: absolute;
+      right: 1em;
+      bottom: 1em;
+    }
+    &__metric {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      line-height: 2em;
+    }
+  }
+}
+
+.ilha-chart-summary-box {
+  .ilha-summary-box__header {
+    border-bottom: 2px solid $light;
   }
 }

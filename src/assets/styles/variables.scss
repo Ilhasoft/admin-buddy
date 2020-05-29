@@ -1,27 +1,31 @@
-$white: #FFFFFF;// White - #FFFFFF
-$black: #2D2926; // Black - #2D2926
-$primary: #1CABE2; // UNICEF Blue - #1CABE2
-$primary-invert: findColorInvert($primary);
-$danger: #E2231A; // Red - #E2231A
-$danger-inverter: findColorInvert($danger);
-$warning: #FFC20E; // Yellow - #FFC20E
-$warning-inverter: findColorInvert($warning);
-$light: #F5F6FA; // Light Grey - #F5F6FA
-$light-inverter: findColorInvert($light);
-$twitter: #4099FF;
-$twitter-inverter: findColorInvert($twitter);
-$success: #00833D; // Dark Green - #00833D
-$success-inverter: findColorInvert($success);
-$info: $primary;
-$info-inverter: findColorInvert($info);
-$text: hsl(0, 0%, 29%);
-$text-invert: findColorInvert($text);
-$sidebar-width: 350px;
-$sidebar-mobile-width: 80px;
+$white: #FFFFFF !default;// White - #FFFFFF
+$black: #2D2926 !default; // Black - #2D2926
+$primary: #1CABE2 !default; // UNICEF Blue - #1CABE2
+$primary-invert: findColorInvert($primary) !default;
+$danger: #E2231A !default; // Red - #E2231A
+$danger-inverter: findColorInvert($danger) !default;
+$warning: #FFC20E !default; // Yellow - #FFC20E
+$warning-inverter: findColorInvert($warning) !default;
+$light: #F5F6FA !default; // Light Grey - #F5F6FA
+$light-inverter: findColorInvert($light) !default;
+$twitter: #4099FF !default;
+$twitter-inverter: findColorInvert($twitter) !default;
+$success: #00833D !default; // Dark Green - #00833D
+$success-inverter: findColorInvert($success) !default;;
+$info: $primary !default;;
+$info-inverter: findColorInvert($info) !default;;
+$text: hsl(0, 0%, 29%) !default;;
+$text-invert: findColorInvert($text) !default;;
+$sidebar-width: 350px !default;;
+$sidebar-mobile-width: 80px !default;;
 
 
 // dont buma
-$divider: #efefef;
+$blue-color: #1E87F0 !default;
+$yellow-color: #F9D423 !default;
+$green-color: #80BD41 !default;
+$red-color: #F0506E !default;
+$divider: #EFEFEF !default;;
 $admin-budy-assets-path: "assets" !default;
 // Light Green - #80BD41
 // Orange - #F26A21
