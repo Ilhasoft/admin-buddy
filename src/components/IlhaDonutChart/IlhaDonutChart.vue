@@ -66,12 +66,9 @@ export default {
     maxValue() {
       return Math.max(...this.values);
     },
-    maxValueRatio() {
-      return this.sum !== 0 ? ((this.maxValue / this.sum) * 100).toFixed() : 0;
-    },
     options() {
       const options = makeDefaultOptions();
-      options.elements.center.text = `${this.maxValueRatio}%`;
+      options.elements.center.text = `${this.maxValue}`;
       options.legend.position = this.getLegendPosition();
       return options;
     },
