@@ -21,7 +21,8 @@
           <b-input
             v-if="field.type !== 'select'
                   && field.type !== 'autocomplete'
-                  && field.type !== 'masked'"
+                  && field.type !== 'masked'
+                  && field.type !== 'editor'"
             v-model="innerData[field.property]"
             :type="field.type ? field.type : 'text'"
             :placeholder="field.placeholder"
@@ -71,6 +72,12 @@
               {{ field.field ? props.option[field.field] : props.option }}
             </template>
           </b-autocomplete>
+          <ckeditor
+            v-if="field.type === 'editor' && editorConfig"
+            v-model="innerData[field.property]"
+            :editor="editor"
+            :config="editorConfig">
+          </ckeditor>
         </b-field>
       </ValidationProvider>
     </div>
@@ -98,6 +105,10 @@ import {
   ValidationObserver,
   ValidationProvider,
 } from 'vee-validate';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import SimpleUploadAdapter from './simpleuploadadapter';
+
+
 import cleave from './cleave';
 
 
@@ -130,20 +141,45 @@ export default {
       type: Array,
       default: () => [],
     },
+    uploadUrl: {
+      type: String,
+    },
+    uploadHeadersReq: {
+      type: Object,
+      default: () => {},
+    },
+    uploadBodyLabel: {
+      type: String,
+      default: 'image',
+    },
   },
   data() {
     return {
       loading: false,
       canSave: true,
       innerData: {},
+      editor: ClassicEditor,
     };
   },
   computed: {
     autocompleteFields() {
       return this.fields.filter((field) => field.type === 'autocomplete');
     },
+    editorConfig() {
+      console.log(this.uploadUrl, '<<<');
+      return this.uploadUrl ? { extraPlugins: [(editor) => this.uploader(editor)] } : undefined;
+    },
   },
   methods: {
+    uploader(editor) {
+      const options = {
+        uploadUrl: this.uploadUrl,
+        headers: this.uploadHeadersReq,
+        bodyLabel: this.uploadBodyLabel,
+      };
+      // eslint-disable-next-line
+      editor.plugins.get('FileRepository').createUploadAdapter = (loader) => new SimpleUploadAdapter(loader, options);
+    },
     initData() {
       this.innerData = {};
       if (this.data) {

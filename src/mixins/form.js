@@ -75,13 +75,14 @@ export default {
       this.alertSaveError();
     },
     updateId() {
-      const id = +this.$route.params.id;
-      this.id = undefined;
-      this.data = {};
-      if (!Number.isNaN(id)) {
-        this.id = id;
-        this.initData();
+      const { id } = this.$route.params;
+      if (id === 'new' || id === 'novo') {
+        return;
       }
+      this.id = id;
+      this.data = {};
+      this.id = id;
+      this.initData();
       if (this.updatedId) {
         this.updatedId();
       }

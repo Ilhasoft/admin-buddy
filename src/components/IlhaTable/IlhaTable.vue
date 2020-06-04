@@ -43,7 +43,7 @@
 
         <b-table-column v-if="hasActions" label="" centered>
           <span class="ilha-content-list__actions">
-            <router-link :to="{ name: editRouteName, params: {id: props.row.id}}">
+            <router-link :to="{ name: editRouteName, params: {id: props.row[idField]}}">
               <ilha-icon v-if="canEdit" type="edit" class="icon is-medium"/>
             </router-link>
             <ilha-icon
@@ -123,6 +123,10 @@ export default {
     defaultSortOrder: {
       type: String,
       default: 'desc',
+    },
+    idField: {
+      type: String,
+      default: 'id',
     },
   },
   data() {

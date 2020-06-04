@@ -13,6 +13,9 @@
   "bundleDependencies": false,
   "main": "dist/admin-buddy.common.js",
   "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^19.0.2",
+    "@ckeditor/ckeditor5-upload": "19.0.1",
+    "@ckeditor/ckeditor5-vue": "^1.0.1",
     "axios": "^0.19.2",
     "buefy": "^0.8.19",
     "chart.js": "^2.9.3",
@@ -43,7 +46,10 @@
     "chartjs-plugin-labels": ">= 1.1.0",
     "cleave.js": ">= 1.6.0",
     "vue-chartjs": ">= 3.5.0",
-    "vuex": ">= 3.4.0"
+    "vuex": ">= 3.4.0",
+    "@ckeditor/ckeditor5-build-classic": ">= 19.0.1",
+    "@ckeditor/ckeditor5-upload": ">= 19.0.1",
+    "@ckeditor/ckeditor5-vue": ">= 1.0.1"
   },
   "eslintConfig": {
     "root": true,

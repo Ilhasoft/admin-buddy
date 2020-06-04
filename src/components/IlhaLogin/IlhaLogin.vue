@@ -7,6 +7,7 @@
             <h3 class="subtitle">Login to Admin Management</h3>
             <b-field label="User">
               <b-input v-model="username"
+                       @keyup.native.enter="tryLogin"
                        placeholder="Enter a username or email"
                        maxlength="30"
                        required></b-input>
@@ -15,6 +16,7 @@
             <b-field label="Password">
               <b-input type="password"
                        v-model="password"
+                       @keyup.native.enter="tryLogin"
                        placeholder="Enter your password"
                        maxlength="30"
                        required
@@ -54,7 +56,7 @@ export default {
     loading: {
       type: Boolean,
       default: false,
-    }
+    },
   },
   data() {
     return {

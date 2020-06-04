@@ -5,6 +5,7 @@
         Título
       </template>
     </ilha-header>
+    <ilha-form :fields="fields"></ilha-form>
     <div class="columns is-desktop m-2">
       <div class="column">
         <ilha-summary-box class="has-background-info has-text-white">
@@ -91,8 +92,6 @@
         </ilha-chart-summary-box>
       </div>
     </div>
-    <ilha-form :fields="fields"></ilha-form>
-    aqui
   </div>
 </template>
 
@@ -126,6 +125,28 @@ export default {
             blocks: [3, 3, 3, 2],
             numericOnly: true,
           },
+          rules: 'required',
+        },
+        {
+          property: 'name',
+          type: 'text',
+          label: 'Name',
+          placeholder: 'Name',
+          autocomplete: 'off',
+          rules: 'required',
+        },
+        {
+          property: 'editor',
+          type: 'editor',
+          label: 'Editor',
+          rules: 'required',
+        },
+        {
+          property: 'otherField',
+          type: 'text',
+          label: 'Other field',
+          placeholder: 'Other field',
+          autocomplete: 'off',
           rules: 'required',
         },
       ],

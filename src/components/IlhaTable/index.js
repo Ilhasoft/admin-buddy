@@ -1,3 +1,3 @@
-import IlhaTable from './IlhaTable';
+import IlhaTable from './IlhaTable.vue';
 
 export default IlhaTable;

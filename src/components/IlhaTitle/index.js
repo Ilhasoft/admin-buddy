@@ -1,3 +1,3 @@
-import IlhaTitle from './IlhaTitle';
+import IlhaTitle from './IlhaTitle.vue';
 
 export default IlhaTitle;

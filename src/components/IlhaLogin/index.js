@@ -1,3 +1,3 @@
-import IlhaLogin from './IlhaLogin';
+import IlhaLogin from './IlhaLogin.vue';
 
 export default IlhaLogin;

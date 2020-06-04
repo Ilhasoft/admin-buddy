@@ -23,16 +23,15 @@
 export default {
   name: 'ilha-password-updater-btn',
   props: {
-      url: {
-          type: String,
-          required: true,
-      },
+    url: {
+      type: String,
+      required: true,
+    },
   },
   data() {
     return {
       isComponentModalActive: false,
-      formProps: {
-      },
+      formProps: {},
     };
   },
   methods: {

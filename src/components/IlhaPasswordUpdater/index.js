@@ -1,4 +1,4 @@
-import IlhaPasswordUpdaterBtn from './IlhaPasswordUpdaterBtn';
-import IlhaPasswordUpdaterModal from './IlhaPasswordUpdaterModal';
+import IlhaPasswordUpdaterBtn from './IlhaPasswordUpdaterBtn.vue';
+import IlhaPasswordUpdaterModal from './IlhaPasswordUpdaterModal.vue';
 
 export { IlhaPasswordUpdaterBtn, IlhaPasswordUpdaterModal };

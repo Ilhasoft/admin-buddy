@@ -1,3 +1,3 @@
-import IlhaHeader from './IlhaHeader';
+import IlhaHeader from './IlhaHeader.vue';
 
 export default IlhaHeader;
