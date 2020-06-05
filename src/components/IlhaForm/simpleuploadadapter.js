@@ -91,7 +91,7 @@ export default class SimpleUploadAdapter {
         return reject(response && response.error && response.error.message ? response.error.message : genericErrorText);
       }
 
-      resolve(response.url ? {default: response.url} : response.urls);
+      resolve(response.url || response.image ? {default: response.url || response.image} : response.urls);
     });
 
     // Upload progress when it is supported.
