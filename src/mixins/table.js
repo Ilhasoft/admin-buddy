@@ -12,6 +12,10 @@ export default {
       defaultSortOrder: 'desc',
       loading: true,
       query: '',
+      deleteTitle: 'Deleting entity',
+      deleteMessage: 'Are you sure you want to <b>delete</b>? This action cannot be undone.',
+      deleteConfirmText: 'Delete entity',
+      deleteCancelText: 'Cancel',
     };
   },
   computed: {
@@ -63,9 +67,10 @@ export default {
     },
     requestDelete(data) {
       this.$buefy.dialog.confirm({
-        title: 'Deleting account',
-        message: 'Are you sure you want to <b>delete</b>? This action cannot be undone.',
-        confirmText: 'Delete Account',
+        title: this.deleteTitle,
+        message: this.deleteMessage,
+        confirmText: this.deleteConfirmText,
+        cancelText: this.deleteCancelText,
         type: 'is-danger',
         hasIcon: true,
         onConfirm: () => {
@@ -76,6 +81,7 @@ export default {
     deleteData(data) {
       this.$http.delete(`${this.resourceUrl}/${data.id}`).then(() => {
         this.alertDeleteSuccess();
+        this.$router.go();
       }).catch((error) => {
         console.error(error);
         this.alertDeleteError();
