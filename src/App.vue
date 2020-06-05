@@ -134,6 +134,11 @@ export default {
           placeholder: 'Name',
           autocomplete: 'off',
           rules: 'required',
+          hasBtn: true,
+          btnText: 'open',
+          btnClicked() {
+            console.log('>');
+          },
         },
         {
           property: 'editor',

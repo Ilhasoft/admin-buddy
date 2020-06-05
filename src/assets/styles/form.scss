@@ -1,9 +1,27 @@
 .ilha-form {
   background-color: $white;
 
-  button {
+  .save-button {
     text-transform: uppercase;
     font-size: 0.95em;
+  }
+
+  .is-four-fifths {
+    width: 95%;
+  }
+
+
+  .open-modal-btn-container {
+    display: flex;
+    align-items: flex-end;
+    margin-bottom: 0.75rem;
+    button {
+      width: 100%;
+      margin-bottom: 0.25rem;
+    }
+    &.with-error {
+      padding-bottom: calc(0.75rem * 1.4);
+    }
   }
 
   .ck-editor__editable {

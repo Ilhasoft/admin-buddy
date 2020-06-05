@@ -12,12 +12,14 @@
         :rules="field.rules"
         :name="field.property"
         :vid="field.property"
+        :class="field.hasBtn ? ['columns', 'm-0'] : []"
         v-slot="{ errors, valid }"
         tag="div">
         <b-field
           :label="field.label"
           :type="{ 'is-danger': errors[0], 'is-success': valid }"
-          :message="errors">
+          :message="errors"
+          :class="field.hasBtn ? ['column', 'is-four-fifths', 'p-0'] : []">
           <b-input
             v-if="field.type !== 'select'
                   && field.type !== 'autocomplete'
@@ -79,6 +81,16 @@
             :config="editorConfig">
           </ckeditor>
         </b-field>
+        <div
+          v-if="field.hasBtn"
+          :class="errors[0] ? ['with-error'] : []"
+          class="column open-modal-btn-container p-0 m-l-1">
+          <b-button
+            class="is-primary"
+            @click="field.btnClicked">
+            {{ field.btnText }}
+          </b-button>
+        </div>
       </ValidationProvider>
     </div>
 
@@ -92,6 +104,7 @@
         :class="hasSpacing ? ['m-l-1', 'm-t-1'] : []"
         :loading="loading"
         @click="passes(requestSave.bind(this))"
+        class="save-button"
         tabindex="0"
       >
         Save
