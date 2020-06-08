@@ -92,6 +92,13 @@
         </ilha-chart-summary-box>
       </div>
     </div>
+    <b-modal :active.sync="chooserIconOpened"
+             :width="640" scroll="keep"
+             :destroy-on-hide="false"
+             aria-role="dialog"
+             aria-modal>
+      <ilha-icon-choser></ilha-icon-choser>
+    </b-modal>
   </div>
 </template>
 
@@ -101,6 +108,7 @@ export default {
   name: 'App',
   data() {
     return {
+      chooserIconOpened: false,
       chartData: [
         {
           label: 'Visitors',
@@ -128,19 +136,6 @@ export default {
           rules: 'required',
         },
         {
-          property: 'name',
-          type: 'text',
-          label: 'Name',
-          placeholder: 'Name',
-          autocomplete: 'off',
-          rules: 'required',
-          hasBtn: true,
-          btnText: 'open',
-          btnClicked() {
-            console.log('>');
-          },
-        },
-        {
           property: 'editor',
           type: 'editor',
           label: 'Editor',
@@ -153,6 +148,19 @@ export default {
           placeholder: 'Other field',
           autocomplete: 'off',
           rules: 'required',
+        },
+        {
+          property: 'name',
+          type: 'text',
+          label: 'Name',
+          placeholder: 'Name',
+          autocomplete: 'off',
+          rules: 'required',
+          hasBtn: true,
+          btnText: 'open',
+          btnClicked: () => {
+            this.chooserIconOpened = true;
+          },
         },
       ],
     };

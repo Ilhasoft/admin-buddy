@@ -107,7 +107,7 @@
         class="save-button"
         tabindex="0"
       >
-        Save
+        {{ btnSaveText }}
       </b-button>
     </div>
     </ValidationObserver>
@@ -165,6 +165,10 @@ export default {
       type: String,
       default: 'image',
     },
+    btnSaveText: {
+      type: String,
+      default: 'Save',
+    },
   },
   data() {
     return {
@@ -179,7 +183,6 @@ export default {
       return this.fields.filter((field) => field.type === 'autocomplete');
     },
     editorConfig() {
-      console.log(this.uploadUrl, '<<<');
       return this.uploadUrl ? { extraPlugins: [(editor) => this.uploader(editor)] } : undefined;
     },
   },

@@ -6,8 +6,12 @@
     font-size: 0.95em;
   }
 
+  .columns {
+    width: 100%;
+  }
+
   .is-four-fifths {
-    width: 95%;
+    width: 90%;
   }
 
 
@@ -20,7 +24,7 @@
       margin-bottom: 0.25rem;
     }
     &.with-error {
-      padding-bottom: calc(0.75rem * 1.4);
+      padding-bottom: calc(0.75rem * 1.4) !important;
     }
   }
 
