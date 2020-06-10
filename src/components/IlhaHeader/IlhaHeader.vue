@@ -1,6 +1,6 @@
 <template>
   <section class="manager-panel">
-    <div class="manager-panel__query-container">
+    <div class="manager-panel__query-container p-l-2 p-r-2">
       <b-field class="search-field">
         <b-input
           :value="query"
@@ -13,7 +13,7 @@
           @icon-click="searchIconClick">
         </b-input>
       </b-field>
-      <div class="actions">
+      <div class="actions has-text-right">
         <b-button
           outlined
           @click="logout()"
