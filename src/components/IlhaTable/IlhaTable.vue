@@ -38,7 +38,11 @@
           :sortable="field.sortable"
           :centered="field.centered"
           :width="cellWidth">
-          {{ props.row[field.property] }}
+          <span v-if="!field.img">{{ props.row[field.property] }}</span>
+          <img
+            v-if="field.img"
+            :src="props.row[field.property]"
+            class="ilha-content-list__img"/>
         </b-table-column>
 
         <b-table-column v-if="hasActions" label="" centered>

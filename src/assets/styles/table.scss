@@ -6,6 +6,11 @@
       cursor: pointer;
     }
   }
+  &__img {
+    height: 1em;
+    vertical-align: middle;
+
+  }
   .table-container {
     overflow: hidden;
     table {
