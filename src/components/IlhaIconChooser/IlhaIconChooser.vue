@@ -9,7 +9,7 @@
           class="p-1 p-b-0">
           <b-input
             v-model="query"
-            @keyup.native.enter="fetchIcons"
+            @keyup.native.enter="fetchIcons()"
             :placeholder="searchInputPlaceholder"
             expanded></b-input>
         </b-field>
@@ -23,7 +23,12 @@
               <img :src="icon.images.png['128']" @click="selectIcon(icon)"/>
             </div>
           </div>
-          <b-button v-if="!loading && hasNext" class="is-primary" @click="fetchIcons(nextPage)">
+          <div
+            v-if="!loading && icons.length == 0"
+            class="has-text-centered">
+            {{ emptyMessage }}
+          </div>
+          <b-button v-if="!loading && hasNextPage" class="is-primary" @click="fetchIcons(nextPage)">
             {{ loadingButtonLabel }}
           </b-button>
         </div>
@@ -52,6 +57,10 @@ export default {
       type: String,
       default: 'Load more icons...',
     },
+    emptyMessage: {
+      type: String,
+      default: 'Not found',
+    },
     flatIconsUrl: {
       type: String,
       default: 'http://localhost:8000/flaticon/items/icons',
@@ -68,13 +77,16 @@ export default {
   },
   computed: {
     hasNextPage() {
-      return this.totalIconsLength >= this.icons.length;
+      return this.totalIconsLength > this.icons.length;
     },
   },
   methods: {
     fetchIcons(page = 1) {
       if (page > 1 && !this.hasNextPage) {
         return;
+      }
+      if (page === 1) {
+        this.icons = [];
       }
       this.loading = true;
       const params = [

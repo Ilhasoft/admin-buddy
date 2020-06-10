@@ -128,6 +128,7 @@ export default {
           label: 'CPF',
           placeholder: 'CPF',
           autocomplete: 'off',
+          disabled: true,
           mask: {
             delimiters: ['.', '.', '-'],
             blocks: [3, 3, 3, 2],
@@ -158,6 +159,8 @@ export default {
           rules: 'required',
           hasBtn: true,
           btnText: 'open',
+          hasImg: true,
+          imgUrl: 'https://image.flaticon.com/icons/svg/447/447031.svg',
           btnClicked: () => {
             this.chooserIconOpened = true;
           },

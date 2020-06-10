@@ -12,14 +12,15 @@
         :rules="field.rules"
         :name="field.property"
         :vid="field.property"
-        :class="field.hasBtn ? ['columns', 'm-0'] : []"
+        :class="field.hasBtn || field.hasImg ? ['columns', 'm-0'] : []"
         v-slot="{ errors, valid }"
         tag="div">
         <b-field
           :label="field.label"
           :type="{ 'is-danger': errors[0], 'is-success': valid }"
           :message="errors"
-          :class="field.hasBtn ? ['column', 'is-four-fifths', 'p-0'] : []">
+          :class="field.hasBtn || field.hasImg ? ['column', 'is-four-fifths', 'p-0',
+          !field.hasImg ? ' m-r-1' : ''] : []">
           <b-input
             v-if="field.type !== 'select'
                   && field.type !== 'autocomplete'
@@ -30,6 +31,7 @@
             :placeholder="field.placeholder"
             :maxlength="field.maxlength"
             :autocomplete="field.autocomplete"
+            :disabled="field.disabled"
             @change.native="changed()"
             expanded
           >
@@ -40,6 +42,7 @@
             v-model="innerData[field.property + '_formated']"
             :placeholder="field.placeholder"
             :autocomplete="field.autocomplete"
+            :disabled="field.disabled"
             @change.native="changed()"
             @input.native="updateMaskedField(field, $event)"
             expanded
@@ -49,6 +52,7 @@
             v-if="field.type === 'select'"
             v-model="innerData[field.property]"
             :placeholder="field.placeholder"
+            :disabled="field.disabled"
             expanded
           >
             <option
@@ -66,6 +70,7 @@
             :placeholder="field.placeholder"
             :field="field.field"
             :loading="field.loading"
+            :disabled="field.disabled"
             @typing="field.searchData"
             icon="magnify"
             open-on-focus>
@@ -82,9 +87,17 @@
           </ckeditor>
         </b-field>
         <div
+          v-if="field.hasImg"
+          class="ilha-form__img column p-0"
+          :class="errors[0] ? ['with-error'] : []">
+          <img
+            :src="field.imgUrl"
+          />
+        </div>
+        <div
           v-if="field.hasBtn"
           :class="errors[0] ? ['with-error'] : []"
-          class="column open-modal-btn-container p-0 m-l-1">
+          class="ilha-form__open-modal-btn column p-0">
           <b-button
             class="is-primary"
             @click="field.btnClicked">
@@ -197,9 +210,10 @@ export default {
       editor.plugins.get('FileRepository').createUploadAdapter = (loader) => new SimpleUploadAdapter(loader, options);
     },
     initData() {
-      this.innerData = {};
       if (this.data) {
-        this.innerData = { ...this.data };
+        this.innerData = this.data;
+      } else {
+        this.innerData = {};
       }
     },
     requestSave() {

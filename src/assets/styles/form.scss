@@ -2,7 +2,6 @@
   background-color: $white;
 
   .save-button {
-    text-transform: uppercase;
     font-size: 0.95em;
   }
 
@@ -11,22 +10,29 @@
   }
 
   .is-four-fifths {
-    width: 90%;
+    width: 85%;
   }
 
 
-  .open-modal-btn-container {
+  &__open-modal-btn, &__img {
     display: flex;
     align-items: flex-end;
     margin-bottom: 0.75rem;
-    button {
+    button, img {
       width: 100%;
       margin-bottom: 0.25rem;
     }
+
+    img {
+      padding-bottom: 0.375em;
+      height: calc(1rem * 1.5);
+    }
+
     &.with-error {
-      padding-bottom: calc(0.75rem * 1.4) !important;
+      padding-bottom: calc(0.8rem * 1.4) !important;
     }
   }
+
 
   .ck-editor__editable {
     min-height: 15em;
