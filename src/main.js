@@ -25,3 +25,17 @@ new Vue({
     routes: [],
   }),
 }).$mount('#app');
+
+
+axios.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('authToken');
+    if (token) {
+      // eslint-disable-next-line
+      config.headers['Authorization'] = `Bearer ${ token }`;
+    }
+
+    return config;
+  },
+  (error) => Promise.reject(error),
+);

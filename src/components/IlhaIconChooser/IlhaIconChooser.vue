@@ -4,15 +4,28 @@
       <header class="modal-card-head">
         <p class="modal-card-title">{{ title }}</p>
       </header>
-      <div class="m-1">
-        <b-field label="Icon name">
+      <div>
+        <b-field
+          class="p-1 p-b-0">
           <b-input
             v-model="query"
-            placeholder="Icon name"
+            @keyup.native.enter="fetchIcons"
+            :placeholder="searchInputPlaceholder"
             expanded></b-input>
         </b-field>
-        <div class="" style="min-height: 500px; max-height: 500px">
-          sdsd
+        <div class="ilha-icon-chooser__body p-1" style="">
+          <b-loading
+            :active="loading"
+            :is-full-page="false">
+          </b-loading>
+          <div>
+            <div class="ilha-icon-chooser__body__icon p-1 m-1" v-for="icon in icons" :key="icon.id">
+              <img :src="icon.images.png['128']" @click="selectIcon(icon)"/>
+            </div>
+          </div>
+          <b-button v-if="!loading && hasNext" class="is-primary" @click="fetchIcons(nextPage)">
+            {{ loadingButtonLabel }}
+          </b-button>
         </div>
       </div>
     </div>
@@ -27,54 +40,75 @@ export default {
       type: String,
       default: 'Choose a icon',
     },
-    flatIconApiKey: {
+    searchInputLabel: {
       type: String,
-      default: process.env.VUE_APP_FLAT_ICON_API_KEY,
+      default: 'Icon name',
+    },
+    searchInputPlaceholder: {
+      type: String,
+      default: 'Search...',
+    },
+    loadingButtonLabel: {
+      type: String,
+      default: 'Load more icons...',
+    },
+    flatIconsUrl: {
+      type: String,
+      default: 'http://localhost:8000/flaticon/items/icons',
     },
   },
   data() {
     return {
       query: '',
-      token: '',
+      loading: true,
+      icons: [],
+      nextPage: 1,
+      totalIconsLength: 100000000000,
     };
   },
   computed: {
+    hasNextPage() {
+      return this.totalIconsLength >= this.icons.length;
+    },
   },
   methods: {
-    loginFlatIcon() {
-      if (!this.flatIconApiKey) {
+    fetchIcons(page = 1) {
+      if (page > 1 && !this.hasNextPage) {
         return;
       }
-      // eslint-disable-next-line
-      this.$http.post('https://api.flaticon.com/v2/app/authentication', { apiKey: this.flatIconApiKey }, httpConfig).then((data) => {
-        console.log(data);
+      this.loading = true;
+      const params = [
+        `page=${page}`,
+      ];
+      if (this.query) {
+        params.push(`q=${this.query}`);
+      }
+      this.$http.get(`${this.flatIconsUrl}/?${params.join('&')}`).then(({ data }) => {
+        this.nextPage = data.metadata.page + 1;
+        this.totalIconsLength = data.metadata.total;
+        if (this.nextPage === 2) {
+          this.icons = data.data;
+        } else {
+          this.icons = this.icons.concat(data.data);
+        }
+        this.loading = false;
       }).catch((err) => {
         console.error(err);
+        this.loading = false;
       });
     },
-    fetchIcons() {
-      const httpConfig = {
-        headers: {
-          Authorization: 'Bearer 2940176baef285e46736b217b850003418a47b5e',
-        },
-      };
-      this.$http.get('https://api.flaticon.com/v2/search/icons', httpConfig).then((data) => {
-        console.log(data);
-      }).catch((err) => {
-        console.error(err);
-      });
+    selectIcon(icon) {
+      this.$emit('onSelect', icon);
+      this.$parent.close();
     },
   },
   watch: {
-    flatIconApiKey() {
-      this.loginFlatIcon();
-    },
-    token() {
-      console.log(this.token);
+    flatIconsUrl() {
+      this.fetchIcons(1);
     },
   },
   mounted() {
-    this.loginFlatIcon();
+    this.fetchIcons(1);
   },
 };
 </script>

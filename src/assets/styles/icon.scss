@@ -49,4 +49,18 @@ i.ilha-icon {
 
 .ilha-icon-chooser {
   background-color: $white;
+
+  &__body {
+    height: 500px;
+    overflow: auto;
+    text-align: center;
+
+    &__icon {
+      display: inline-block;
+      cursor: pointer;
+      img {
+        width: 50px;
+      }
+    }
+  }
 }
