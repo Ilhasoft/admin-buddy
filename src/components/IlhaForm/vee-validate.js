@@ -10,7 +10,6 @@ import { extend } from 'vee-validate';
 import validCPF from './validators/cpf';
 import validPhoneBr from './validators/phone-br';
 
-
 export default function initVeeValidate() {
   extend('required', {
     ...required, message: 'This field is required',

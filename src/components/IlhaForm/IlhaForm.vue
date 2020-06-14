@@ -133,10 +133,7 @@ import {
 } from 'vee-validate';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import SimpleUploadAdapter from './simpleuploadadapter';
-
-
 import cleave from './cleave';
-
 
 export default {
   name: 'ilha-form',

@@ -9,7 +9,6 @@ const AdminBuddy = {
   },
 };
 
-
 export * from './mixins';
 export { default as initVeeValidate } from './components/IlhaForm/vee-validate';
 export default AdminBuddy;

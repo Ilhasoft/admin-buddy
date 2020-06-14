@@ -14,7 +14,6 @@ Vue.use(AdminBuddy);
 Vue.use(VueAxios, axios);
 Vue.use(CKEditor);
 
-
 Vue.config.productionTip = false;
 
 initVeeValidate();
@@ -25,7 +24,6 @@ new Vue({
     routes: [],
   }),
 }).$mount('#app');
-
 
 axios.interceptors.request.use(
   (config) => {

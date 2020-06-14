@@ -177,7 +177,6 @@ export default {
 @import "~bulma/sass/utilities/_all";
 @import "assets/styles/variables";
 
-
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
   "white": ($white, $black),
