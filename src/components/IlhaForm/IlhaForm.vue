@@ -25,7 +25,8 @@
             v-if="field.type !== 'select'
                   && field.type !== 'autocomplete'
                   && field.type !== 'masked'
-                  && field.type !== 'editor'"
+                  && field.type !== 'editor'
+                  && field.type !== 'checkbox'"
             v-model="innerData[field.property]"
             :type="field.type ? field.type : 'text'"
             :placeholder="field.placeholder"
@@ -68,7 +69,7 @@
             v-model="innerData[field.property]"
             :data="field.data"
             :placeholder="field.placeholder"
-            :field="field.field"
+            :field="field.dataField"
             :loading="field.loading"
             :disabled="field.disabled"
             @typing="field.searchData"
@@ -76,7 +77,7 @@
             open-on-focus>
 
             <template slot-scope="props">
-              {{ field.field ? props.option[field.field] : props.option }}
+              {{ field.dataField ? props.option[field.dataField] : props.option }}
             </template>
           </b-autocomplete>
           <ckeditor
@@ -85,6 +86,12 @@
             :editor="editor"
             :config="editorConfig">
           </ckeditor>
+
+          <b-checkbox
+            v-if="field.type === 'checkbox'"
+            v-model="innerData[field.property]">
+            {{ field.placeholder }}
+          </b-checkbox>
         </b-field>
         <div
           v-if="field.hasImg"

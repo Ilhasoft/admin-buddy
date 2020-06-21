@@ -137,6 +137,12 @@ export default {
           rules: 'required',
         },
         {
+          property: 'mark',
+          type: 'checkbox',
+          label: ' Acompanhavel?',
+          rules: 'required',
+        },
+        {
           property: 'editor',
           type: 'editor',
           label: 'Editor',
