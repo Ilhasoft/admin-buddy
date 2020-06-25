@@ -16,6 +16,38 @@ export default {
         type: 'is-danger',
       });
     },
+    passwordResetRequestSuccessAlert() {
+      this.$buefy.toast.open({
+        duration: 2000,
+        message: 'Password reset email sent',
+        position: 'is-bottom',
+        type: 'is-success',
+      });
+    },
+    passwordResetRequestErrorAlert() {
+      this.$buefy.toast.open({
+        duration: 2000,
+        message: 'There is no active user associated with this e-mail address or the password can not be changed',
+        position: 'is-bottom',
+        type: 'is-danger',
+      });
+    },
+    passwordResetSuccessAlert() {
+      this.$buefy.toast.open({
+        duration: 2000,
+        message: 'Password changed successfully!',
+        position: 'is-bottom',
+        type: 'is-success',
+      });
+    },
+    passwordResetErrorAlert() {
+      this.$buefy.toast.open({
+        duration: 2000,
+        message: 'Failed to change password',
+        position: 'is-bottom',
+        type: 'is-danger',
+      });
+    },
     alertSaveSuccess() {
       this.$buefy.toast.open({
         duration: 2000,

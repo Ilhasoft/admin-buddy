@@ -4,11 +4,19 @@ export default {
   data() {
     return {
       loginLoading: false,
+      passwordResetLoading: false,
     };
   },
   computed: {
-    ...mapGetters(['usersUrl']),
-    ...mapState(['loginAfterRouteName']),
+    ...mapGetters(['usersUrl', 'passwordResetRequestUrl', 'passwordResetConfirmationUrl']),
+    ...mapState([
+      'serverUrl',
+      'authTokenKey',
+      'refreshTokenKey',
+      'loginAfterRouteName',
+      'passwordResetRequestAfterRouteName',
+      'passwordResetConfirmationAfterRouteName',
+    ]),
   },
   methods: {
     getCurrentUser() {
@@ -18,9 +26,9 @@ export default {
       return this.$http.get(`${this.usersUrl}/`);
     },
     login(credentials) {
-      return this.$http.post(`${this.$store.state.serverUrl}token/`, credentials).then(({ data }) => {
-        localStorage.setItem(this.$store.state.authTokenKey, data.access);
-        localStorage.setItem(this.$store.state.refreshTokenKey, data.refresh);
+      return this.$http.post(`${this.serverUrl}token/`, credentials).then(({ data }) => {
+        localStorage.setItem(this.authTokenKey, data.access);
+        localStorage.setItem(this.refreshTokenKey, data.refresh);
         return data;
       });
     },
@@ -32,6 +40,31 @@ export default {
       }).catch((error) => {
         this.loginLoading = false;
         this.errorLoginAlert();
+        console.error(error);
+      });
+    },
+    requestPasswordReset({ email }) {
+      this.passwordResetLoading = true;
+      return this.$http.post(this.passwordResetRequestUrl, { email }).then(({ data }) => {
+        this.passwordResetRequestSuccessAlert();
+        this.$router.push({ name: this.passwordResetRequestAfterRouteName });
+        return data;
+      }).catch((error) => {
+        this.passwordResetLoading = false;
+        this.passwordResetRequestErrorAlert();
+        console.error(error);
+      });
+    },
+    resetPassword({ token, password }) {
+      this.passwordResetLoading = true;
+      const body = { token, password };
+      return this.$http.post(this.passwordResetConfirmationUrl, body).then(({ data }) => {
+        this.passwordResetSuccessAlert();
+        this.$router.push({ name: this.passwordResetConfirmationAfterRouteName });
+        return data;
+      }).catch((error) => {
+        this.passwordResetLoading = false;
+        this.passwordResetErrorAlert();
         console.error(error);
       });
     },

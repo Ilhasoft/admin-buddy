@@ -5,6 +5,15 @@
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
+            <b-field :label="tokenLabel">
+              <b-input type="text"
+                       v-model="token"
+                       @keyup.native.enter="resetPassword"
+                       :placeholder="tokenPlaceholder"
+                       maxlength="30"
+                       required>
+              </b-input>
+            </b-field>
             <b-field :label="passwordLabel">
               <b-input type="password"
                        v-model="password"
@@ -56,6 +65,14 @@ export default {
       type: String,
       default: 'Reset your password',
     },
+    tokenLabel: {
+      type: String,
+      default: 'Confirmation code',
+    },
+    tokenPlaceholder: {
+      type: String,
+      default: 'Enter the code sent to your email',
+    },
     passwordLabel: {
       type: String,
       default: 'Password',
@@ -83,6 +100,7 @@ export default {
   },
   data() {
     return {
+      token: undefined,
       password: undefined,
       passwordConfirmation: undefined,
       htmlHeightLast: undefined,
@@ -90,15 +108,16 @@ export default {
   },
   computed: {
     canResetPassword() {
-      return this.password
+      return this.token
+        && this.password
         && this.passwordConfirmation;
     },
   },
   methods: {
     resetPassword() {
       const args = {
+        token: this.token,
         password: this.password,
-        passwordConfirmation: this.passwordConfirmation,
       };
       this.$emit('onPasswordReset', args);
     },

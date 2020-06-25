@@ -5,10 +5,11 @@
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
-            <b-field :label="usernameLabel">
-              <b-input v-model="username"
+            <b-field :label="emailLabel">
+              <b-input v-model="email"
                        @keyup.native.enter="resetPassword"
-                       :placeholder="usernamePlaceholder"
+                       :placeholder="emailPlaceholder"
+                       type="email"
                        maxlength="30"
                        required></b-input>
             </b-field>
@@ -48,13 +49,13 @@ export default {
       type: String,
       default: 'Reset your password',
     },
-    usernameLabel: {
+    emailLabel: {
       type: String,
-      default: 'User',
+      default: 'Email',
     },
-    usernamePlaceholder: {
+    emailPlaceholder: {
       type: String,
-      default: 'Enter a username or email',
+      default: 'Enter a email',
     },
     resetButtonLabel: {
       type: String,
@@ -75,18 +76,18 @@ export default {
   },
   data() {
     return {
-      username: undefined,
+      email: undefined,
       htmlHeightLast: undefined,
     };
   },
   computed: {
     canResetPassword() {
-      return this.username;
+      return this.email;
     },
   },
   methods: {
     resetPassword() {
-      this.$emit('onPasswordReset', { username: this.username });
+      this.$emit('onPasswordReset', { email: this.email });
     },
     updateViewStyle(mounted) {
       const { body } = document;
