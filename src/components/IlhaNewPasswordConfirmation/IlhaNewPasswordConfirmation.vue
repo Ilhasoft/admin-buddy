@@ -5,43 +5,12 @@
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
-            <b-field :label="tokenLabel">
-              <b-input type="text"
-                       v-model="token"
-                       @keyup.native.enter="resetPassword"
-                       :placeholder="tokenPlaceholder"
-                       maxlength="30"
-                       required>
-              </b-input>
-            </b-field>
-            <b-field :label="passwordLabel">
-              <b-input type="password"
-                       v-model="password"
-                       @keyup.native.enter="resetPassword"
-                       :placeholder="passwordPlaceholder"
-                       maxlength="30"
-                       required
-                       password-reveal>
-              </b-input>
-            </b-field>
-            <b-field :label="passwordConfirmationLabel">
-              <b-input type="password"
-                       v-model="passwordConfirmation"
-                       @keyup.native.enter="resetPassword"
-                       :placeholder="passwordConfirmationPlaceholder"
-                       maxlength="30"
-                       required
-                       password-reveal>
-              </b-input>
-            </b-field>
-            <div class="buttons">
-              <b-button
-                type="is-info"
-                :disabled="!canResetPassword"
-                @click="resetPassword"
-                :loading="loading"
-                expanded>{{ resetButtonLabel }}</b-button>
-            </div>
+            <ilha-form
+              :loading="loading"
+              :fields="fields"
+              :btnSaveText="resetButtonLabel"
+              @onSaveRequest="resetPassword">
+            </ilha-form>
           </div>
         </div>
         <div class="column notification is-info box ilha-login__logo-container">
@@ -100,24 +69,43 @@ export default {
   },
   data() {
     return {
-      token: undefined,
-      password: undefined,
-      passwordConfirmation: undefined,
       htmlHeightLast: undefined,
     };
   },
   computed: {
-    canResetPassword() {
-      return this.token
-        && this.password
-        && this.passwordConfirmation;
+    fields() {
+      return [
+        {
+          property: 'token',
+          type: 'text',
+          label: this.tokenLabel,
+          placeholder: this.tokenPlaceholder,
+          rules: 'required',
+        },
+        {
+          property: 'password',
+          type: 'password',
+          label: this.passwordLabel,
+          placeholder: this.passwordPlaceholder,
+          rules: 'required|min:8',
+          autocomplete: 'new-password',
+        },
+        {
+          property: 'confirmationPassword',
+          type: 'password',
+          label: this.passwordConfirmationLabel,
+          placeholder: this.passwordConfirmationPlaceholder,
+          rules: 'required|min:8|confirmed:password',
+          autocomplete: 'off',
+        },
+      ];
     },
   },
   methods: {
-    resetPassword() {
+    resetPassword(data) {
       const args = {
-        token: this.token,
-        password: this.password,
+        token: data.token,
+        password: data.password,
       };
       this.$emit('onPasswordReset', args);
     },

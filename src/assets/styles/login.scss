@@ -34,6 +34,20 @@
     }
   }
 
+  .ilha-form {
+    padding: 0 !important;
+    margin: 0 !important;
+
+    .actions {
+      margin: 1em 0;
+      button {
+        display: block;
+        width: 100%;
+        margin: 0 !important;
+      }
+    }
+  }
+
 }
 
 body.public-container, body.public-container #app {

@@ -159,6 +159,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    loading: {
+      type: Boolean,
+      default: false,
+    },
     hasSpacing: {
       type: Boolean,
       default: true,
@@ -189,7 +193,6 @@ export default {
   },
   data() {
     return {
-      loading: false,
       canSave: true,
       innerData: {},
       editor: ClassicEditor,

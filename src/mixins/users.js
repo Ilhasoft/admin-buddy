@@ -64,7 +64,14 @@ export default {
         return data;
       }).catch((error) => {
         this.passwordResetLoading = false;
-        this.passwordResetErrorAlert();
+        const { data } = error.response;
+        if (data && data.password) {
+          this.passwordResetErrorAlert(data.password.join('<br>'));
+        } else if (data && data.status) {
+          this.passwordResetErrorAlert(`Code: ${data.status}`);
+        } else {
+          this.passwordResetErrorAlert();
+        }
         console.error(error);
       });
     },

@@ -5,22 +5,12 @@
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
-            <b-field :label="emailLabel">
-              <b-input v-model="email"
-                       @keyup.native.enter="resetPassword"
-                       :placeholder="emailPlaceholder"
-                       type="email"
-                       maxlength="30"
-                       required></b-input>
-            </b-field>
-            <div class="buttons">
-              <b-button
-                type="is-info"
-                :disabled="!canResetPassword"
-                @click="resetPassword"
-                :loading="loading"
-                expanded>{{ resetButtonLabel }}</b-button>
-            </div>
+            <ilha-form
+              :loading="loading"
+              :fields="fields"
+              :btnSaveText="resetButtonLabel"
+              @onSaveRequest="resetPassword">
+            </ilha-form>
             <div class="has-text-centered">
               <router-link :to="loginRoute" class="has-text-success">
                 {{ loginPageLabel }}
@@ -76,18 +66,25 @@ export default {
   },
   data() {
     return {
-      email: undefined,
       htmlHeightLast: undefined,
     };
   },
   computed: {
-    canResetPassword() {
-      return this.email;
+    fields() {
+      return [
+        {
+          property: 'email',
+          type: 'email',
+          label: this.emailLabel,
+          placeholder: this.emailPlaceholder,
+          rules: 'required|email',
+        },
+      ];
     },
   },
   methods: {
-    resetPassword() {
-      this.$emit('onPasswordReset', { email: this.email });
+    resetPassword(data) {
+      this.$emit('onPasswordReset', { email: data.email });
     },
     updateViewStyle(mounted) {
       const { body } = document;

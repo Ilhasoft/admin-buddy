@@ -5,32 +5,12 @@
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
-            <b-field :label="usernameLabel">
-              <b-input v-model="username"
-                       @keyup.native.enter="tryLogin"
-                       :placeholder="usernamePlaceholder"
-                       maxlength="30"
-                       required></b-input>
-            </b-field>
-
-            <b-field :label="passwordLabel">
-              <b-input type="password"
-                       v-model="password"
-                       @keyup.native.enter="tryLogin"
-                       :placeholder="passwordPlaceholder"
-                       maxlength="30"
-                       required
-                       password-reveal>
-              </b-input>
-            </b-field>
-            <div class="buttons">
-              <b-button
-                type="is-info"
-                :disabled="!canLogin"
-                @click="tryLogin"
-                :loading="loading"
-                expanded>{{ loginButtonLabel }}</b-button>
-            </div>
+            <ilha-form
+              :loading="loading"
+              :fields="fields"
+              :btnSaveText="loginButtonLabel"
+              @onSaveRequest="tryLogin">
+            </ilha-form>
             <div class="has-text-centered">
               <router-link :to="passwordResetRoute" class="has-text-danger">
                 {{ passwordResetPageLabel }}
@@ -100,13 +80,28 @@ export default {
     };
   },
   computed: {
-    canLogin() {
-      return this.username && this.password;
+    fields() {
+      return [
+        {
+          property: 'username',
+          type: 'text',
+          label: this.usernameLabel,
+          placeholder: this.usernamePlaceholder,
+          rules: 'required',
+        },
+        {
+          property: 'password',
+          type: 'password',
+          label: this.passwordLabel,
+          placeholder: this.passwordPlaceholder,
+          rules: 'required',
+        },
+      ];
     },
   },
   methods: {
-    tryLogin() {
-      this.$emit('onLogin', { username: this.username, password: this.password });
+    tryLogin(data) {
+      this.$emit('onLogin', { username: data.username, password: data.password });
     },
     updateViewStyle(mounted) {
       const { body } = document;

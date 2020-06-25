@@ -40,10 +40,10 @@ export default {
         type: 'is-success',
       });
     },
-    passwordResetErrorAlert() {
+    passwordResetErrorAlert(msg = 'Invalid code') {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Failed to change password',
+        message: msg,
         position: 'is-bottom',
         type: 'is-danger',
       });
