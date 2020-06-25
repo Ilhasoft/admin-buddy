@@ -91,13 +91,16 @@ export default {
   computed: {
     canResetPassword() {
       return this.password
-        && this.passwordConfirmation
-        && this.password === this.passwordConfirmation;
+        && this.passwordConfirmation;
     },
   },
   methods: {
     resetPassword() {
-      this.$emit('onPasswordReset', { password: this.password });
+      const args = {
+        password: this.password,
+        passwordConfirmation: this.passwordConfirmation,
+      };
+      this.$emit('onPasswordReset', args);
     },
     updateViewStyle(mounted) {
       const { body } = document;
