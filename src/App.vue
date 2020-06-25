@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <ilha-new-password-confirmation>
+    </ilha-new-password-confirmation>
     <ilha-header  :creation-route="{}">
       <template v-slot:title>
         Título

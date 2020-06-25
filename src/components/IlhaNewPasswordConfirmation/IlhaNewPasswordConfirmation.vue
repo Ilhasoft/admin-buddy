@@ -1,23 +1,25 @@
 <template>
-  <section class="ilha-login">
+  <section class="ilha-new-password-confirmation">
     <div class="container">
       <div class="columns section">
         <div class="column is-half ilha-login__form">
           <div class="box">
             <h3 class="subtitle">{{ subtitle }}</h3>
-            <b-field :label="usernameLabel">
-              <b-input v-model="username"
-                       @keyup.native.enter="tryLogin"
-                       :placeholder="usernamePlaceholder"
-                       maxlength="30"
-                       required></b-input>
-            </b-field>
-
             <b-field :label="passwordLabel">
               <b-input type="password"
                        v-model="password"
-                       @keyup.native.enter="tryLogin"
+                       @keyup.native.enter="resetPassword"
                        :placeholder="passwordPlaceholder"
+                       maxlength="30"
+                       required
+                       password-reveal>
+              </b-input>
+            </b-field>
+            <b-field :label="passwordConfirmationLabel">
+              <b-input type="password"
+                       v-model="passwordConfirmation"
+                       @keyup.native.enter="resetPassword"
+                       :placeholder="passwordConfirmationPlaceholder"
                        maxlength="30"
                        required
                        password-reveal>
@@ -26,15 +28,10 @@
             <div class="buttons">
               <b-button
                 type="is-info"
-                :disabled="!canLogin"
-                @click="tryLogin"
+                :disabled="!canResetPassword"
+                @click="resetPassword"
                 :loading="loading"
-                expanded>{{ loginButtonLabel }}</b-button>
-            </div>
-            <div class="has-text-centered">
-              <router-link :to="passwordResetRoute" class="has-text-danger">
-                {{ passwordResetPageLabel }}
-              </router-link>
+                expanded>{{ resetButtonLabel }}</b-button>
             </div>
           </div>
         </div>
@@ -49,7 +46,7 @@
 <script>
 
 export default {
-  name: 'ilha-login',
+  name: 'ilha-new-password-confirmation',
   props: {
     appLogo: {
       type: String,
@@ -57,15 +54,7 @@ export default {
     },
     subtitle: {
       type: String,
-      default: 'Login to Admin Management',
-    },
-    usernameLabel: {
-      type: String,
-      default: 'User',
-    },
-    usernamePlaceholder: {
-      type: String,
-      default: 'Enter a username or email',
+      default: 'Reset your password',
     },
     passwordLabel: {
       type: String,
@@ -75,17 +64,17 @@ export default {
       type: String,
       default: 'Enter your password',
     },
-    loginButtonLabel: {
+    passwordConfirmationLabel: {
       type: String,
-      default: 'Login',
+      default: 'Confirm password',
     },
-    passwordResetPageLabel: {
+    passwordConfirmationPlaceholder: {
       type: String,
-      default: 'Forgot your password?',
+      default: 'Confirm your password',
     },
-    passwordResetRoute: {
-      type: Object,
-      default: () => ({ name: 'PasswordReset' }),
+    resetButtonLabel: {
+      type: String,
+      default: 'Reset',
     },
     loading: {
       type: Boolean,
@@ -94,19 +83,21 @@ export default {
   },
   data() {
     return {
-      username: undefined,
       password: undefined,
+      passwordConfirmation: undefined,
       htmlHeightLast: undefined,
     };
   },
   computed: {
-    canLogin() {
-      return this.username && this.password;
+    canResetPassword() {
+      return this.password
+        && this.passwordConfirmation
+        && this.password === this.passwordConfirmation;
     },
   },
   methods: {
-    tryLogin() {
-      this.$emit('onLogin', { username: this.username, password: this.password });
+    resetPassword() {
+      this.$emit('onPasswordReset', { password: this.password });
     },
     updateViewStyle(mounted) {
       const { body } = document;

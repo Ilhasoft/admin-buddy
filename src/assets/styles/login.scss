@@ -1,5 +1,5 @@
 
-.ilha-login {
+.ilha-login, .ilha-password-reset, .ilha-new-password-confirmation {
   height: 100%;
   @if variable_exists(login-background) {
     background: url($login-background) no-repeat;

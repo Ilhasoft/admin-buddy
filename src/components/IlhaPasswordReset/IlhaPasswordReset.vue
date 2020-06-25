@@ -1,5 +1,5 @@
 <template>
-  <section class="ilha-login">
+  <section class="ilha-password-reset">
     <div class="container">
       <div class="columns section">
         <div class="column is-half ilha-login__form">
@@ -7,33 +7,22 @@
             <h3 class="subtitle">{{ subtitle }}</h3>
             <b-field :label="usernameLabel">
               <b-input v-model="username"
-                       @keyup.native.enter="tryLogin"
+                       @keyup.native.enter="resetPassword"
                        :placeholder="usernamePlaceholder"
                        maxlength="30"
                        required></b-input>
             </b-field>
-
-            <b-field :label="passwordLabel">
-              <b-input type="password"
-                       v-model="password"
-                       @keyup.native.enter="tryLogin"
-                       :placeholder="passwordPlaceholder"
-                       maxlength="30"
-                       required
-                       password-reveal>
-              </b-input>
-            </b-field>
             <div class="buttons">
               <b-button
                 type="is-info"
-                :disabled="!canLogin"
-                @click="tryLogin"
+                :disabled="!canResetPassword"
+                @click="resetPassword"
                 :loading="loading"
-                expanded>{{ loginButtonLabel }}</b-button>
+                expanded>{{ resetButtonLabel }}</b-button>
             </div>
             <div class="has-text-centered">
-              <router-link :to="passwordResetRoute" class="has-text-danger">
-                {{ passwordResetPageLabel }}
+              <router-link :to="loginRoute" class="has-text-success">
+                {{ loginPageLabel }}
               </router-link>
             </div>
           </div>
@@ -49,7 +38,7 @@
 <script>
 
 export default {
-  name: 'ilha-login',
+  name: 'ilha-password-reset',
   props: {
     appLogo: {
       type: String,
@@ -57,7 +46,7 @@ export default {
     },
     subtitle: {
       type: String,
-      default: 'Login to Admin Management',
+      default: 'Reset your password',
     },
     usernameLabel: {
       type: String,
@@ -67,25 +56,17 @@ export default {
       type: String,
       default: 'Enter a username or email',
     },
-    passwordLabel: {
+    resetButtonLabel: {
       type: String,
-      default: 'Password',
+      default: 'Reset',
     },
-    passwordPlaceholder: {
-      type: String,
-      default: 'Enter your password',
-    },
-    loginButtonLabel: {
+    loginPageLabel: {
       type: String,
       default: 'Login',
     },
-    passwordResetPageLabel: {
-      type: String,
-      default: 'Forgot your password?',
-    },
-    passwordResetRoute: {
+    loginRoute: {
       type: Object,
-      default: () => ({ name: 'PasswordReset' }),
+      default: () => ({ name: 'Login' }),
     },
     loading: {
       type: Boolean,
@@ -95,18 +76,17 @@ export default {
   data() {
     return {
       username: undefined,
-      password: undefined,
       htmlHeightLast: undefined,
     };
   },
   computed: {
-    canLogin() {
-      return this.username && this.password;
+    canResetPassword() {
+      return this.username;
     },
   },
   methods: {
-    tryLogin() {
-      this.$emit('onLogin', { username: this.username, password: this.password });
+    resetPassword() {
+      this.$emit('onPasswordReset', { username: this.username });
     },
     updateViewStyle(mounted) {
       const { body } = document;
