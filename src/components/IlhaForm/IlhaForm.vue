@@ -13,7 +13,9 @@
           :inner-data="innerData"
           :field="field"
           :editor="editor"
-          :editor-config="editorConfig">
+          :editor-config="editorConfig"
+          :changeable="fields"
+        >
         </ilha-field>
 
         <ilha--list-field
@@ -23,6 +25,7 @@
           :editor="editor"
           :editor-config="editorConfig"
           :add-label="addLabel"
+          :changeable="fields"
         >
         </ilha--list-field>
       </div>

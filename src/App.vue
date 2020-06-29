@@ -146,7 +146,14 @@ export default {
           property: 'steps',
           type: 'list',
           label: 'Etapas',
+          indexAttribute: 'sequence',
           entryFields: [
+            {
+              property: 'sequence',
+              type: 'number',
+              label: 'Sequência',
+              rules: 'required',
+            },
             {
               property: 'step',
               type: 'text',

@@ -71,7 +71,10 @@
         </template>
       </b-autocomplete>
       <ckeditor
-        v-if="field.type === 'editor' && editorConfig"
+        v-if="field.type === 'editor'
+        && editorConfig
+        && innerData[field.property] !== undefined
+        && innerData[field.property] !== null"
         v-model="innerData[field.property]"
         :editor="editor"
         :config="editorConfig">
@@ -119,6 +122,7 @@ export default {
     cleave,
   },
   props: {
+    changeable: {},
     field: {
       type: Object,
     },
@@ -140,6 +144,32 @@ export default {
       // eslint-disable-next-line
       this.innerData[field.property] = $event.target._vCleave.getRawValue();
     },
+    isDefined(value) {
+      return value !== undefined && value !== null;
+    },
+    checkInitValue() {
+      if (
+        this.field
+        && !this.isDefined(this.innerData[this.field.property])
+        && this.isDefined(this.field.initValue)
+      ) {
+        this.innerData[this.field.property] = this.field.initValue;
+      }
+    },
+  },
+  watch: {
+    field() {
+      this.checkInitValue();
+    },
+    innerData() {
+      this.checkInitValue();
+    },
+    changeable() {
+      this.checkInitValue();
+    },
+  },
+  mounted() {
+    this.checkInitValue();
   },
 };
 

@@ -41,6 +41,7 @@
 export default {
   name: 'ilha--list-field',
   props: {
+    changeable: {},
     field: {
       type: Object,
     },
@@ -66,9 +67,22 @@ export default {
   methods: {
     add(i) {
       this.entries.splice(i, 0, {});
+      this.updateIndexes();
     },
     remove(i) {
       this.entries.splice(i, 1);
+      this.updateIndexes();
+    },
+    updateIndexes() {
+      if (!this.field || !this.field.indexAttribute) {
+        return;
+      }
+
+      this.innerData[this.field.property] = this.innerData[this.field.property].map(
+        (entry, i) => ({ ...entry, [this.field.indexAttribute]: i + 1 }),
+      );
+
+      this.initEntries();
     },
     initEntries() {
       if (!this.innerData[this.field.property]) {
@@ -79,6 +93,9 @@ export default {
   },
   watch: {
     innerData() {
+      this.initEntries();
+    },
+    changeable() {
       this.initEntries();
     },
   },
