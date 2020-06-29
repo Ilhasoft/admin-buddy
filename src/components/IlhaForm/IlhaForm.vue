@@ -114,9 +114,6 @@ export default {
     };
   },
   computed: {
-    autocompleteFields() {
-      return this.fields.filter((field) => field.type === 'autocomplete');
-    },
     editorConfig() {
       return this.uploadUrl ? { extraPlugins: [(editor) => this.uploader(editor)] } : undefined;
     },
@@ -148,9 +145,6 @@ export default {
     },
     fields() {
       this.initData();
-      this.autocompleteFields.forEach((field) => {
-        field.searchData('');
-      });
     },
   },
   mounted() {

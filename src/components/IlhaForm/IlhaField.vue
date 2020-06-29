@@ -147,7 +147,10 @@ export default {
     isDefined(value) {
       return value !== undefined && value !== null;
     },
-    checkInitValue() {
+    init() {
+      if (this.field && this.field.type === 'autocomplete') {
+        this.field.searchData('');
+      }
       if (
         this.field
         && !this.isDefined(this.innerData[this.field.property])
@@ -159,17 +162,17 @@ export default {
   },
   watch: {
     field() {
-      this.checkInitValue();
+      this.init();
     },
     innerData() {
-      this.checkInitValue();
+      this.init();
     },
     changeable() {
-      this.checkInitValue();
+      this.init();
     },
   },
   mounted() {
-    this.checkInitValue();
+    this.init();
   },
 };
 
