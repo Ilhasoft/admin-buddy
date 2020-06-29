@@ -13,6 +13,10 @@
     width: 85%;
   }
 
+  .field {
+    margin: 0.5em 0;
+  }
+
 
   &__open-modal-btn, &__img {
     display: flex;
@@ -43,6 +47,28 @@
     &.m-3 {
       margin-left: 0;
       margin-right: 0;
+    }
+  }
+
+  &__field {
+    &__list {
+      padding-bottom: 4px;
+      &__entry {
+        padding: 0.1em;
+        box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+
+        &:not(:first-child) {
+          margin-top: 0.7em;
+        }
+
+        &__actions {
+          padding-top: 0.5em;
+          text-align: center;
+          i {
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
 }

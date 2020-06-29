@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <ilha-login>
-    </ilha-login>
     <ilha-header  :creation-route="{}">
       <template v-slot:title>
         Título
@@ -143,6 +141,25 @@ export default {
           type: 'checkbox',
           label: ' Acompanhavel?',
           rules: 'required',
+        },
+        {
+          property: 'steps',
+          type: 'list',
+          label: 'Etapas',
+          entryFields: [
+            {
+              property: 'step',
+              type: 'text',
+              label: 'Etapa',
+              rules: 'required',
+            },
+            {
+              property: 'description',
+              type: 'text',
+              label: 'Descrição',
+              rules: 'required',
+            },
+          ],
         },
         {
           property: 'editor',
