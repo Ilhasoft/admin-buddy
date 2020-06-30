@@ -8,6 +8,7 @@
     </div>
     <ilha-donut-chart
       :data="chartData"
+      :locale="locale"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-donut-chart>
   </div>
@@ -21,6 +22,9 @@ export default {
     chartData: {
       type: Array,
       default: () => [],
+    },
+    locale: {
+      type: String,
     },
   },
 };

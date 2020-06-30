@@ -75,6 +75,7 @@
     <div class="columns m-2">
       <div class="column is-half">
         <ilha-chart-summary-box
+          :locale="'pt-BR'"
           :chart-data="chartData"
           class="has-background-white">
           <template v-slot:title>
@@ -112,12 +113,12 @@ export default {
       chartData: [
         {
           label: 'Visitors',
-          value: 90,
+          value: 90000,
           backgroundColor: '#2FA2F4',
         },
         {
           label: 'Users',
-          value: 10,
+          value: 1000.3,
           backgroundColor: '#F8C239',
         },
       ],

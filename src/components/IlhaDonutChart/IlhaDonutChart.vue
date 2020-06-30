@@ -3,7 +3,7 @@ import { Doughnut } from 'vue-chartjs';
 // import 'chartjs-plugin-labels'; // https://github.com/emn178/chartjs-plugin-labels
 import './chart-js-plugin';
 
-const makeDefaultOptions = () => ({
+const makeDefaultOptions = (locale = 'en-US') => ({
   cutoutPercentage: 90,
   responsive: true,
   maintainAspectRatio: false,
@@ -23,6 +23,15 @@ const makeDefaultOptions = () => ({
       sidePadding: 20,
       minFontSize: 10,
       lineHeight: 25,
+      locale,
+    },
+  },
+  tooltips: {
+    callbacks: {
+      label(tooltipItem, data) {
+        const value = data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+        return value.toLocaleString(locale);
+      },
     },
   },
 });
@@ -34,6 +43,10 @@ export default {
     data: {
       type: Array,
       default: () => [],
+    },
+    locale: {
+      type: String,
+      default: 'en-US',
     },
   },
   data() {
@@ -67,8 +80,8 @@ export default {
       return Math.max(...this.values);
     },
     options() {
-      const options = makeDefaultOptions();
-      options.elements.center.text = `${this.maxValue}`;
+      const options = makeDefaultOptions(this.locale);
+      options.elements.center.text = `${this.maxValue.toLocaleString(this.locale)}`;
       options.legend.position = this.getLegendPosition();
       return options;
     },
