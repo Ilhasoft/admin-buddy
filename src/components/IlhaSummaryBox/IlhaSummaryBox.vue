@@ -17,7 +17,10 @@
         </div>
       </div>
 
-      <div class="ilha-summary-box__body__period has-text-right is-size-6">
+      <div
+        v-if="$slots.period"
+        class="ilha-summary-box__body__period has-text-right is-size-6"
+      >
         //<slot name="period" />
       </div>
     </div>

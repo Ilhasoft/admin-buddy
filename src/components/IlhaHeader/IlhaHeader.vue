@@ -6,7 +6,7 @@
           :value="query"
           @input="$emit('update:query', $event)"
           @keyup.native.enter="$emit('search', $event.target.value)"
-          placeholder="Search..."
+          :placeholder="inputSearchPlaceholder"
           type="search"
           icon="magnify"
           icon-clickable
@@ -19,7 +19,7 @@
           @click="logout()"
           type="is-info"
           class="">
-          Log out
+          {{ logoutLabel }}
         </b-button>
       </div>
     </div>
@@ -53,6 +53,14 @@ export default {
     },
     query: {
       type: String,
+    },
+    inputSearchPlaceholder: {
+      type: String,
+      default: 'Search...',
+    },
+    logoutLabel: {
+      type: String,
+      default: 'Log out',
     },
   },
   methods: {
