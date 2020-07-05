@@ -38,14 +38,29 @@ export default {
       type: Array,
       default: () => [],
     },
+    formatDataFunc: {
+      type: Function,
+      default: (data) => data,
+    },
+  },
+  methods: {
+    initFormatDataFunc() {
+      if (this.formatDataFunc) {
+        this.formatData = this.formatDataFunc;
+      }
+    },
   },
   watch: {
     url() {
       this.resourceUrl = this.url;
     },
+    formatDataFunc() {
+      this.initFormatDataFunc();
+    },
   },
   mounted() {
     this.resourceUrl = this.url;
+    this.initFormatDataFunc();
   },
 };
 </script>
