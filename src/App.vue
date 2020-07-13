@@ -1,105 +1,110 @@
 <template>
   <div id="app">
-    <ilha-header  :creation-route="{}">
-      <template v-slot:title>
-        Título
-      </template>
-    </ilha-header>
-    <ilha-form :fields="fields"></ilha-form>
-    <div class="columns is-desktop m-2">
-      <div class="column">
-        <ilha-summary-box class="has-background-info has-text-white">
-          <template v-slot:icon>
-            <ilha-icon type="tag-white" class="icon is-large"/>
-          </template>
-          <template v-slot:period>
-            today
-          </template>
-          <template v-slot:metric>
-            Interact with Bot
-          </template>
-          <template v-slot:amount>
-            1231
-          </template>
-        </ilha-summary-box>
+    <ilha-sidebar
+      :links="links"
+    ></ilha-sidebar>
+    <div class="form-admin">
+      <ilha-header  :creation-route="{}">
+        <template v-slot:title>
+          Título
+        </template>
+      </ilha-header>
+      <ilha-form :fields="fields"></ilha-form>
+      <div class="columns is-desktop m-2">
+        <div class="column">
+          <ilha-summary-box class="has-background-info has-text-white">
+            <template v-slot:icon>
+              <ilha-icon type="tag-white" class="icon is-large"/>
+            </template>
+            <template v-slot:period>
+              today
+            </template>
+            <template v-slot:metric>
+              Interact with Bot
+            </template>
+            <template v-slot:amount>
+              1231
+            </template>
+          </ilha-summary-box>
+        </div>
+        <div class="column">
+          <ilha-summary-box class="has-background-warning has-text-white">
+            <template v-slot:icon>
+              <ilha-icon type="users-white" class="icon is-large"/>
+            </template>
+            <template v-slot:period>
+              today
+            </template>
+            <template v-slot:metric>
+              Interact with Bot
+            </template>
+            <template v-slot:amount>
+              1231
+            </template>
+          </ilha-summary-box>
+        </div>
+        <div class="column">
+          <ilha-summary-box class="has-background-success has-text-white">
+            <template v-slot:icon>
+              <ilha-icon type="trend-white" class="icon is-large"/>
+            </template>
+            <template v-slot:period>
+              today
+            </template>
+            <template v-slot:metric>
+              Interact with Bot
+            </template>
+            <template v-slot:amount>
+              1231
+            </template>
+          </ilha-summary-box>
+        </div>
+        <div class="column">
+          <ilha-summary-box class="has-background-danger has-text-white">
+            <template v-slot:icon>
+              <ilha-icon type="tag-white" class="icon is-large"/>
+            </template>
+            <template v-slot:period>
+              today
+            </template>
+            <template v-slot:metric>
+              Interact with Bot
+            </template>
+            <template v-slot:amount>
+              1231
+            </template>
+          </ilha-summary-box>
+        </div>
       </div>
-      <div class="column">
-        <ilha-summary-box class="has-background-warning has-text-white">
-          <template v-slot:icon>
-            <ilha-icon type="users-white" class="icon is-large"/>
-          </template>
-          <template v-slot:period>
-            today
-          </template>
-          <template v-slot:metric>
-            Interact with Bot
-          </template>
-          <template v-slot:amount>
-            1231
-          </template>
-        </ilha-summary-box>
+      <div class="columns m-2">
+        <div class="column is-half">
+          <ilha-chart-summary-box
+            :locale="'pt-BR'"
+            :chart-data="chartData"
+            class="has-background-white">
+            <template v-slot:title>
+              Message Metrics
+            </template>
+          </ilha-chart-summary-box>
+        </div>
+        <div class="column is-half">
+          <ilha-chart-summary-box
+            :chart-data="chartData"
+            class="has-background-white">
+            <template v-slot:title>
+              New Reports Registered
+            </template>
+          </ilha-chart-summary-box>
+        </div>
       </div>
-      <div class="column">
-        <ilha-summary-box class="has-background-success has-text-white">
-          <template v-slot:icon>
-            <ilha-icon type="trend-white" class="icon is-large"/>
-          </template>
-          <template v-slot:period>
-            today
-          </template>
-          <template v-slot:metric>
-            Interact with Bot
-          </template>
-          <template v-slot:amount>
-            1231
-          </template>
-        </ilha-summary-box>
-      </div>
-      <div class="column">
-        <ilha-summary-box class="has-background-danger has-text-white">
-          <template v-slot:icon>
-            <ilha-icon type="tag-white" class="icon is-large"/>
-          </template>
-          <template v-slot:period>
-            today
-          </template>
-          <template v-slot:metric>
-            Interact with Bot
-          </template>
-          <template v-slot:amount>
-            1231
-          </template>
-        </ilha-summary-box>
-      </div>
+      <b-modal :active.sync="chooserIconOpened"
+               :width="640" scroll="keep"
+               :destroy-on-hide="false"
+               aria-role="dialog"
+               aria-modal>
+        <ilha-icon-choser></ilha-icon-choser>
+      </b-modal>
     </div>
-    <div class="columns m-2">
-      <div class="column is-half">
-        <ilha-chart-summary-box
-          :locale="'pt-BR'"
-          :chart-data="chartData"
-          class="has-background-white">
-          <template v-slot:title>
-            Message Metrics
-          </template>
-        </ilha-chart-summary-box>
-      </div>
-      <div class="column is-half">
-        <ilha-chart-summary-box
-          :chart-data="chartData"
-          class="has-background-white">
-          <template v-slot:title>
-            New Reports Registered
-          </template>
-        </ilha-chart-summary-box>
-      </div>
-    </div>
-    <b-modal :active.sync="chooserIconOpened"
-             :width="640" scroll="keep"
-             :destroy-on-hide="false"
-             aria-role="dialog"
-             aria-modal>
-      <ilha-icon-choser></ilha-icon-choser>
-    </b-modal>
   </div>
 </template>
 

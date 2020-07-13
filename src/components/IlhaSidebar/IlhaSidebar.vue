@@ -1,5 +1,6 @@
 <template>
-  <section class="ilha-sidebar">
+  <section
+    class="ilha-sidebar">
     <b-sidebar
       :mobile="mobile"
       :expand-on-hover="expandOnHover"
@@ -10,8 +11,11 @@
       open
     >
       <div class="menu-header p-1 is-primary">
-        <span class="menu-header__title">Dashboard admin</span>
-        <b-icon icon="menu" class="menu-header__icon icon is-medium"/>
+        <span class="menu-header__title">Dashboard</span>
+        <b-icon
+          @click.native="toggleReduce"
+          icon="menu"
+          class="menu-header__icon icon is-medium"/>
       </div>
       <div class="">
         <b-menu class="is-custom-mobile">
@@ -53,6 +57,17 @@ export default {
       fullheight: true,
       fullwidth: false,
     };
+  },
+  methods: {
+    toggleReduce() {
+      this.reduce = !this.reduce;
+      console.log(document.body);
+      if (this.reduce) {
+        document.body.classList.add('ilha-sidebar__reduced');
+      } else {
+        document.body.classList.remove('ilha-sidebar__reduced');
+      }
+    },
   },
 };
 </script>
