@@ -61,7 +61,6 @@ export default {
   methods: {
     toggleReduce() {
       this.reduce = !this.reduce;
-      console.log(document.body);
       if (this.reduce) {
         document.body.classList.add('ilha-sidebar__reduced');
       } else {
