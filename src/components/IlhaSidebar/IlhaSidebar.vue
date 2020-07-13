@@ -29,7 +29,7 @@
               <template v-slot:label>
                 <ilha-icon :type="link.icon" class="icon is-medium"/>
                 <span>{{ link.label }}</span>
-                <b-icon icon="chevron-right"/>
+                <b-icon v-if="!reduce" icon="chevron-right"/>
               </template>
             </b-menu-item>
           </b-menu-list>
