@@ -5,6 +5,10 @@
     ref="observer"
     tag="section"
     class="ilha-form">
+    <b-loading
+      :active="fetchLoading"
+      :is-full-page="false">
+    </b-loading>
     <div :class="inputsContainerClasses">
       <div v-for="(field, i) in fields"
            :key="i">
@@ -71,6 +75,10 @@ export default {
       default: () => [],
     },
     loading: {
+      type: Boolean,
+      default: false,
+    },
+    fetchLoading: {
       type: Boolean,
       default: false,
     },

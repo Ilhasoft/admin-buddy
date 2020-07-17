@@ -5,6 +5,7 @@ export default {
       data: {},
       id: undefined,
       loading: false,
+      fetchLoading: false,
     };
   },
   computed: {
@@ -36,7 +37,7 @@ export default {
       }
     },
     fetchData() {
-      this.loading = true;
+      this.fetchLoading = true;
       this.$http.get(this.getUrl)
         .then(this.fetchSuccess.bind(this))
         .catch(this.fetchError.bind(this));
@@ -55,12 +56,12 @@ export default {
     },
     fetchSuccess({ data }) {
       this.data = data;
-      this.loading = false;
+      this.fetchLoading = false;
     },
     fetchError(error) {
       this.data = {};
       console.error(error);
-      this.loading = false;
+      this.fetchLoading = false;
       this.alertFetchError();
     },
     saveSuccess({ data }) {
