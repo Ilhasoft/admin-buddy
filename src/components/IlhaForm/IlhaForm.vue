@@ -6,6 +6,7 @@
     tag="section"
     class="ilha-form">
     <b-loading
+      v-if="fetchLoading"
       :active="fetchLoading"
       :is-full-page="false">
     </b-loading>
