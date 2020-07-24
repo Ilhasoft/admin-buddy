@@ -11,6 +11,7 @@ export default {
       defaultSortOrder: 'desc',
       loading: true,
       query: '',
+      otherQueryParams: undefined,
       deleteTitle: 'Deleting entity',
       deleteMessage: 'Are you sure you want to <b>delete</b>? This action cannot be undone.',
       deleteConfirmText: 'Delete entity',
@@ -49,6 +50,10 @@ export default {
 
       if (this.query) {
         params.push(`search=${this.query}`);
+      }
+
+      if (this.otherQueryParams) {
+        params.push(this.otherQueryParams);
       }
 
       this.loading = true;
@@ -93,6 +98,9 @@ export default {
       this.initTable();
     },
     query() {
+      this.initTable();
+    },
+    otherQueryParams() {
       this.initTable();
     },
   },
