@@ -45,10 +45,30 @@
             class="ilha-content-list__img"/>
         </b-table-column>
 
+        <b-table-column v-if="hasCustomActions" label="" centered>
+          <span class="ilha-content-list__actions">
+            <router-link
+              v-for="(action, i) in customActions"
+              :key="i"
+              :to="{ name: action.routeName, params: {id: props.row[idField]}}">
+              <ilha-icon
+                v-if="action.icon"
+                :type="action.icon"
+                class="icon is-medium"/>
+              <span
+                v-if="action.label && !action.icon">
+                {{ action.label }}
+              </span>
+            </router-link>
+          </span>
+        </b-table-column>
+
         <b-table-column v-if="hasActions" label="" centered>
           <span class="ilha-content-list__actions">
-            <router-link :to="{ name: editRouteName, params: {id: props.row[idField]}}">
-              <ilha-icon v-if="canEdit" type="edit" class="icon is-medium"/>
+            <router-link
+              v-if="canEdit"
+              :to="{ name: editRouteName, params: {id: props.row[idField]}}">
+              <ilha-icon type="edit" class="icon is-medium"/>
             </router-link>
             <ilha-icon
               v-if="canDelete"
@@ -100,6 +120,10 @@ export default {
     data: {
       type: Array,
     },
+    customActions: {
+      type: Array,
+      default: () => [],
+    },
     perPage: {
       type: Number,
       default: 10,
@@ -142,11 +166,15 @@ export default {
     hasActions() {
       return this.canEdit || this.canDelete;
     },
+    hasCustomActions() {
+      return this.customActions && this.customActions.length > 0;
+    },
     cellWidth() {
       if (!this.header || this.header.length === 0) {
         return undefined;
       }
-      const headerLength = this.header.length + (this.hasActions ? 1 : 0);
+      const headerLength = this.header.length + (this.hasActions ? 1 : 0)
+        + (this.hasCustomActions ? 1 : 0);
       return `${(1 / (headerLength)) * 100}%`;
     },
   },
