@@ -72,7 +72,8 @@ export default {
     },
     saveError(error) {
       this.loading = false;
-      this.alertSaveError(((error.response || {}).data || {}).detail);
+      const data = ((error.response || {}).data || {});
+      this.alertSaveError(data.detail || data.message);
     },
     updateId() {
       const { id } = this.$route.params;
