@@ -56,10 +56,10 @@ export default {
         type: 'is-success',
       });
     },
-    alertSaveError() {
+    alertSaveError(message = '') {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Save error',
+        message: message ? `Save error:${message}` : 'Save error',
         position: 'is-bottom',
         type: 'is-danger',
       });
