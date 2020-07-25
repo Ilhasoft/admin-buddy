@@ -71,9 +71,8 @@ export default {
       this.$router.replace({ params: { id: data.id } });
     },
     saveError(error) {
-      console.error(error);
       this.loading = false;
-      this.alertSaveError(error.details);
+      this.alertSaveError(((error.response || {}).data || {}).detail);
     },
     updateId() {
       const { id } = this.$route.params;

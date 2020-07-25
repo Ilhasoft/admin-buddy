@@ -59,7 +59,7 @@ export default {
     alertSaveError(message = '') {
       this.$buefy.toast.open({
         duration: 2000,
-        message: message ? `Save error:${message}` : 'Save error',
+        message: message ? `Save error: ${message}` : 'Save error',
         position: 'is-bottom',
         type: 'is-danger',
       });
