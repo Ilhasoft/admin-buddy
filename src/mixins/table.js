@@ -16,6 +16,7 @@ export default {
       deleteMessage: 'Are you sure you want to <b>delete</b>? This action cannot be undone.',
       deleteConfirmText: 'Delete entity',
       deleteCancelText: 'Cancel',
+      formatResult: (data) => data,
       formatData: (data) => data,
     };
   },
@@ -58,6 +59,7 @@ export default {
 
       this.loading = true;
       this.$http.get(`${this.resourceUrl}?${params.join('&')}`)
+        .then((result) => this.formatResult(result))
         .then(({ data }) => {
           this.data = this.formatData(data.results);
           this.totalRows = data.count;

@@ -8,6 +8,7 @@
     :sort-field="sortField"
     :sort-order="sortOrder"
     :default-sorter-order="defaultSortOrder"
+    :per-page="perPage"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -42,11 +43,24 @@ export default {
       type: Function,
       default: (data) => data,
     },
+    formatResultFunc: {
+      type: Function,
+      default: (data) => data,
+    },
+    perPage: {
+      type: Number,
+      default: 10,
+    },
   },
   methods: {
     initFormatDataFunc() {
       if (this.formatDataFunc) {
         this.formatData = this.formatDataFunc;
+      }
+    },
+    initFormatResultFunc() {
+      if (this.formatResultFunc) {
+        this.formatResult = this.formatResultFunc;
       }
     },
   },
@@ -57,10 +71,14 @@ export default {
     formatDataFunc() {
       this.initFormatDataFunc();
     },
+    formatResultFunc() {
+      this.initFormatResultFunc();
+    },
   },
   mounted() {
     this.resourceUrl = this.url;
     this.initFormatDataFunc();
+    this.initFormatResultFunc();
   },
 };
 </script>
