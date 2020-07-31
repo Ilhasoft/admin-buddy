@@ -79,8 +79,10 @@
       <div class="columns m-2">
         <div class="column is-half">
           <ilha-chart-summary-box
+            :chart-type="'bar'"
             :locale="'pt-BR'"
-            :chart-data="chartData"
+            :chart-data="barChartData"
+            :background-color="'#F8C239'"
             class="has-background-white">
             <template v-slot:title>
               Message Metrics
@@ -123,8 +125,18 @@ export default {
         },
         {
           label: 'Users',
-          value: 1000.3,
+          value: 50000,
           backgroundColor: '#F8C239',
+        },
+      ],
+      barChartData: [
+        {
+          label: 'Visitors',
+          value: 90000,
+        },
+        {
+          label: 'Users',
+          value: 50000,
         },
       ],
       fields: [

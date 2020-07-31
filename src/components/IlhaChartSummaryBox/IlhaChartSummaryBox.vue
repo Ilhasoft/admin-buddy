@@ -7,10 +7,18 @@
       </div>
     </div>
     <ilha-donut-chart
+      v-if="chartType === 'donut'"
       :data="chartData"
       :locale="locale"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-donut-chart>
+    <ilha-bar-chart
+      v-if="chartType === 'bar'"
+      :data="chartData"
+      :locale="locale"
+      :background-color="backgroundColor"
+      style="width: 95%; min-width: 150px; height: 200px;">
+    </ilha-bar-chart>
   </div>
 </template>
 
@@ -19,9 +27,16 @@
 export default {
   name: 'ilha-chart-summary-box',
   props: {
+    chartType: {
+      Type: String,
+      default: 'donut',
+    },
     chartData: {
       type: Array,
       default: () => [],
+    },
+    backgroundColor: {
+      type: String,
     },
     locale: {
       type: String,

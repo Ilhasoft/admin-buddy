@@ -10,6 +10,7 @@ export { default as IlhaSideBar } from './IlhaSidebar';
 export { default as IlhaTable } from './IlhaTable';
 export { default as IlhaTitle } from './IlhaTitle';
 export { default as IlhaDonutChart } from './IlhaDonutChart';
+export { default as IlhaBarChart } from './IlhaBarChart';
 export { default as IlhaSummaryBox } from './IlhaSummaryBox';
 export { default as IlhaSummaryTable } from './IlhaSummaryTable';
 export { default as IlhaChartSummaryBox } from './IlhaChartSummaryBox';
