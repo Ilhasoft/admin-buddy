@@ -30,11 +30,10 @@
       <b-input
         v-if="field.type === 'masked'"
         v-cleave="field.mask"
-        v-model="innerData[field.property + '_formated']"
+        v-model="innerData[field.property + '_formatted']"
         :placeholder="field.placeholder"
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
-        @change.native="changed()"
         @input.native="updateMaskedField(field, $event)"
         expanded
       >
@@ -140,7 +139,7 @@ export default {
   methods: {
     updateMaskedField(field, $event) {
       // eslint-disable-next-line
-      this.innerData[field.property + '_formated'] = $event.target._vCleave.getFormattedValue();
+      this.innerData[field.property + '_formatted'] = $event.target._vCleave.getFormattedValue();
       // eslint-disable-next-line
       this.innerData[field.property] = $event.target._vCleave.getRawValue();
     },
