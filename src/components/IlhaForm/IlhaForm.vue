@@ -20,6 +20,7 @@
           :editor="editor"
           :editor-config="editorConfig"
           :changeable="fields"
+          @keydownEnter="requestSave"
         >
         </ilha-field>
 

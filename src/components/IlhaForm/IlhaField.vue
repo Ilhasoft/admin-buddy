@@ -24,6 +24,7 @@
         :maxlength="field.maxlength"
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
+        @keydown.enter.native="$emit('keydownEnter')"
         expanded
       >
       </b-input>
@@ -35,6 +36,7 @@
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
         @input.native="updateMaskedField(field, $event)"
+        @keydown.enter.native="$emit('keydownEnter')"
         expanded
       >
       </b-input>

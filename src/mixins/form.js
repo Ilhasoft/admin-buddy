@@ -6,22 +6,23 @@ export default {
       id: undefined,
       loading: false,
       fetchLoading: false,
+      withoutId: false,
     };
   },
   computed: {
     getUrl() {
-      return `${this.resourceUrl}/${this.id}`;
+      return this.withoutId ? `${this.resourceUrl}` : `${this.resourceUrl}/${this.id}`;
     },
     postUrl() {
       return `${this.resourceUrl}`;
     },
     putUrl() {
-      return `${this.resourceUrl}/${this.id}`;
+      return this.getUrl;
     },
   },
   methods: {
     initData() {
-      if (this.resourceUrl && this.id) {
+      if (this.resourceUrl && (this.id || this.withoutId)) {
         this.fetchData();
       }
     },
@@ -30,7 +31,7 @@ export default {
       if (!this.resourceUrl) {
         return;
       }
-      if (this.id === undefined || this.id === null) {
+      if ((this.id === undefined || this.id === null) && !this.withoutId) {
         this.saveData();
       } else {
         this.updateData();
@@ -82,7 +83,6 @@ export default {
       }
       this.id = id;
       this.data = {};
-      this.id = id;
       this.initData();
       if (this.updatedId) {
         this.updatedId();
