@@ -9,6 +9,7 @@ const makeDefaultOptions = (locale = 'en-US') => ({
   maintainAspectRatio: false,
   legend: {
     position: 'right',
+    onClick: () => {},
   },
   plugins: {
     labels: {

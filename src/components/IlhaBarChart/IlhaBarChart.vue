@@ -12,6 +12,14 @@ const makeDefaultOptions = () => ({
       fontColor: '#fff',
     },
   },
+  tooltips: {
+    callbacks: {
+      label(tooltipItem) {
+        // eslint-disable-next-line
+        return this._data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index][1];
+      },
+    },
+  },
 });
 
 export default {
