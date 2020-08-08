@@ -7,6 +7,7 @@ export default {
       loading: false,
       fetchLoading: false,
       withoutId: false,
+      getId: (data) => data.id,
     };
   },
   computed: {
@@ -69,7 +70,7 @@ export default {
       this.data = data;
       this.loading = false;
       this.alertSaveSuccess();
-      this.$router.replace({ params: { id: data.id } });
+      this.$router.replace({ params: { id: this.getId(data) } });
     },
     saveError(error) {
       this.loading = false;

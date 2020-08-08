@@ -7,6 +7,7 @@
       :reduce="reduce"
       :fullheight="fullheight"
       :fullwidth="fullwidth"
+      :can-cancel="false"
       type="is-white"
       open
     >
