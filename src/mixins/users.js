@@ -3,6 +3,7 @@ import { mapState, mapGetters } from 'vuex';
 export default {
   data() {
     return {
+      currentUser: undefined,
       loginLoading: false,
       passwordResetLoading: false,
     };
@@ -20,7 +21,13 @@ export default {
   },
   methods: {
     getCurrentUser() {
-      return this.$http.get(`${this.usersUrl}/my_profile`).then(({ data }) => data);
+      if (this.currentUser) {
+        return Promise.resolve(this.currentUser);
+      }
+      return this.$http.get(`${this.usersUrl}/my_profile`).then(({ data }) => {
+        this.currentUser = data;
+        return data;
+      });
     },
     list() {
       return this.$http.get(`${this.usersUrl}/`);
