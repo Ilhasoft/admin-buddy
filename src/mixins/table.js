@@ -100,6 +100,9 @@ export default {
       this.initTable();
     },
     query() {
+      if (this.query === undefined) {
+        return;
+      }
       this.initTable();
     },
     otherQueryParams() {
