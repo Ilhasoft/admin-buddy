@@ -51,6 +51,9 @@ export default {
       type: Number,
       default: 10,
     },
+    additionalQueryParams: {
+      type: String,
+    },
   },
   methods: {
     initFormatDataFunc() {
@@ -61,6 +64,11 @@ export default {
     initFormatResultFunc() {
       if (this.formatResultFunc) {
         this.formatResult = this.formatResultFunc;
+      }
+    },
+    initAdditionalQueryParams() {
+      if (this.additionalQueryParams) {
+        this.otherQueryParams = this.additionalQueryParams;
       }
     },
   },
@@ -74,11 +82,15 @@ export default {
     formatResultFunc() {
       this.initFormatResultFunc();
     },
+    additionalQueryParams() {
+      this.initAdditionalQueryParams();
+    },
   },
   mounted() {
     this.resourceUrl = this.url;
     this.initFormatDataFunc();
     this.initFormatResultFunc();
+    this.initAdditionalQueryParams();
   },
 };
 </script>
