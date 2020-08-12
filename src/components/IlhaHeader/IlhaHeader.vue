@@ -68,7 +68,7 @@ export default {
     },
     logout() {
       localStorage.clear();
-      this.$router.push({ path: '/' });
+      this.$router.go();
     },
   },
 };
