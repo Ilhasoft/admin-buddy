@@ -161,6 +161,12 @@ export default {
           rules: 'required',
         },
         {
+          property: 'color',
+          type: 'color',
+          label: ' Cor',
+          rules: 'required',
+        },
+        {
           property: 'steps',
           type: 'list',
           label: 'Etapas',

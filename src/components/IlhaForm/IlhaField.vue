@@ -5,7 +5,9 @@
     :vid="field.property"
     :class="field.hasBtn || field.hasImg ? ['columns', 'm-0'] : []"
     v-slot="{ errors, valid }"
-    tag="div">
+    tag="div"
+    class="ilha-form__field"
+  >
     <b-field
       :label="field.label"
       :type="{ 'is-danger': errors[0], 'is-success': valid }"
@@ -17,7 +19,8 @@
                     && field.type !== 'autocomplete'
                     && field.type !== 'masked'
                     && field.type !== 'editor'
-                    && field.type !== 'checkbox'"
+                    && field.type !== 'checkbox'
+                    && field.type !== 'color'"
         v-model="innerData[field.property]"
         :type="field.type ? field.type : 'text'"
         :placeholder="field.placeholder"
@@ -86,6 +89,12 @@
         v-model="innerData[field.property]">
         {{ field.placeholder }}
       </b-checkbox>
+      <ColourPicker
+        v-if="field.type === 'color'"
+        v-model="innerData[field.property]"
+        picker="chrome"
+      >
+      </ColourPicker>
     </b-field>
     <div
       v-if="field.hasImg"
@@ -109,6 +118,7 @@
 </template>
 
 <script>
+import ColourPicker from 'vue-colour-picker';
 import {
   ValidationProvider,
 } from 'vee-validate';
@@ -118,6 +128,7 @@ export default {
   name: 'ilha-field',
   components: {
     ValidationProvider,
+    ColourPicker,
   },
   directives: {
     cleave,
@@ -160,6 +171,12 @@ export default {
         this.innerData[this.field.property] = this.field.initValue;
       }
     },
+    initColorField() {
+      const input = this.$el.querySelector('.color-picker input');
+      input.classList.remove('color-input');
+      input.classList.add('input');
+      input.classList.add('is-success');
+    },
   },
   watch: {
     field() {
@@ -174,6 +191,9 @@ export default {
   },
   mounted() {
     this.init();
+    if (this.field.type === 'color') {
+      this.initColorField();
+    }
   },
 };
 
