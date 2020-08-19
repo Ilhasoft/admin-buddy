@@ -8,7 +8,7 @@
       :narrowed="false"
       :hoverable="true"
       :focusable="false"
-      :mobile-cards="true"
+      :mobile-cards="mobileCards"
 
       paginated
       backend-pagination
@@ -155,6 +155,10 @@ export default {
     idField: {
       type: String,
       default: 'id',
+    },
+    mobileCards: {
+      type: Boolean,
+      default: true,
     },
   },
   data() {

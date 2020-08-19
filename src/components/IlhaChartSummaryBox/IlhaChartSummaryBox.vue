@@ -7,12 +7,14 @@
       </div>
     </div>
     <ilha-donut-chart
+      ref="donut"
       v-if="chartType === 'donut'"
       :data="chartData"
       :locale="locale"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-donut-chart>
     <ilha-bar-chart
+      ref="bar"
       v-if="chartType === 'bar'"
       :data="chartData"
       :locale="locale"

@@ -9,6 +9,7 @@
     :sort-order="sortOrder"
     :default-sorter-order="defaultSortOrder"
     :per-page="perPage"
+    :mobile-cards="mobileCards"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -53,6 +54,10 @@ export default {
     },
     additionalQueryParams: {
       type: String,
+    },
+    mobileCards: {
+      type: Boolean,
+      default: true,
     },
   },
   methods: {
