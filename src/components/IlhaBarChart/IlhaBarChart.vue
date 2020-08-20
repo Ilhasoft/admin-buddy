@@ -20,6 +20,49 @@ const makeDefaultOptions = () => ({
       },
     },
   },
+  layout: {
+    padding: {
+      left: 0,
+      right: 0,
+      top: 15,
+      bottom: 0,
+    },
+  },
+  hover: {
+    animationDuration: 0,
+  },
+  animation: {
+    duration: 1,
+    onComplete() {
+      console.log('oi');
+      const chartInstance = this.chart;
+      const { ctx } = chartInstance;
+      console.log(this);
+
+      // ctx.font = this.helpers.fontString(
+      //   this.defaults.global.defaultFontSize,
+      //   this.defaults.global.defaultFontStyle,
+      //   this.defaults.global.defaultFontFamily,
+      // );
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'bottom';
+
+      this.data.datasets.forEach((dataset, i) => {
+        const meta = chartInstance.controller.getDatasetMeta(i);
+        console.log(meta.data);
+        meta.data.forEach((bar, index) => {
+          console.log(dataset.data[index]);
+          if (dataset.data[index][1] > 0) {
+            const data = dataset.data[index][1];
+            // eslint-disable-next-line
+            console.log(bar._model.x, bar._model.y);
+            // eslint-disable-next-line
+            ctx.fillText(data, bar._model.x, bar._model.y);
+          }
+        });
+      });
+    },
+  },
 });
 
 export default {
