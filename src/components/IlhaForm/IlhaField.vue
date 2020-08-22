@@ -20,7 +20,8 @@
                     && field.type !== 'masked'
                     && field.type !== 'editor'
                     && field.type !== 'checkbox'
-                    && field.type !== 'color'"
+                    && field.type !== 'color'
+                    && field.type !== 'upload'"
         v-model="innerData[field.property]"
         :type="field.type ? field.type : 'text'"
         :placeholder="field.placeholder"
@@ -95,6 +96,19 @@
         picker="chrome"
       >
       </ColourPicker>
+      <b-upload
+        v-if="field.type === 'upload'"
+        v-model="innerData[field.property]"
+        @change="changedFile($event, innerData[field.property])"
+        class="file-label"
+      >
+        <span class="file-cta">
+          <b-icon class="file-icon" icon="upload"></b-icon>
+        </span>
+        <span class="file-name" v-if="innerData[field.property]">
+          {{ innerData[field.property].name }}
+        </span>
+      </b-upload>
     </b-field>
     <div
       v-if="field.hasImg"
@@ -176,6 +190,9 @@ export default {
       input.classList.remove('color-input');
       input.classList.add('input');
       input.classList.add('is-success');
+    },
+    changedFile($event, data) {
+      console.log($event, data);
     },
   },
   watch: {

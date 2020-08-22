@@ -167,6 +167,12 @@ export default {
           rules: 'required',
         },
         {
+          property: 'file',
+          type: 'upload',
+          label: ' Arquivo',
+          rules: 'required',
+        },
+        {
           property: 'steps',
           type: 'list',
           label: 'Etapas',
