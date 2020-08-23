@@ -49,12 +49,12 @@ export default {
         `ordering=${this.order}${this.sortField}`,
       ];
 
-      if (this.query) {
-        params.push(`search=${this.query}`);
-      }
-
       if (this.otherQueryParams) {
         params.push(this.otherQueryParams);
+      }
+
+      if (this.query) {
+        params.push(`search=${encodeURIComponent(this.query)}`);
       }
 
       this.loading = true;
