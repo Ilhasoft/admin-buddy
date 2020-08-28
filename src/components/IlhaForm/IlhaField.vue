@@ -29,6 +29,7 @@
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
         @keydown.enter.native="$emit('keydownEnter')"
+        @change.native="field.changedFunc ? field.changedFunc($event) : ''"
         expanded
       >
       </b-input>
