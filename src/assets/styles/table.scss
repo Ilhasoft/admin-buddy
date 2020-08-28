@@ -9,7 +9,14 @@
   &__img {
     height: 1em;
     vertical-align: middle;
-
+  }
+  &__svg {
+    height: 1em;
+    vertical-align: middle;
+    svg {
+      height: 1em !important;
+      width: 1em !important;
+    }
   }
   .table-container {
     overflow: hidden;
