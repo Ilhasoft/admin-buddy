@@ -95,6 +95,11 @@ export default {
       return this.$el.offsetWidth < 220 ? 'bottom' : 'right';
     },
   },
+  watch: {
+    data() {
+      this.initChart();
+    },
+  },
   mounted() {
     this.$nextTick(() => {
       this.initChart();

@@ -97,6 +97,11 @@ export default {
       return makeDefaultOptions(this.locale);
     },
   },
+  watch: {
+    data() {
+      this.renderChart(this.chartData, this.options);
+    },
+  },
   methods: {
     initChart() {
       this.renderChart(this.chartData, this.options);
