@@ -26,6 +26,14 @@
       :background-color="backgroundColor"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-bar-chart>
+    <ilha-line-chart
+      ref="line"
+      v-if="chartType === 'line'"
+      :data="chartData"
+      :locale="locale"
+      :background-color="backgroundColor"
+      style="width: 95%; min-width: 150px; height: 200px;">
+    </ilha-line-chart>
   </div>
 </template>
 

@@ -79,6 +79,29 @@
       <div class="columns m-2">
         <div class="column is-half">
           <ilha-chart-summary-box
+            :chart-type="'line'"
+            :locale="'pt-BR'"
+            :chart-data="lineChartData"
+            :background-color="'#079bfd73'"
+            class="has-background-white">
+            <template v-slot:title>
+              Message Metrics
+            </template>
+          </ilha-chart-summary-box>
+        </div>
+        <div class="column is-half">
+          <ilha-chart-summary-box
+            :chart-data="chartData"
+            class="has-background-white">
+            <template v-slot:title>
+              New Reports Registered
+            </template>
+          </ilha-chart-summary-box>
+        </div>
+      </div>
+      <div class="columns m-2">
+        <div class="column is-half">
+          <ilha-chart-summary-box
             :chart-type="'bar'"
             :locale="'pt-BR'"
             :chart-data="barChartData"
@@ -137,6 +160,20 @@ export default {
         {
           label: 'Users',
           value: 50000,
+        },
+      ],
+      lineChartData: [
+        {
+          label: 'Brazil',
+          value: 90000,
+        },
+        {
+          label: 'EUA',
+          value: 50000,
+        },
+        {
+          label: 'China',
+          value: 60000,
         },
       ],
       fields: [
