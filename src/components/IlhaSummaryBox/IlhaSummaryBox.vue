@@ -1,5 +1,10 @@
 <template>
   <div class="ilha-summary-box p-0">
+    <b-loading
+      :is-full-page="false"
+      :active="loading"
+    >
+    </b-loading>
     <div class="ilha-summary-box__body p-t-1 p-b-1" v-if="$slots.metric || $slots.amount">
       <div class="columns is-mobile m-0 is-vcentered is-centered">
         <div
@@ -31,5 +36,11 @@
 
 export default {
   name: 'ilha-summary-box',
+  props: {
+    loading: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>

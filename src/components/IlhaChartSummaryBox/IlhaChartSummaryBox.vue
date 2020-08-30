@@ -1,5 +1,10 @@
 <template>
   <div class="ilha-chart-summary-box p-0">
+    <b-loading
+      :is-full-page="false"
+      :active="loading"
+    >
+    </b-loading>
     <div v-if="$slots.title" class="ilha-summary-box__header columns">
       <div
         class="column has-text-weight-bold p-l-1 p-r-1">
@@ -42,6 +47,10 @@ export default {
     },
     locale: {
       type: String,
+    },
+    loading: {
+      type: Boolean,
+      default: false,
     },
   },
 };
