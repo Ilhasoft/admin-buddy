@@ -32,6 +32,7 @@
       :data="chartData"
       :locale="locale"
       :background-color="backgroundColor"
+      :showDatapoint="showDatapoint"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-line-chart>
   </div>
@@ -57,6 +58,10 @@ export default {
       type: String,
     },
     loading: {
+      type: Boolean,
+      default: false,
+    },
+    showDatapoint: {
       type: Boolean,
       default: false,
     },

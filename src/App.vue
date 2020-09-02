@@ -81,6 +81,7 @@
           <ilha-chart-summary-box
             :chart-type="'line'"
             :locale="'pt-BR'"
+            :show-datapoint="true"
             :chart-data="lineChartData"
             :background-color="'#079bfd73'"
             class="has-background-white">

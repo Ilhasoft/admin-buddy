@@ -1,7 +1,9 @@
 <script>
 import { Line } from 'vue-chartjs';
+import './chart-js-plugin';
 
-const makeDefaultOptions = () => ({
+const makeDefaultOptions = (showDatapoint = false) => ({
+  showDatapoint,
   responsive: true,
   maintainAspectRatio: false,
   scales: {
@@ -50,6 +52,10 @@ export default {
       type: String,
       default: 'en-US',
     },
+    showDatapoint: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {};
@@ -75,7 +81,7 @@ export default {
       return this.data.map((d) => d.label);
     },
     options() {
-      return makeDefaultOptions();
+      return makeDefaultOptions(this.showDatapoint);
     },
   },
   watch: {
