@@ -94,6 +94,7 @@
       <ColourPicker
         v-if="field.type === 'color'"
         v-model="innerData[field.property]"
+        :color="innerData[field.property]"
         picker="chrome"
       >
       </ColourPicker>
