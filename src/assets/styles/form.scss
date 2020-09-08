@@ -28,9 +28,12 @@
       margin-bottom: 0.25rem;
     }
 
-    img {
+    img, svg {
       padding-bottom: 0.375em;
       height: calc(1rem * 1.5);
+    }
+    svg {
+      width: 95%;
     }
 
     &.with-error {

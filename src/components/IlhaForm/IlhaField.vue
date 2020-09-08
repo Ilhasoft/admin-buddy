@@ -117,7 +117,12 @@
       class="ilha-form__img column p-0"
       :class="errors[0] ? ['with-error'] : []">
       <img
+        v-if="field.imgUrl"
         :src="field.imgUrl"
+      />
+      <span
+        v-if="field.svg"
+        v-html="field.svg"
       />
     </div>
     <div

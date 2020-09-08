@@ -5,14 +5,28 @@
         <p class="modal-card-title">{{ title }}</p>
       </header>
       <div>
-        <b-field
-          class="p-1 p-b-0">
-          <b-input
-            v-model="query"
-            @keyup.native.enter="fetchIcons()"
-            :placeholder="searchInputPlaceholder"
-            expanded></b-input>
-        </b-field>
+        <div class="columns  p-1 p-b-0">
+          <b-field
+            class="column is-10">
+            <b-input
+              v-model="query"
+              @keyup.native.enter="fetchIcons()"
+              :placeholder="searchInputPlaceholder"
+              expanded></b-input>
+          </b-field>
+          <b-field
+            class="column">
+            <b-upload
+              accept="image/svg"
+              @input="selectFile($event)"
+              class="file-label"
+            >
+          <span class="file-cta">
+            <b-icon class="file-icon" icon="upload"></b-icon>
+          </span>
+            </b-upload>
+          </b-field>
+        </div>
         <div class="ilha-icon-chooser__body p-1" style="">
           <b-loading
             :active="loading"
@@ -111,6 +125,10 @@ export default {
     },
     selectIcon(icon) {
       this.$emit('onSelect', icon);
+      this.$parent.close();
+    },
+    selectFile(file) {
+      this.$emit('onFileSelect', file);
       this.$parent.close();
     },
   },
