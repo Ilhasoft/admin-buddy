@@ -29,7 +29,8 @@
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
         @keydown.enter.native="$emit('keydownEnter')"
-        @change.native="field.changedFunc ? field.changedFunc($event) : ''"
+        @change.native="field.changedFunc ?
+        field.changedFunc($event, innerData[field.property], field) : ''"
         expanded
       >
       </b-input>
@@ -100,14 +101,15 @@
       </ColourPicker>
       <b-upload
         v-if="field.type === 'upload'"
-        v-model="innerData[field.property]"
-        @change="changedFile($event, innerData[field.property])"
+        @input="innerData[field.property] = $event;field.changedFunc
+        ? field.changedFunc($event, innerData[field.property], field) : ''"
+        :accept="field.accept"
         class="file-label"
       >
         <span class="file-cta">
           <b-icon class="file-icon" icon="upload"></b-icon>
         </span>
-        <span class="file-name" v-if="innerData[field.property]">
+        <span class="file-name" v-if="innerData[field.property] && innerData[field.property].name">
           {{ innerData[field.property].name }}
         </span>
       </b-upload>
@@ -119,6 +121,12 @@
       <img
         v-if="field.imgUrl"
         :src="field.imgUrl"
+      />
+      <img
+        v-if="field.propertyImage"
+        :src="field.serverUrl && innerData[field.property]
+        && !innerData[field.property].includes('base64')
+        ? field.serverUrl + innerData[field.property] : innerData[field.property]"
       />
       <span
         v-if="field.svg"
@@ -197,9 +205,6 @@ export default {
       input.classList.remove('color-input');
       input.classList.add('input');
       input.classList.add('is-success');
-    },
-    changedFile($event, data) {
-      console.log($event, data);
     },
   },
   watch: {
