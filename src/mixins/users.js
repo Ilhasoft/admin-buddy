@@ -9,7 +9,7 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['usersUrl', 'passwordResetRequestUrl', 'passwordResetConfirmationUrl']),
+    ...mapGetters(['usersUrl', 'passwordResetRequestUrl', 'passwordResetConfirmationUrl', 'loginUrl']),
     ...mapState([
       'serverUrl',
       'authTokenKey',
@@ -33,7 +33,7 @@ export default {
       return this.$http.get(`${this.usersUrl}/`);
     },
     login(credentials) {
-      return this.$http.post(`${this.serverUrl}token/`, credentials).then(({ data }) => {
+      return this.$http.post(this.loginUrl || `${this.serverUrl}token/`, credentials).then(({ data }) => {
         localStorage.setItem(this.authTokenKey, data.access);
         localStorage.setItem(this.refreshTokenKey, data.refresh);
         return data;
