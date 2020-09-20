@@ -19,7 +19,9 @@
           :editor="editor"
           :editor-config="editorConfig">
         </ilha-field>
-        <div class="ilha-form__field__list__entry__actions">
+        <div
+          v-if="field.hasActions === undefined || field.hasActions === true"
+          class="ilha-form__field__list__entry__actions">
           <b-icon
             @click.native="add(j + 1)"
             icon="plus"
