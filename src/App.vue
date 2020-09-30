@@ -237,6 +237,30 @@ export default {
           ],
         },
         {
+          type: 'section',
+          label: 'Seção teste',
+          fields: [
+            {
+              property: 'sequence',
+              type: 'number',
+              label: 'Sequência',
+              rules: 'required',
+            },
+            {
+              property: 'step',
+              type: 'text',
+              label: 'Etapa',
+              rules: 'required',
+            },
+            {
+              property: 'description',
+              type: 'text',
+              label: 'Descrição',
+              rules: 'required',
+            },
+          ],
+        },
+        {
           property: 'editor',
           type: 'editor',
           label: 'Editor',

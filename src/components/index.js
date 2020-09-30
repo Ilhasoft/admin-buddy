@@ -1,4 +1,9 @@
-export { IlhaListField, IlhaField, IlhaForm } from './IlhaForm';
+export {
+  IlhaListField,
+  IlhaField,
+  IlhaForm,
+  IlhaSectionField,
+} from './IlhaForm';
 export { default as IlhaHeader } from './IlhaHeader';
 export { default as IlhaIcon } from './IlhaIcon';
 export { default as IlhaIconChooser } from './IlhaIconChooser';

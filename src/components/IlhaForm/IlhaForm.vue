@@ -14,7 +14,7 @@
       <div v-for="(field, i) in fields"
            :key="i">
         <ilha-field
-          v-if="field.type !== 'list'"
+          v-if="field.type !== 'list' && field.type !== 'section'"
           :inner-data="innerData"
           :field="field"
           :editor="editor"
@@ -34,6 +34,15 @@
           :changeable="fields"
         >
         </ilha--list-field>
+        <ilha--section-field
+          v-if="field.type === 'section'"
+          :inner-data="innerData"
+          :field="field"
+          :editor="editor"
+          :editor-config="editorConfig"
+          :changeable="fields"
+        >
+        </ilha--section-field>
       </div>
     </div>
 
