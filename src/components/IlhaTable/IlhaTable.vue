@@ -51,19 +51,36 @@
 
         <b-table-column v-if="hasCustomActions" label="" centered>
           <span class="ilha-content-list__actions">
-            <router-link
+            <span
               v-for="(action, i) in customActions"
               :key="i"
-              :to="{ name: action.routeName, params: {id: props.row[idField]}}">
-              <ilha-icon
-                v-if="action.icon"
-                :type="action.icon"
-                class="icon is-medium"/>
+            >
               <span
-                v-if="action.label && !action.icon">
-                {{ action.label }}
+                v-if="!action.routeName"
+              >
+                <ilha-icon
+                  v-if="action.icon"
+                  :type="action.icon"
+                  @click.native="action.clickAction(props.row)"
+                  class="icon is-medium"/>
+                <span
+                  v-if="action.label && !action.icon">
+                  {{ action.label }}
+                </span>
               </span>
-            </router-link>
+              <router-link
+                v-if="action.routeName"
+                :to="{ name: action.routeName, params: {id: props.row[idField]}}">
+                <ilha-icon
+                  v-if="action.icon"
+                  :type="action.icon"
+                  class="icon is-medium"/>
+                <span
+                  v-if="action.label && !action.icon">
+                  {{ action.label }}
+                </span>
+              </router-link>
+              </span>
           </span>
         </b-table-column>
 
