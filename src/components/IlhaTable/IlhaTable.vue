@@ -9,6 +9,7 @@
       :hoverable="true"
       :focusable="false"
       :mobile-cards="mobileCards"
+      :row-class="rowClass"
 
       paginated
       backend-pagination
@@ -61,6 +62,11 @@
                 <ilha-icon
                   v-if="action.icon"
                   :type="action.icon"
+                  @click.native="action.clickAction(props.row)"
+                  class="icon is-medium"/>
+                <ilha-icon
+                  v-if="action.getIcon"
+                  :type="action.getIcon(props.row)"
                   @click.native="action.clickAction(props.row)"
                   class="icon is-medium"/>
                 <span
@@ -180,6 +186,9 @@ export default {
     mobileCards: {
       type: Boolean,
       default: true,
+    },
+    rowClass: {
+      type: Function,
     },
   },
   data() {
