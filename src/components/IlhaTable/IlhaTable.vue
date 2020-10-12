@@ -39,7 +39,16 @@
           :sortable="field.sortable"
           :centered="field.centered"
           :width="cellWidth">
-          <span v-if="!field.img && !field.svg">{{ props.row[field.property] }}</span>
+          <span v-if="!field.img && !field.svg && !field.inputField">
+            {{ props.row[field.property] }}
+          </span>
+          <ilha-field
+            v-if="field.inputField"
+            :inner-data="props.row"
+            :field="field.inputField"
+            :changeable="data"
+          >
+          </ilha-field>
           <img
             v-if="field.img"
             :src="props.row[field.property]"

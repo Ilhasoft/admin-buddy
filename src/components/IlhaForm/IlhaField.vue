@@ -30,7 +30,7 @@
         :disabled="field.disabled"
         @keydown.enter.native="$emit('keydownEnter')"
         @change.native="field.changedFunc ?
-        field.changedFunc($event, innerData[field.property], field) : ''"
+        field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         expanded
       >
       </b-input>
@@ -51,6 +51,8 @@
         v-model="innerData[field.property]"
         :placeholder="field.placeholder"
         :disabled="field.disabled"
+        @change.native="field.changedFunc ?
+        field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         expanded
       >
         <option
@@ -102,7 +104,7 @@
       <b-upload
         v-if="field.type === 'upload'"
         @input="innerData[field.property] = $event;field.changedFunc
-        ? field.changedFunc($event, innerData[field.property], field) : ''"
+        ? field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         :accept="field.accept"
         class="file-label"
       >
