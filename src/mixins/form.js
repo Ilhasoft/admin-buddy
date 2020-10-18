@@ -28,15 +28,14 @@ export default {
       }
     },
     save(data) {
-      this.data = data;
       if (!this.resourceUrl) {
-        return;
+        this.data = data;
+        return null;
       }
       if ((this.id === undefined || this.id === null) && !this.withoutId) {
-        this.saveData();
-      } else {
-        this.updateData();
+        return this.saveData();
       }
+      return this.updateData();
     },
     fetchData() {
       this.fetchLoading = true;
@@ -46,13 +45,13 @@ export default {
     },
     saveData() {
       this.loading = true;
-      this.$http.post(this.postUrl, this.data)
+      return this.$http.post(this.postUrl, this.data)
         .then(this.saveSuccess.bind(this))
         .catch(this.saveError.bind(this));
     },
     updateData() {
       this.loading = true;
-      this.$http.put(this.putUrl, this.data)
+      return this.$http.put(this.putUrl, this.data)
         .then(this.saveSuccess.bind(this))
         .catch(this.saveError.bind(this));
     },
@@ -67,10 +66,13 @@ export default {
       this.alertFetchError();
     },
     saveSuccess({ data }) {
+      const isNew = this.data.id !== data.id;
       this.data = data;
       this.loading = false;
       this.alertSaveSuccess();
-      this.$router.replace({ params: { id: this.getId(data) } });
+      if (isNew) {
+        this.$router.replace({ params: { id: this.getId(data) } });
+      }
     },
     saveError(error) {
       this.loading = false;
