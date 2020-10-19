@@ -33,9 +33,9 @@ export default {
         return null;
       }
       if ((this.id === undefined || this.id === null) && !this.withoutId) {
-        return this.saveData();
+        return this.saveData(data);
       }
-      return this.updateData();
+      return this.updateData(data);
     },
     fetchData() {
       this.fetchLoading = true;
@@ -43,15 +43,15 @@ export default {
         .then(this.fetchSuccess.bind(this))
         .catch(this.fetchError.bind(this));
     },
-    saveData() {
+    saveData(data) {
       this.loading = true;
-      return this.$http.post(this.postUrl, this.data)
+      return this.$http.post(this.postUrl, data || this.data)
         .then(this.saveSuccess.bind(this))
         .catch(this.saveError.bind(this));
     },
-    updateData() {
+    updateData(data) {
       this.loading = true;
-      return this.$http.put(this.putUrl, this.data)
+      return this.$http.put(this.putUrl, data || this.data)
         .then(this.saveSuccess.bind(this))
         .catch(this.saveError.bind(this));
     },
