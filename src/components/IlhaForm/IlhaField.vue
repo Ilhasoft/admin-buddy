@@ -43,6 +43,8 @@
         :disabled="field.disabled"
         @input.native="updateMaskedField(field, $event)"
         @keydown.enter.native="$emit('keydownEnter')"
+        @change.native="field.changedFunc ?
+        field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         expanded
       >
       </b-input>
@@ -72,6 +74,8 @@
         :loading="field.loading"
         :disabled="field.disabled"
         @typing="field.searchData"
+        @select="field.changedFunc ?
+        field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         icon="magnify"
         open-on-focus>
 
