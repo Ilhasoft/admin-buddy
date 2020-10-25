@@ -1,9 +1,23 @@
 export default {
+  data() {
+    return {
+      successLoginMessage: 'User logged',
+      errorLoginMessage: 'Incorrect username or password',
+      passwordResetRequestSuccessMessage: 'Password reset email sent',
+      passwordResetErrorRequestMessage: 'There is no active user associated with this e-mail address or the password can not be changed',
+      passwordResetSuccessMessage: 'Password changed successfully!',
+      saveSuccessMessage: 'Success save',
+      saveErrorMessage: 'Save error',
+      fetchErrorMessage: 'Entity not found',
+      deleteSuccessMessage: 'Deleted',
+      deleteErrorMessage: 'Error on delete',
+    };
+  },
   methods: {
     successLoginAlert() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'User logged',
+        message: this.successLoginMessage,
         position: 'is-bottom',
         type: 'is-success',
       });
@@ -11,7 +25,7 @@ export default {
     errorLoginAlert() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Incorrect username or password',
+        message: this.errorLoginMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });
@@ -19,7 +33,7 @@ export default {
     passwordResetRequestSuccessAlert() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Password reset email sent',
+        message: this.passwordResetRequestSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
       });
@@ -27,7 +41,7 @@ export default {
     passwordResetRequestErrorAlert() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'There is no active user associated with this e-mail address or the password can not be changed',
+        message: this.passwordResetErrorRequestMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });
@@ -35,7 +49,7 @@ export default {
     passwordResetSuccessAlert() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Password changed successfully!',
+        message: this.passwordResetSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
       });
@@ -51,7 +65,7 @@ export default {
     alertSaveSuccess() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Success save',
+        message: this.saveSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
       });
@@ -59,7 +73,7 @@ export default {
     alertSaveError(message = '') {
       this.$buefy.toast.open({
         duration: 2000,
-        message: message ? `Save error: ${message}` : 'Save error',
+        message: message ? `${this.saveErrorMessage}: ${message}` : this.saveErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });
@@ -67,7 +81,7 @@ export default {
     alertFetchError() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Entity not found',
+        message: this.fetchErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });
@@ -75,7 +89,7 @@ export default {
     alertDeleteSuccess() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Deleted',
+        message: this.deleteSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
       });
@@ -83,7 +97,7 @@ export default {
     alertDeleteError() {
       this.$buefy.toast.open({
         duration: 2000,
-        message: 'Error on delete',
+        message: this.deleteErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });
