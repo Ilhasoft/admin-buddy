@@ -10,48 +10,44 @@
       :active="fetchLoading"
       :is-full-page="false">
     </b-loading>
-    <div :class="inputsContainerClasses">
-      <div v-for="(field, i) in fields"
-           :key="i">
-        <ilha-field
-          v-if="field.type !== 'list' && field.type !== 'section'"
-          :inner-data="innerData"
-          :field="field"
-          :editor="editor"
-          :editor-config="editorConfig"
-          :changeable="fields"
-          @keydownEnter="requestSave"
-        >
-        </ilha-field>
-
-        <ilha--list-field
-          v-if="field.type === 'list'"
-          :inner-data="innerData"
-          :field="field"
-          :editor="editor"
-          :editor-config="editorConfig"
-          :add-label="addLabel"
-          :changeable="fields"
-        >
-        </ilha--list-field>
-        <ilha--section-field
-          v-if="field.type === 'section'"
-          :inner-data="innerData"
-          :field="field"
-          :editor="editor"
-          :editor-config="editorConfig"
-          :changeable="fields"
-        >
-        </ilha--section-field>
-      </div>
-    </div>
-
+    <ilha-fields-container
+      v-if="!steps"
+      :inner-data="innerData"
+      :add-label="addLabel"
+      :editor="editor"
+      :editor-config="editorConfig"
+      :inputs-container-classes="inputsContainerClasses"
+      :fields="fields"
+      @requestSave="requestSave"
+    />
+    <b-steps
+      v-if="steps"
+      v-model="activeStep"
+    >
+      <template v-for="(step, index) in steps">
+        <b-step-item
+          :key="index"
+          clickable
+          :label="step.label">
+          <ilha-fields-container
+            :inner-data="innerData"
+            :add-label="addLabel"
+            :editor="editor"
+            :editor-config="editorConfig"
+            :inputs-container-classes="inputsContainerClasses"
+            :fields="step.fields"
+            @requestSave="requestSave"
+          />
+        </b-step-item>
+      </template>
+    </b-steps>
     <div
       :class="actionsClasses"
       class="actions has-text-right">
       <slot name="button" />
 
       <b-button
+        v-if="!steps || activeStep === steps.length - 1"
         type="is-info"
         :class="hasSpacing ? ['m-l-1', 'm-t-1'] : []"
         :loading="loading"
@@ -83,7 +79,9 @@ export default {
     },
     fields: {
       type: Array,
-      default: () => [],
+    },
+    steps: {
+      type: Array,
     },
     loading: {
       type: Boolean,
@@ -130,6 +128,7 @@ export default {
       canSave: true,
       innerData: {},
       editor: ClassicEditor,
+      activeStep: 0,
     };
   },
   computed: {
