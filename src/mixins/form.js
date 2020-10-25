@@ -8,6 +8,7 @@ export default {
       fetchLoading: false,
       withoutId: false,
       getId: (data) => data.id,
+      saveAfterRoute: undefined,
     };
   },
   computed: {
@@ -70,8 +71,11 @@ export default {
       this.data = data;
       this.loading = false;
       this.alertSaveSuccess();
-      if (isNew) {
+      if (isNew && !this.saveAfterRoute) {
         this.$router.replace({ params: { id: this.getId(data) } });
+      }
+      if (this.saveAfterRoute) {
+        this.$router.push(this.saveAfterRoute);
       }
     },
     saveError(error) {
