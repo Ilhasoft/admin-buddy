@@ -47,7 +47,6 @@
       <slot name="button" />
 
       <b-button
-        v-if="!steps || activeStep === steps.length - 1"
         type="is-info"
         :class="hasSpacing ? ['m-l-1', 'm-t-1'] : []"
         :loading="loading"
