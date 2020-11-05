@@ -2,7 +2,7 @@
 import { Line } from 'vue-chartjs';
 import './chart-js-plugin';
 
-const makeDefaultOptions = (showDatapoint = false) => ({
+const makeDefaultOptions = (showDatapoint = false, legend = false) => ({
   showDatapoint,
   responsive: true,
   maintainAspectRatio: false,
@@ -16,7 +16,7 @@ const makeDefaultOptions = (showDatapoint = false) => ({
     }],
   },
   legend: {
-    display: false,
+    display: legend,
   },
   tooltips: {
     callbacks: {
@@ -41,7 +41,6 @@ export default {
   extends: Line,
   props: {
     data: {
-      type: Array,
       default: () => [],
     },
     backgroundColor: {
@@ -62,17 +61,34 @@ export default {
   },
   computed: {
     chartData() {
-      return {
-        labels: this.labels,
-        datasets: [
-          {
-            label: '',
-            data: this.values.map((value) => (value)),
-            backgroundColor: this.backgroundColor,
-            fill: true,
-          },
-        ],
-      };
+      if (this.data.length !== undefined && this.data.length > 0) {
+        return {
+          labels: this.data.map((d) => d.label),
+          datasets: [
+            {
+              label: '',
+              data: this.data.map((d) => d.value),
+              backgroundColor: this.backgroundColor,
+              fill: true,
+            },
+          ],
+        };
+      }
+      let labels = [];
+      const datasets = [];
+      Object.keys(this.data).forEach((key) => {
+        const d = this.data[key].data;
+        labels = labels.concat(d.map((data) => data.label));
+        datasets.push({
+          label: key,
+          data: d.map((data) => data.value),
+          borderColor: this.data[key].color,
+          fill: false,
+        });
+      });
+      labels = Array.from(new Set(labels));
+      labels.sort();
+      return { labels, datasets };
     },
     values() {
       return this.data.map((d) => d.value);
@@ -81,7 +97,7 @@ export default {
       return this.data.map((d) => d.label);
     },
     options() {
-      return makeDefaultOptions(this.showDatapoint);
+      return makeDefaultOptions(this.showDatapoint, this.data.length === undefined);
     },
   },
   watch: {

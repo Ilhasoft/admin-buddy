@@ -48,7 +48,6 @@ export default {
       default: 'donut',
     },
     chartData: {
-      type: Array,
       default: () => [],
     },
     backgroundColor: {
