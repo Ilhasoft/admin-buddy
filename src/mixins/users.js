@@ -27,6 +27,10 @@ export default {
       return this.$http.get(`${this.usersUrl}/my_profile`).then(({ data }) => {
         this.currentUser = data;
         return data;
+      }).catch((error) => {
+        localStorage.removeItem(this.authTokenKey);
+        localStorage.removeItem(this.refreshTokenKey);
+        throw error;
       });
     },
     list() {
