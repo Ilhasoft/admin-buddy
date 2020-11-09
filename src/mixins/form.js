@@ -85,11 +85,11 @@ export default {
     },
     updateId() {
       const { id } = this.$route.params;
+      this.data = {};
       if (id === 'new' || id === 'novo') {
         return;
       }
       this.id = id;
-      this.data = {};
       this.initData();
       if (this.updatedId) {
         this.updatedId();
