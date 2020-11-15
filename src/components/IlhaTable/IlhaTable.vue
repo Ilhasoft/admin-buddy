@@ -59,8 +59,8 @@
             class="ilha-content-list__svg"/>
         </b-table-column>
 
-        <b-table-column v-if="hasCustomActions" label="" centered>
-          <span class="ilha-content-list__actions">
+        <b-table-column v-if="hasCustomActions || hasActions" label="" centered>
+          <span v-if="hasCustomActions" class="ilha-content-list__actions">
             <span
               v-for="(action, i) in customActions"
               :key="i"
@@ -97,10 +97,7 @@
               </router-link>
               </span>
           </span>
-        </b-table-column>
-
-        <b-table-column v-if="hasActions" label="" centered>
-          <span class="ilha-content-list__actions">
+          <span v-if="hasActions" class="ilha-content-list__actions">
             <router-link
               v-if="canEdit"
               :to="{ name: editRouteName, params: {id: props.row[idField]}}">
