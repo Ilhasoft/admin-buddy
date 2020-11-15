@@ -9,6 +9,7 @@ export default {
       withoutId: false,
       getId: (data) => data.id,
       saveAfterRoute: undefined,
+      saveErrorFormat: (data) => data,
     };
   },
   computed: {
@@ -80,7 +81,8 @@ export default {
     },
     saveError(error) {
       this.loading = false;
-      const data = ((error.response || {}).data || {});
+      const data = this.saveErrorFormat ? this.saveErrorFormat(error)
+        : ((error.response || {}).data || {});
       this.alertSaveError(data.detail || data.message);
     },
     updateId() {
