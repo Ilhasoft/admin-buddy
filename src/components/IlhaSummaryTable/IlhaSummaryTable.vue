@@ -10,6 +10,9 @@
     :default-sorter-order="defaultSortOrder"
     :per-page="perPage"
     :mobile-cards="mobileCards"
+    :edit-route-name="editRouteName"
+    :can-edit="canEdit"
+    :can-delete="canDelete"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -58,6 +61,18 @@ export default {
     mobileCards: {
       type: Boolean,
       default: true,
+    },
+    editRouteName: {
+      type: String,
+      default: '',
+    },
+    canEdit: {
+      type: Boolean,
+      default: false,
+    },
+    canDelete: {
+      type: Boolean,
+      default: false,
     },
   },
   methods: {
