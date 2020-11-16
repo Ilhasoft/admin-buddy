@@ -94,10 +94,10 @@ export default {
         type: 'is-success',
       });
     },
-    alertDeleteError() {
+    alertDeleteError(message = '') {
       this.$buefy.toast.open({
         duration: 2000,
-        message: this.deleteErrorMessage,
+        message: this.deleteErrorMessage ? `${this.deleteErrorMessage}: ${message}` : this.this.deleteErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
       });

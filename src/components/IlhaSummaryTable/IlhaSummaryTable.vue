@@ -76,6 +76,11 @@ export default {
     },
   },
   methods: {
+    initEditRouteName() {
+      if (this.editRouteNameProp) {
+        this.editRouteName = this.editRouteNameProp;
+      }
+    },
     initFormatDataFunc() {
       if (this.formatDataFunc) {
         this.formatData = this.formatDataFunc;
@@ -96,6 +101,9 @@ export default {
     url() {
       this.resourceUrl = this.url;
     },
+    editRouteNameProp() {
+      this.initEditRouteName();
+    },
     formatDataFunc() {
       this.initFormatDataFunc();
     },
@@ -108,6 +116,7 @@ export default {
   },
   mounted() {
     this.resourceUrl = this.url;
+    this.initEditRouteName();
     this.initFormatDataFunc();
     this.initFormatResultFunc();
     this.initAdditionalQueryParams();

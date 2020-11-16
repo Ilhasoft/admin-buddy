@@ -91,7 +91,8 @@ export default {
         this.$router.go();
       }).catch((error) => {
         console.error(error);
-        this.alertDeleteError();
+        const d = ((error.response || {}).data || {});
+        this.alertDeleteError(d.detail || d.message);
       });
     },
   },
