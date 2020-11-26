@@ -9,6 +9,7 @@ export default {
       sortField: 'id',
       sortOrder: 'desc',
       defaultSortOrder: 'desc',
+      ignoreSortParams: false,
       loading: true,
       query: '',
       otherQueryParams: undefined,
@@ -44,17 +45,19 @@ export default {
       if (!this.resourceUrl) {
         return;
       }
-      const params = [
-        `page=${this.currentPage}`,
-        `ordering=${this.order}${this.sortField}`,
-      ];
+      const params = [];
 
-      if (this.otherQueryParams) {
-        params.push(this.otherQueryParams);
-      }
+      if (!this.ignoreSortParams) {
+        params.push(`page=${this.currentPage}`);
+        params.push(`ordering=${this.order}${this.sortField}`);
 
-      if (this.query) {
-        params.push(`search=${encodeURIComponent(this.query)}`);
+        if (this.otherQueryParams) {
+          params.push(this.otherQueryParams);
+        }
+
+        if (this.query) {
+          params.push(`search=${encodeURIComponent(this.query)}`);
+        }
       }
 
       this.loading = true;

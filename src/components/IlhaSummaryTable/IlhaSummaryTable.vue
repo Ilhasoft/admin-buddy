@@ -51,6 +51,14 @@ export default {
       type: Function,
       default: (data) => data,
     },
+    defaultSortField: {
+      type: String,
+      default: 'id',
+    },
+    defaultIgnoreSortParams: {
+      type: Boolean,
+      default: false,
+    },
     perPage: {
       type: Number,
       default: 10,
@@ -96,6 +104,14 @@ export default {
         this.otherQueryParams = this.additionalQueryParams;
       }
     },
+    initDefaultSorterOrder() {
+      if (this.defaultSortField) {
+        this.sortField = this.defaultSortField;
+      }
+    },
+    initDefaultIgnoreSortParams() {
+      this.ignoreSortParams = this.defaultIgnoreSortParams;
+    },
   },
   watch: {
     url() {
@@ -113,6 +129,12 @@ export default {
     additionalQueryParams() {
       this.initAdditionalQueryParams();
     },
+    defaultSortField() {
+      this.initDefaultSorterOrder();
+    },
+    defaultIgnoreSortParams() {
+      this.initDefaultIgnoreSortParams();
+    },
   },
   mounted() {
     this.resourceUrl = this.url;
@@ -120,6 +142,8 @@ export default {
     this.initFormatDataFunc();
     this.initFormatResultFunc();
     this.initAdditionalQueryParams();
+    this.initDefaultSorterOrder();
+    this.initDefaultIgnoreSortParams();
   },
 };
 </script>
