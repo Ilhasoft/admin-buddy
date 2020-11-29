@@ -13,7 +13,7 @@
           @icon-click="searchIconClick">
         </b-input>
       </b-field>
-      <div class="actions has-text-right">
+      <div class="actions has-text-right p-l-2">
         <b-button
           outlined
           @click="logout()"
