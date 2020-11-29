@@ -18,7 +18,7 @@
       :editor-config="editorConfig"
       :inputs-container-classes="inputsContainerClasses"
       :fields="fields"
-      @requestSave="requestSave"
+      @requestSave="requestSave(passes)"
     />
     <b-steps
       v-if="steps"
@@ -36,7 +36,7 @@
             :editor-config="editorConfig"
             :inputs-container-classes="inputsContainerClasses"
             :fields="step.fields"
-            @requestSave="requestSave"
+            @requestSave="requestSave(passes)"
           />
         </b-step-item>
       </template>
@@ -50,7 +50,7 @@
         type="is-info"
         :class="hasSpacing ? ['m-l-1', 'm-t-1'] : []"
         :loading="loading"
-        @click="passes(requestSave.bind(this))"
+        @click="requestSave(passes)"
         class="save-button"
         tabindex="0"
       >
@@ -121,6 +121,10 @@ export default {
       type: String,
       default: 'Add',
     },
+    saveOnErrors: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -152,8 +156,15 @@ export default {
         this.innerData = {};
       }
     },
-    requestSave() {
-      this.$emit('onSaveRequest', this.innerData);
+    requestSave(passes) {
+      if (!this.saveOnErrors) {
+        passes(() => {
+          this.$emit('onSaveRequest', this.innerData);
+        });
+      } else {
+        passes(() => {});
+        this.$emit('onSaveRequest', this.innerData);
+      }
     },
   },
   watch: {

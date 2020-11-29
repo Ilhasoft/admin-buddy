@@ -10,36 +10,51 @@ import { extend } from 'vee-validate';
 import validCPF from './validators/cpf';
 import validPhoneBr from './validators/phone-br';
 
-export default function initVeeValidate() {
+const defaultMessages = {
+  required: 'This field is required',
+  validEmail: 'This field must be a valid email',
+  confirmed: 'This field confirmation does not match',
+  length: 'This field must have 2 options',
+  min: 'The min length is {length}',
+  max: 'The max length is {length}',
+  cpf: 'Invalid CPF',
+  phone: 'Invalid phone number',
+  url: 'This value must be a valid URL',
+};
+
+export default function initVeeValidate(messages = defaultMessages) {
   extend('required', {
-    ...required, message: 'This field is required',
+    ...required, message: messages.required,
   });
 
   extend('email', {
     ...email,
-    message: 'This field must be a valid email',
+    message: messages.validEmail,
   });
 
   extend('confirmed', {
     ...confirmed,
-    message: 'This field confirmation does not match',
+    message: messages.confirmed,
   });
 
   extend('length', {
     ...length,
-    message: 'This field must have 2 options',
+    message: messages.length,
   });
 
   extend('min', {
     ...min,
-    message: 'The min length is {length}',
+    message: messages.min,
   });
 
-  extend('max', max);
+  extend('max', {
+    ...max,
+    message: messages.max,
+  });
 
   extend('cpf', {
     getMessage() {
-      return 'Invalid CPF';
+      return messages.cpf;
     },
     validate(value) {
       return validCPF(value);
@@ -48,7 +63,7 @@ export default function initVeeValidate() {
 
   extend('phone', {
     getMessage() {
-      return 'Invalid phone number';
+      return messages.phone;
     },
     validate(value, args) {
       if (args[0] === 'br') {
@@ -65,6 +80,6 @@ export default function initVeeValidate() {
       }
       return false;
     },
-    message: 'This value must be a valid URL',
+    message: messages.url,
   });
 }
