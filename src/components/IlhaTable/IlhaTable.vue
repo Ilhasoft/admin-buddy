@@ -40,7 +40,7 @@
           :centered="field.centered"
           :width="cellWidth">
           <span v-if="!field.img && !field.svg && !field.inputField">
-            <span v-if="!field.routeName && props.row">{{ props.row[field.property] }}</span>
+            <span v-if="!field.routeName">{{ props.row[field.property] }}</span>
             <router-link v-if="field.routeName"
                          :to="{
               name: field.routeName,
