@@ -40,7 +40,16 @@
           :centered="field.centered"
           :width="cellWidth">
           <span v-if="!field.img && !field.svg && !field.inputField">
-            {{ props.row[field.property] }}
+            <span v-if="!field.routeName && props.row">{{ props.row[field.property] }}</span>
+            <router-link v-if="field.routeName"
+                         :to="{
+              name: field.routeName,
+              params: {
+                [field.routeParam || field.property]: props.row[field.routeParam || field.property]
+              }
+            }">
+              {{ props.row[field.property] }}
+            </router-link>
           </span>
           <ilha-field
             v-if="field.inputField"
