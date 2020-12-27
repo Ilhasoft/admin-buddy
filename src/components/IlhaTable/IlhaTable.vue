@@ -38,7 +38,8 @@
           :label="field.label"
           :sortable="field.sortable"
           :centered="field.centered"
-          :width="cellWidth">
+          :class="field.classWidth"
+          :width="!field.classWidth ? cellWidth : undefined">
           <span v-if="!field.img && !field.svg && !field.inputField">
             <span v-if="!field.routeName">{{ props.row[field.property] }}</span>
             <router-link v-if="field.routeName"
@@ -68,7 +69,7 @@
             class="ilha-content-list__svg"/>
         </b-table-column>
 
-        <b-table-column v-if="hasCustomActions || hasActions" label="" centered>
+        <b-table-column v-if="hasCustomActions || hasActions" label="-" centered>
           <span v-if="hasCustomActions" class="ilha-content-list__actions">
             <span
               v-for="(action, i) in customActions"
@@ -118,6 +119,8 @@
               type="trash"
               class="icon is-medium"/>
           </span>
+        </b-table-column>
+        <b-table-column v-if="!hasCustomActions && !hasActions" label="" centered>
         </b-table-column>
       </template>
 
@@ -222,8 +225,7 @@ export default {
       if (!this.header || this.header.length === 0) {
         return undefined;
       }
-      const headerLength = this.header.length + (this.hasActions ? 1 : 0)
-        + (this.hasCustomActions ? 1 : 0);
+      const headerLength = this.header.length + (this.hasActions || this.hasCustomActions ? 1 : 0);
       return `${(1 / (headerLength)) * 100}%`;
     },
   },

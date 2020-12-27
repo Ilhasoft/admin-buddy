@@ -9,7 +9,7 @@
           Título
         </template>
       </ilha-header>
-      <ilha-form :fields="fields"></ilha-form>
+      <ilha-form :steps="steps"></ilha-form>
       <div class="columns is-desktop m-2">
         <div class="column">
           <ilha-summary-box class="has-background-info has-text-white">
@@ -163,53 +163,87 @@ export default {
           value: 50000,
         },
       ],
-      lineChartData: [
+      lineChartData: {
+        'Dado 1': {
+          color: '#F8C239',
+          data: [
+            {
+              label: 'Brazil',
+              value: 90000,
+            },
+            {
+              label: 'EUA',
+              value: 50000,
+            },
+            {
+              label: 'China',
+              value: 60000,
+            },
+          ],
+        },
+        'Dado 2': {
+          color: '#2FA2F4',
+          data: [
+            {
+              label: 'Brazil',
+              value: 50000,
+            },
+            {
+              label: 'EUA',
+              value: 60000,
+            },
+            {
+              label: 'China',
+              value: 90000,
+            },
+          ],
+        },
+      },
+      steps: [
         {
-          label: 'Brazil',
-          value: 90000,
+          label: 'Primeiro',
+          fields: [
+            {
+              property: 'cpf',
+              type: 'masked',
+              label: 'CPF',
+              placeholder: 'CPF',
+              autocomplete: 'off',
+              disabled: true,
+              mask: {
+                delimiters: ['.', '.', '-'],
+                blocks: [3, 3, 3, 2],
+                numericOnly: true,
+              },
+              rules: 'required',
+            },
+            {
+              property: 'mark',
+              type: 'checkbox',
+              label: ' Acompanhavel?',
+              rules: 'required',
+            },
+          ],
         },
         {
-          label: 'EUA',
-          value: 50000,
-        },
-        {
-          label: 'China',
-          value: 60000,
+          label: 'Segundo',
+          fields: [
+            {
+              property: 'color',
+              type: 'color',
+              label: ' Cor',
+              rules: 'required',
+            },
+            {
+              property: 'file',
+              type: 'upload',
+              label: ' Arquivo',
+              rules: 'required',
+            },
+          ],
         },
       ],
       fields: [
-        {
-          property: 'cpf',
-          type: 'masked',
-          label: 'CPF',
-          placeholder: 'CPF',
-          autocomplete: 'off',
-          disabled: true,
-          mask: {
-            delimiters: ['.', '.', '-'],
-            blocks: [3, 3, 3, 2],
-            numericOnly: true,
-          },
-          rules: 'required',
-        },
-        {
-          property: 'mark',
-          type: 'checkbox',
-          label: ' Acompanhavel?',
-          rules: 'required',
-        },
-        {
-          property: 'color',
-          type: 'color',
-          label: ' Cor',
-          rules: 'required',
-        },
-        {
-          property: 'file',
-          type: 'upload',
-          label: ' Arquivo',
-          rules: 'required',
-        },
         {
           property: 'steps',
           type: 'list',
