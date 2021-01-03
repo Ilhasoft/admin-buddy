@@ -14,6 +14,7 @@
       v-if="!steps"
       :inner-data="innerData"
       :add-label="addLabel"
+      :empty-label="emptyLabel"
       :editor="editor"
       :editor-config="editorConfig"
       :inputs-container-classes="inputsContainerClasses"
@@ -32,6 +33,7 @@
           <ilha-fields-container
             :inner-data="innerData"
             :add-label="addLabel"
+            :empty-label="emptyLabel"
             :editor="editor"
             :editor-config="editorConfig"
             :inputs-container-classes="inputsContainerClasses"
@@ -42,6 +44,7 @@
       </template>
     </b-steps>
     <div
+      v-if="canSave"
       :class="actionsClasses"
       class="actions has-text-right">
       <slot name="button" />
@@ -121,14 +124,21 @@ export default {
       type: String,
       default: 'Add',
     },
+    emptyLabel: {
+      type: String,
+      default: 'Empty',
+    },
     saveOnErrors: {
       type: Boolean,
       default: false,
     },
+    canSave: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
-      canSave: true,
       innerData: {},
       editor: ClassicEditor,
       activeStep: 0,

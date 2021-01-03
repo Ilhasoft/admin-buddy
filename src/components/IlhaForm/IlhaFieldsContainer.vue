@@ -20,6 +20,7 @@
         :editor="editor"
         :editor-config="editorConfig"
         :add-label="addLabel"
+        :empty-label="emptyLabel"
         :changeable="fields"
       >
       </ilha--list-field>
@@ -50,6 +51,10 @@ export default {
     addLabel: {
       type: String,
       default: 'Add',
+    },
+    emptyLabel: {
+      type: String,
+      default: 'Empty',
     },
     editor: {
       type: Function,
