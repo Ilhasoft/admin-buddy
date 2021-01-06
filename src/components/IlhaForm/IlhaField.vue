@@ -73,8 +73,9 @@
         :field="field.dataField"
         :loading="field.loading"
         :disabled="field.disabled"
-        @typing="field.searchData"
-        @select="field.changedFunc ?
+        @blur="onSelectBlur()"
+        @typing="field.searchData($event); changedBySelect = false"
+        @select="selectedBySelect($event);field.changedFunc ?
         field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         icon="magnify"
         open-on-focus>
@@ -184,6 +185,11 @@ export default {
     },
 
   },
+  data() {
+    return {
+      changedBySelect: false,
+    };
+  },
   methods: {
     updateMaskedField(field, $event) {
       // eslint-disable-next-line
@@ -211,6 +217,21 @@ export default {
       input.classList.remove('color-input');
       input.classList.add('input');
       input.classList.add('is-success');
+    },
+    selectedBySelect($event) {
+      this.changedBySelect = !!$event;
+    },
+    onSelectBlur() {
+      if (!this.changedBySelect) {
+        const value = this.innerData[this.field.property];
+        const matchs = this.field.data.filter(
+          (d) => (this.field.dataField ? d[this.field.dataField] === value : d === value),
+        );
+        if (matchs.length === 0) {
+          this.innerData[this.field.property] = undefined;
+        }
+        this.changedBySelect = false;
+      }
     },
   },
   watch: {
