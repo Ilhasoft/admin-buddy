@@ -2,9 +2,11 @@
   <span class="ilha-password-updater-btn">
     <b-button
       type="is-info"
-      class="m-t-1"
+      class="save-button m-t-1"
       @click="isComponentModalActive = true"
-      outlined>Change password</b-button>
+    >
+      {{ title }}
+    </b-button>
       <b-modal :active.sync="isComponentModalActive"
                has-modal-card
                trap-focus
@@ -12,6 +14,12 @@
                aria-role="dialog"
                aria-modal>
               <ilha-password-updater-modal
+                :title="title"
+                :oldPasswordLabel="oldPasswordLabel"
+                :newPasswordLabel="newPasswordLabel"
+                :newPasswordConfirmationLabel="newPasswordConfirmationLabel"
+                :resetButtonLabel="resetButtonLabel"
+                :cancelLabel="cancelLabel"
                 @onPasswordChangeRequest="changePassword">
               </ilha-password-updater-modal>
           </b-modal>
@@ -23,9 +31,29 @@
 export default {
   name: 'ilha-password-updater-btn',
   props: {
-    url: {
+    title: {
       type: String,
-      required: true,
+      default: 'Change password',
+    },
+    oldPasswordLabel: {
+      type: String,
+      default: 'Old Password',
+    },
+    newPasswordLabel: {
+      type: String,
+      default: 'New Password',
+    },
+    newPasswordConfirmationLabel: {
+      type: String,
+      default: 'Confirm New Password',
+    },
+    resetButtonLabel: {
+      type: String,
+      default: 'Reset',
+    },
+    cancelLabel: {
+      type: String,
+      default: 'Cancel',
     },
   },
   data() {
