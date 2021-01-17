@@ -27,18 +27,21 @@
       <ilha-title v-if="$slots.title">
         <slot name="title"/>
       </ilha-title>
-      <b-button
-        v-if="creationRoute"
-        :to="creationRoute"
-        tag="router-link"
-        type="is-info"
-        class="btn-add p-1"
-      >
-        <slot name="creationBtnLabel"/>
-        <span v-if="!$slots.creationBtnLabel">
-          New
-        </span>
-      </b-button>
+      <div>
+        <slot name="otherButton"/>
+        <b-button
+          v-if="creationRoute"
+          :to="creationRoute"
+          tag="router-link"
+          type="is-info"
+          class="btn-add p-1"
+        >
+          <slot name="creationBtnLabel"/>
+          <span v-if="!$slots.creationBtnLabel">
+            New
+          </span>
+        </b-button>
+      </div>
     </div>
   </section>
 </template>

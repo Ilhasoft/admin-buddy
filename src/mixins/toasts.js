@@ -16,7 +16,7 @@ export default {
   methods: {
     successLoginAlert() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.successLoginMessage,
         position: 'is-bottom',
         type: 'is-success',
@@ -24,7 +24,7 @@ export default {
     },
     errorLoginAlert() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.errorLoginMessage,
         position: 'is-bottom',
         type: 'is-danger',
@@ -32,7 +32,7 @@ export default {
     },
     passwordResetRequestSuccessAlert() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.passwordResetRequestSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
@@ -40,7 +40,7 @@ export default {
     },
     passwordResetRequestErrorAlert() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.passwordResetErrorRequestMessage,
         position: 'is-bottom',
         type: 'is-danger',
@@ -48,7 +48,7 @@ export default {
     },
     passwordResetSuccessAlert() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.passwordResetSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
@@ -56,7 +56,7 @@ export default {
     },
     passwordResetErrorAlert(msg = 'Invalid code') {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: msg,
         position: 'is-bottom',
         type: 'is-danger',
@@ -64,7 +64,7 @@ export default {
     },
     alertSaveSuccess() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.saveSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
@@ -72,7 +72,7 @@ export default {
     },
     alertSaveError(message = '') {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: message ? `${this.saveErrorMessage}: ${message}` : this.saveErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
@@ -80,7 +80,7 @@ export default {
     },
     alertFetchError() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.fetchErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
@@ -88,7 +88,7 @@ export default {
     },
     alertDeleteSuccess() {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.deleteSuccessMessage,
         position: 'is-bottom',
         type: 'is-success',
@@ -96,7 +96,7 @@ export default {
     },
     alertDeleteError(message = '') {
       this.$buefy.toast.open({
-        duration: 2000,
+        duration: 3000,
         message: this.deleteErrorMessage ? `${this.deleteErrorMessage}: ${message}` : this.this.deleteErrorMessage,
         position: 'is-bottom',
         type: 'is-danger',
