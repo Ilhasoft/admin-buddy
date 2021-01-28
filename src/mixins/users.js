@@ -24,6 +24,9 @@ export default {
       if (this.currentUser) {
         return Promise.resolve(this.currentUser);
       }
+      if (!localStorage.getItem(this.authTokenKey)) {
+        return Promise.reject(new Error('Not logged'));
+      }
       return this.$http.get(`${this.usersUrl}/my_profile`).then(({ data }) => {
         this.currentUser = data;
         return data;
