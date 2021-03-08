@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve --port 8081",
     "build": "vue-cli-service build",
     "build-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack",
-    "build-and-install-lib": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../health-buddy-admin && cd .. && cd health-buddy-admin && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
+    "build-and-install-lib": "rm admin-buddy-v0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && yarn pack && cp admin-buddy-v0.1.0.tgz ../health-buddy-admin && cd .. && cd health-buddy-admin && yarn remove admin-buddy && yarn add file:admin-buddy-v0.1.0.tgz",
     "build-and-install-lib-2": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../cearadigital-admin-webapp && cd .. && cd cearadigital-admin-webapp && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
     "build-and-install-lib-3": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../pode-falar-admin-web && cd .. && cd pode-falar-admin-web && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
     "lint": "vue-cli-service lint"

@@ -2,7 +2,7 @@
 import { Line } from 'vue-chartjs';
 import './chart-js-plugin';
 
-const makeDefaultOptions = (showDatapoint = false, legend = false) => ({
+const makeDefaultOptions = (showDatapoint = false, legend = false, locale = 'en-US') => ({
   showDatapoint,
   responsive: true,
   maintainAspectRatio: false,
@@ -22,7 +22,8 @@ const makeDefaultOptions = (showDatapoint = false, legend = false) => ({
     callbacks: {
       label(tooltipItem) {
         // eslint-disable-next-line
-        return this._data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+        const value = this._data.datasets[tooltipItem.datasetIndex].data[tooltipItem.index];
+        return value.toLocaleString(locale);
       },
     },
   },
@@ -97,7 +98,7 @@ export default {
       return this.data.map((d) => d.label);
     },
     options() {
-      return makeDefaultOptions(this.showDatapoint, this.data.length === undefined);
+      return makeDefaultOptions(this.showDatapoint, this.data.length === undefined, this.locale);
     },
   },
   watch: {
