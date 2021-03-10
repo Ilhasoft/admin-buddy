@@ -13,6 +13,7 @@
     :edit-route-name="editRouteName"
     :can-edit="canEdit"
     :can-delete="canDelete"
+    :show-counter="showCounter"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -79,6 +80,10 @@ export default {
       default: false,
     },
     canDelete: {
+      type: Boolean,
+      default: false,
+    },
+    showCounter: {
       type: Boolean,
       default: false,
     },

@@ -137,6 +137,11 @@
           </div>
         </section>
       </template>
+      <template #bottom-left v-if="showCounter">
+        <b-tag type="is-primary">
+          {{ currentPage * data.length }} / {{ totalRows }}
+        </b-tag>
+      </template>
     </b-table>
   </section>
 </template>
@@ -204,6 +209,10 @@ export default {
     mobileCards: {
       type: Boolean,
       default: true,
+    },
+    showCounter: {
+      type: Boolean,
+      default: false,
     },
     rowClass: {
       type: Function,

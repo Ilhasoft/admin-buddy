@@ -4,11 +4,12 @@
       :links="links"
     ></ilha-sidebar>
     <div class="form-admin">
-      <ilha-header  :creation-route="{}">
+      <ilha-header :creation-route="{}">
         <template v-slot:title>
           Título
         </template>
       </ilha-header>
+      <ilha-table :show-counter="true" :header="header" :data="tableData"></ilha-table>
       <ilha-form :steps="steps"></ilha-form>
       <div class="columns is-desktop m-2">
         <div class="column">
@@ -323,6 +324,25 @@ export default {
             this.chooserIconOpened = true;
           },
         },
+      ],
+      header: [
+        {
+          property: 'id',
+          label: '#',
+          sortable: true,
+          classWidth: 'td-5',
+        },
+        {
+          property: 'name',
+          label: 'Nome',
+          classWidth: 'td-40',
+        },
+      ],
+      tableData: [
+        { id: 1, name: 'Nome #1' },
+        { id: 2, name: 'Nome #2' },
+        { id: 3, name: 'Nome #3' },
+        { id: 4, name: 'Nome #4' },
       ],
     };
   },
