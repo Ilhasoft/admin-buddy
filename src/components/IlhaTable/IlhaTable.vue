@@ -32,6 +32,14 @@
       <template v-slot="props">
 
         <b-table-column
+          v-if="showSequence"
+          centered
+          class="ilha-table-sequence-field"
+          >
+          {{ (currentPage - 1) * perPage + props.index + 1 }}
+        </b-table-column>
+
+        <b-table-column
           v-for="(field, index) in header"
           :key="index"
           :field="field.property"
@@ -211,6 +219,10 @@ export default {
       default: true,
     },
     showCounter: {
+      type: Boolean,
+      default: false,
+    },
+    showSequence: {
       type: Boolean,
       default: false,
     },

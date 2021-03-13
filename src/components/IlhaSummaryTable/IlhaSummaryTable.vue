@@ -14,6 +14,7 @@
     :can-edit="canEdit"
     :can-delete="canDelete"
     :show-counter="showCounter"
+    :show-sequence="showSequence"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -84,6 +85,10 @@ export default {
       default: false,
     },
     showCounter: {
+      type: Boolean,
+      default: false,
+    },
+    showSequence: {
       type: Boolean,
       default: false,
     },
