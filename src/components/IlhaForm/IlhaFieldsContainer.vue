@@ -9,6 +9,7 @@
         :editor="editor"
         :editor-config="editorConfig"
         :changeable="fields"
+        :english-mode="englishMode"
         @keydownEnter="$emit('requestSave', $event)"
       >
       </ilha-field>
@@ -22,6 +23,7 @@
         :add-label="addLabel"
         :empty-label="emptyLabel"
         :changeable="fields"
+        :english-mode="englishMode"
       >
       </ilha--list-field>
       <ilha--section-field
@@ -31,6 +33,7 @@
         :editor="editor"
         :editor-config="editorConfig"
         :changeable="fields"
+        :english-mode="englishMode"
       >
       </ilha--section-field>
     </div>
@@ -65,6 +68,10 @@ export default {
     inputsContainerClasses: {
       type: Array,
       default: () => [],
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
 };

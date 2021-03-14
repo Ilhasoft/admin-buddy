@@ -1,6 +1,6 @@
 <template>
   <div class="ilha-form__field__list">
-    <div class="label">{{ field.label }}</div>
+    <div class="label">{{ !englishMode ? field.label : field.englishLabel }}</div>
     <div>
       <div class="ilha-form__field__list__entry p-1">
         <ilha-field
@@ -9,6 +9,7 @@
           :inner-data="innerData"
           :field="entryField"
           :editor="editor"
+          :english-mode="englishMode"
           :editor-config="editorConfig">
         </ilha-field>
       </div>
@@ -33,6 +34,10 @@ export default {
     },
     innerData: {
       type: Object,
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
   watch: {

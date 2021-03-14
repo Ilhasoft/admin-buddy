@@ -1,6 +1,6 @@
 <template>
   <div class="ilha-form__field__list">
-    <div class="label">{{ field.label }}</div>
+    <div class="label">{{ !englishMode ? field.label : field.englishLabel }}</div>
     <div
       v-if="!entries || entries.length === 0"
       class="ilha-form__field__list__entry p-1">
@@ -18,6 +18,7 @@
           :inner-data="entry"
           :field="entryField"
           :editor="editor"
+          :english-mode="englishMode"
           :editor-config="editorConfig">
         </ilha-field>
         <div
@@ -64,6 +65,10 @@ export default {
     emptyLabel: {
       type: String,
       default: 'Empty',
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
   data() {

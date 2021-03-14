@@ -19,6 +19,7 @@
       :editor-config="editorConfig"
       :inputs-container-classes="inputsContainerClasses"
       :fields="fields"
+      :english-mode="englishMode"
       @requestSave="requestSave(passes)"
     />
     <b-steps
@@ -29,7 +30,7 @@
         <b-step-item
           :key="index"
           clickable
-          :label="step.label">
+          :label="!englishMode ? step.label : step.englishLabel">
           <ilha-fields-container
             :inner-data="innerData"
             :add-label="addLabel"
@@ -38,6 +39,7 @@
             :editor-config="editorConfig"
             :inputs-container-classes="inputsContainerClasses"
             :fields="step.fields"
+            :english-mode="englishMode"
             @requestSave="requestSave(passes)"
           />
         </b-step-item>
@@ -135,6 +137,10 @@ export default {
     canSave: {
       type: Boolean,
       default: true,
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
   data() {

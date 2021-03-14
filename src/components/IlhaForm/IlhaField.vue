@@ -9,7 +9,7 @@
     class="ilha-form__field"
   >
     <b-field
-      :label="field.label"
+      :label="finalLabel"
       :type="{ 'is-danger': errors[0], 'is-success': valid }"
       :message="errors"
       :class="field.hasBtn || field.hasImg ? ['column', 'is-four-fifths', 'p-0',
@@ -24,7 +24,7 @@
                     && field.type !== 'upload'"
         v-model="innerData[field.property]"
         :type="field.type ? field.type : 'text'"
-        :placeholder="field.placeholder"
+        :placeholder="finalPlaceholder"
         :maxlength="field.maxlength"
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
@@ -38,7 +38,7 @@
         v-if="field.type === 'masked'"
         v-cleave="field.mask"
         v-model="innerData[field.property + '_formatted']"
-        :placeholder="field.placeholder"
+        :placeholder="finalPlaceholder"
         :autocomplete="field.autocomplete"
         :disabled="field.disabled"
         @input.native="updateMaskedField(field, $event)"
@@ -51,7 +51,7 @@
       <b-select
         v-if="field.type === 'select'"
         v-model="innerData[field.property]"
-        :placeholder="field.placeholder"
+        :placeholder="finalPlaceholder"
         :disabled="field.disabled"
         @change.native="field.changedFunc ?
         field.changedFunc($event, innerData[field.property], field, innerData) : ''"
@@ -62,14 +62,14 @@
           :key="i"
           :value="option.value"
         >
-          {{ option.label }}
+          {{ !englishMode ? option.label : option.englishLabel }}
         </option>
       </b-select>
       <b-autocomplete
         v-if="field.type === 'autocomplete'"
         v-model="innerData[field.property]"
         :data="field.data"
-        :placeholder="field.placeholder"
+        :placeholder="finalPlaceholder"
         :field="field.dataField"
         :loading="field.loading"
         :disabled="field.disabled"
@@ -97,7 +97,7 @@
       <b-checkbox
         v-if="field.type === 'checkbox'"
         v-model="innerData[field.property]">
-        {{ field.placeholder }}
+        {{ finalPlaceholder }}
       </b-checkbox>
       <ColourPicker
         v-if="field.type === 'color'"
@@ -183,12 +183,23 @@ export default {
     innerData: {
       type: Object,
     },
-
+    englishMode: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   data() {
     return {
       changedBySelect: false,
     };
+  },
+  computed: {
+    finalLabel() {
+      return !this.englishMode ? this.field.label : this.field.englishLabel;
+    },
+    finalPlaceholder() {
+      return !this.englishMode ? this.field.placeholder : this.field.englishPlaceholder;
+    },
   },
   methods: {
     updateMaskedField(field, $event) {

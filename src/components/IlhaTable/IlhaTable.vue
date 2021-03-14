@@ -43,7 +43,7 @@
           v-for="(field, index) in header"
           :key="index"
           :field="field.property"
-          :label="field.label"
+          :label="!englishMode ? field.label : field.englishLabel"
           :sortable="field.sortable"
           :centered="field.centered"
           :class="field.classWidth"
@@ -228,6 +228,10 @@ export default {
     },
     rowClass: {
       type: Function,
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
   data() {

@@ -15,6 +15,7 @@
     :can-delete="canDelete"
     :show-counter="showCounter"
     :show-sequence="showSequence"
+    :english-mode="englishMode"
     @onPageChange="changePage"
     @onSort="sort"
     @onDelete="requestDelete"
@@ -91,6 +92,10 @@ export default {
     showSequence: {
       type: Boolean,
       default: false,
+    },
+    englishMode: {
+      type: Boolean,
+      default: () => false,
     },
   },
   methods: {
