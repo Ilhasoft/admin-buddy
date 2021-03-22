@@ -4,9 +4,11 @@ import Chart from 'chart.js';
 
 Chart.pluginService.register({
   beforeDraw(chart) {
+    const { ctx } = chart.chart;
+    ctx.fillStyle = 'white';
+    ctx.fillRect(0, 0, chart.width, chart.height);
     if (chart.config.options.elements.center) {
       // Get ctx from string
-      const { ctx } = chart.chart;
 
       // Get options from the center object in options
       const centerConfig = chart.config.options.elements.center;
