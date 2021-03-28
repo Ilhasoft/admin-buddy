@@ -89,6 +89,7 @@ export default {
       const { id } = this.$route.params;
       this.data = {};
       if (id === 'new' || id === 'novo') {
+        this.id = undefined;
         return;
       }
       this.id = id;
