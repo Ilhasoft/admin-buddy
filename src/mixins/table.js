@@ -1,6 +1,7 @@
 export default {
   data() {
     return {
+      currentPageSessionStorageKey: `ilha-table:currentPage:${window.location.pathname}`,
       resourceUrl: undefined,
       editRouteName: undefined,
       data: [],
@@ -28,12 +29,13 @@ export default {
   },
   methods: {
     initTable() {
-      this.currentPage = 1;
+      this.currentPage = +sessionStorage.getItem(this.currentPageSessionStorageKey) || 1;
       this.totalRows = 0;
       this.loadAsyncData();
     },
     changePage(page) {
       this.currentPage = page;
+      sessionStorage.setItem(this.currentPageSessionStorageKey, page);
       this.loadAsyncData();
     },
     sort({ field, order }) {
@@ -71,8 +73,10 @@ export default {
         .catch((error) => {
           this.data = [];
           this.totalRows = 0;
+          this.currentPage = 1;
+          sessionStorage.setItem(this.currentPageSessionStorageKey, this.currentPage);
           this.loading = false;
-          throw error;
+          console.error(error);
         });
     },
     requestDelete(data) {
