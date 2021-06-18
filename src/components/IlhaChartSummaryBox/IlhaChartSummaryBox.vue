@@ -16,6 +16,7 @@
       v-if="chartType === 'donut'"
       :data="chartData"
       :locale="locale"
+      :show-sum="showSum"
       style="width: 95%; min-width: 150px; height: 200px;">
     </ilha-donut-chart>
     <ilha-bar-chart
@@ -63,6 +64,10 @@ export default {
     showDatapoint: {
       type: Boolean,
       default: false,
+    },
+    showSum: {
+      type: Boolean,
+      default: () => false,
     },
   },
 };

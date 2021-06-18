@@ -101,6 +101,7 @@
         <div class="column is-half">
           <ilha-chart-summary-box
             :chart-data="chartData"
+            :show-sum="true"
             class="has-background-white">
             <template v-slot:title>
               New Reports Registered

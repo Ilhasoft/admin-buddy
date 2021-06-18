@@ -49,6 +49,10 @@ export default {
       type: String,
       default: 'en-US',
     },
+    showSum: {
+      type: Boolean,
+      default: () => false,
+    },
   },
   data() {
     return {};
@@ -82,7 +86,9 @@ export default {
     },
     options() {
       const options = makeDefaultOptions(this.locale);
-      options.elements.center.text = `${this.maxValue.toLocaleString(this.locale)}`;
+      options.elements.center.text = !this.showSum
+        ? `${this.maxValue.toLocaleString(this.locale)}`
+        : `${this.sum.toLocaleString(this.locale)}`;
       options.legend.position = this.getLegendPosition();
       return options;
     },
