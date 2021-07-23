@@ -73,8 +73,10 @@
         :field="field.dataField"
         :loading="field.loading"
         :disabled="field.disabled"
+        :check-infinite-scroll="field.infiniteScroll"
         @blur="onSelectBlur()"
         @typing="field.searchData($event); changedBySelect = false"
+        @infinite-scroll="field.searchData($event, true)"
         @select="selectedBySelect($event);field.changedFunc ?
         field.changedFunc($event, innerData[field.property], field, innerData) : ''"
         icon="magnify"
