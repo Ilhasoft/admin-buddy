@@ -23,7 +23,7 @@
     "chartjs-plugin-labels": "^1.1.0",
     "cleave.js": "^1.6.0",
     "core-js": "^3.6.4",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "sass-loader": "^8.0.2",
     "vee-validate": "^3.3.0",
     "vue": "^2.6.11",
