@@ -44,7 +44,9 @@
 
   .ck-editor__editable {
     min-height: 15em;
-    padding: 0 1.2em;
+    padding: 0 2em;
+    border: 1px solid var(--ck-color-toolbar-border);
+    border-top-color: transparent;
   }
 
   @media screen and (max-width: 768px) {

@@ -93,7 +93,9 @@
         && innerData[field.property] !== null"
         v-model="innerData[field.property]"
         :editor="editor"
-        :config="editorConfig">
+        :config="editorConfig"
+        @ready="onReady"
+      >
       </ckeditor>
 
       <b-checkbox
@@ -245,6 +247,12 @@ export default {
         }
         this.changedBySelect = false;
       }
+    },
+    onReady(editor) {
+      editor.ui.getEditableElement().parentElement.insertBefore(
+        editor.ui.view.toolbar.element,
+        editor.ui.getEditableElement(),
+      );
     },
   },
   watch: {

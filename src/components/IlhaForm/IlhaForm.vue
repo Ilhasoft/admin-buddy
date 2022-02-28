@@ -69,7 +69,7 @@
 import {
   ValidationObserver,
 } from 'vee-validate';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import SimpleUploadAdapter from './simpleuploadadapter';
 
 export default {
@@ -146,13 +146,16 @@ export default {
   data() {
     return {
       innerData: {},
-      editor: ClassicEditor,
+      editor: DecoupledEditor,
       activeStep: 0,
     };
   },
   computed: {
     editorConfig() {
-      return this.uploadUrl ? { extraPlugins: [(editor) => this.uploader(editor)] } : undefined;
+      return this.uploadUrl
+        ? {
+          extraPlugins: [(editor) => this.uploader(editor)],
+        } : undefined;
     },
   },
   methods: {

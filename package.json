@@ -8,14 +8,13 @@
     "build-lib": "vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack",
     "build-and-install-lib": "rm admin-buddy-v0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && yarn pack && cp admin-buddy-v0.1.0.tgz ../health-buddy-admin && cd .. && cd health-buddy-admin && yarn remove admin-buddy && yarn add file:admin-buddy-v0.1.0.tgz",
     "build-and-install-lib-2": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../cearadigital-admin-webapp && cd .. && cd cearadigital-admin-webapp && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
-    "build-and-install-lib-3": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../pode-falar-admin-web && cd .. && cd pode-falar-admin-web && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
+    "build-and-install-lib-3": "rm admin-buddy-0.1.0.tgz && vue-cli-service build --target lib --name admin-buddy src/plugin.js && npm pack && cp admin-buddy-0.1.0.tgz ../pode-falar-admin-web && cd .. && cd podefalar-admin-web && npm uninstall admin-buddy-0.1.0.tgz && npm install ./admin-buddy-0.1.0.tgz",
     "lint": "vue-cli-service lint"
   },
   "bundleDependencies": false,
   "main": "dist/admin-buddy.common.js",
   "dependencies": {
-    "@ckeditor/ckeditor5-build-classic": "^19.0.2",
-    "@ckeditor/ckeditor5-upload": "19.0.1",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^32.0.0",
     "@ckeditor/ckeditor5-vue": "^1.0.1",
     "axios": "^0.19.2",
     "buefy": "^0.8.19",
