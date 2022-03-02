@@ -4,8 +4,8 @@
     <div
       v-if="!entries || entries.length === 0"
       class="ilha-form__field__list__entry p-1">
-      <a v-if="canAdd" @click="add(0)">{{ addLabel }}</a>
-      <span v-if="!canAdd">{{ emptyLabel }}</span>
+      <a v-if="hasAction" @click="add(0)">{{ addLabel }}</a>
+      <span v-if="!hasAction">{{ emptyLabel }}</span>
     </div>
     <div>
       <div
@@ -22,9 +22,10 @@
           :editor-config="editorConfig">
         </ilha-field>
         <div
-          v-if="canAdd"
+          v-if="hasAction"
           class="ilha-form__field__list__entry__actions">
           <b-icon
+            v-if="canAdd"
             @click.native="add(j + 1)"
             icon="plus"
             size="is-medium">
@@ -77,8 +78,11 @@ export default {
     };
   },
   computed: {
-    canAdd() {
+    hasAction() {
       return this.field.hasActions === undefined || this.field.hasActions === true;
+    },
+    canAdd() {
+      return this.field.maxSize === undefined || this.entries.length < this.field.maxSize;
     },
   },
   methods: {
